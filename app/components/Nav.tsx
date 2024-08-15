@@ -6,7 +6,7 @@ const Nav = () => {
   return (
     <div className="bg-transparent flex justify-between items-center p-5 fixed w-4/5 mx-auto left-[10%]">
       <div>
-        <h1>Clocky</h1>
+        <h1 className="text-2xl">Clocky</h1>
       </div>
       <div className="flex gap-7 items-center text-[15px]">
         <Link className=" hover:text-[#D4AF37]" href="#Home">
@@ -44,7 +44,7 @@ const Nav = () => {
       </div>
       <div className="flex bg-white p-[7px] px-3 w-1/3  gap-2 items-center">
         <Image src={logo} alt="" width={20} height={20} />
-        <input type="search" placeholder="Search" />
+        <input className=" text-black" type="search" placeholder="search" />
       </div>
     </div>
   );
