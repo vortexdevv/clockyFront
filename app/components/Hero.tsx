@@ -11,8 +11,14 @@ const Hero = () => {
           Here you will find everything that suits you from watches from <br />
           the latest modern and international <br /> brands for men and women
         </p>
-        <button>Discover</button>
-        <button>Create account</button>
+        <div className="my-20">
+          <button className=" px-3 py-4 bg-[#FFFFFFE5] text-black w-28 ">
+            Discover
+          </button>
+          <button className="px-3 py-6 bg-[#414B43] w-40">
+            Create account
+          </button>
+        </div>
       </div>
     </div>
   );
