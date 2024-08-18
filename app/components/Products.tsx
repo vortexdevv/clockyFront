@@ -7,7 +7,7 @@ const Products = () => {
     { title: "product", price: 1276, image: "" },
   ];
   return (
-    <div className=" mx-auto flex justify-center flex-col items-center  w-full relative bg-[#FCFCFC] p-24">
+    <div className=" mx-auto flex justify-center flex-col items-center  w-4/5 relative bg-[#FCFCFC] p-24">
       <div className=" border-t-2 border-[#D4AF37] w-20 p-1 font-medium"></div>
       <h2 className="text-[#2E2E2E]">FEATURED</h2>
       <div className="flex flex-nowrap gap-8">
