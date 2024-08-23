@@ -5,6 +5,7 @@ import Products from "./components/Products";
 import Recomended from "./components/Recomended";
 import Products2 from "./components/Products2";
 import One from "./components/One";
+import Arrivals from "./components/Arrivals";
 export default function Home() {
   const hosary: number = 0;
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Recomended />
       <Products2 />
       <One />
+      <Arrivals />
     </main>
   );
 }
