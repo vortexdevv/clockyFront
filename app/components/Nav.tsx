@@ -4,7 +4,7 @@ import Link from "next/link";
 import logo from "../../public/search-alt-1-svgrepo-com.svg";
 const Nav = () => {
   return (
-    <div className="bg-transparent flex justify-between items-center p-5 fixed w-4/5 mx-auto left-[10%]">
+    <div className="bg-transparent flex justify-between items-center p-5 fixed w-4/5 mx-auto left-[10%] z-10">
       <div>
         <h1 className="text-2xl">Clocky</h1>
       </div>
