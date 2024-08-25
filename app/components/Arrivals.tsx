@@ -26,7 +26,7 @@ const Arrivals = () => {
                 {card.title}
               </h1>
               <p className="text-[#D4AF37] font-bold text-2xl ">{card.price}</p>
-              <button className="py-4 px-2 bg-[#414B43] hidden group-hover:block">
+              <button className="bg-[#414B43] hidden group-hover:block group-hover:p-4 ">
                 ADD TO CARD
               </button>
             </div>
