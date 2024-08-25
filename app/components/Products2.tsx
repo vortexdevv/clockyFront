@@ -9,17 +9,17 @@ const Products2 = () => {
     { title: "product", price: 1276, image: "" },
   ];
   return (
-    <div className=" mx-auto flex justify-center flex-col items-center  w-4/5 bg-[#FCFCFC] p-5 gap-4">
+    <div className=" mx-auto flex justify-center flex-col items-center  md:w-4/5 sm:w-full bg-[#FCFCFC] p-5 gap-4 ">
       <div className=" flex flex-col justify-center items-center gap-4">
         <span className=" border-t-2 border-[#D4AF37] w-20 px-1 font-medium"></span>
         <h1 className="text-xl font-medium text-[#2E2E2E]">PRODUCTS</h1>
       </div>
-      <div className="md:grid md:grid-cols-3 sm:grid sm:grid-cols-1 gap-6">
+      <div className="md:grid md:grid-cols-3 sm:grid sm:grid-cols-2 gap-6">
         {data.map((card: any, index: number) => {
           return (
             <div
               key={index}
-              className="border-solid border-2  border-[#F0F0F0] flex flex-col items-center justify-center p-11 gap-4 w-56"
+              className="border-solid border-2  border-[#F0F0F0] flex flex-col items-center justify-center p-11 gap-4 md:w-56 "
             >
               <Image src={abc} alt="watch" width={155} height={155} />
               <h1 className="text-[#2E2E2E] text-3xl font-medium">
@@ -28,7 +28,7 @@ const Products2 = () => {
               <h2 className="text-[#D4AF37] text-2xl font-black">
                 {card.price}
               </h2>
-              <button className=" bg-[#2B2B2B] p-4 relative top-11 left-20">
+              <button className=" bg-[#2B2B2B] p-4 relative md:top-11 md:left-20 ">
                 <svg
                   width="20px"
                   height="20px"
