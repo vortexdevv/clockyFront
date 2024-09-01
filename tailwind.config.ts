@@ -16,10 +16,6 @@ const config: Config = {
       boxShadow: {
         "3xl": " -85px 68px 0px 3px   rgb(65,75,67)",
       },
-      screens: {
-        sm: "0px",
-        md: "945px",
-      },
     },
   },
   plugins: [],

@@ -4,11 +4,11 @@ import Link from "next/link";
 import logo from "../../public/search-alt-1-svgrepo-com.svg";
 const Nav = () => {
   return (
-    <div className="bg-transparent flex justify-between items-center p-5 fixed w-4/5 mx-auto left-[10%] z-10 ">
+    <div className="bg-transparent flex justify-between items-center p-5 fixed w-4/5 mx-auto left-[10%] z-10  ">
       <div>
         <h1 className="text-2xl">Clocky</h1>
       </div>
-      <div className="flex gap-7 items-center text-[15px] max-[957px]:hidden">
+      <div className="md:flex md:gap-3 lg:gap-8 items-center text-[15px] hidden">
         <Link className=" hover:text-[#D4AF37]" href="#Home">
           Home
         </Link>
@@ -24,7 +24,7 @@ const Nav = () => {
         <Link className=" hover:text-[#D4AF37]" href="#Filter">
           Filter
         </Link>
-        <Link className=" hover:text-[#D4AF37]" href="#">
+        <Link className=" hover:text-[#D4AF37]" href="/cart">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -42,9 +42,13 @@ const Nav = () => {
           </svg>
         </Link>
       </div>
-      <div className="flex bg-white p-[7px] px-3 w-1/3  gap-2 items-center max-[957px]:hidden">
-        <Image src={logo} alt="" width={20} height={20} />
-        <input className=" text-black" type="search" placeholder="search" />
+      <div className="md:flex bg-white p-[5px]  w-1/4 items-center  hidden">
+        <Image className="w-1/12 " src={logo} alt="" />
+        <input
+          className=" w-1/2 text-black"
+          type="search"
+          placeholder="search"
+        />
       </div>
     </div>
   );
