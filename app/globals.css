@@ -37,3 +37,9 @@ body {
     text-wrap: balance;
   }
 }
+.idara {
+  @apply font-normal text-base text-[#595959] leading-8;
+}
+.mejor {
+  @apply text-[#2E2E2E] font-medium text-xl mb-3;
+}
