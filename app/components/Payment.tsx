@@ -216,7 +216,7 @@ const Payment = () => {
       <h2 className="text-xl font-medium text-[#2E2E2E]">MY CART</h2>
       <div className=" flex flex-col gap-6 md:flex-row w-full ">
         {/* First Item */}
-        <div className="flex flex-row items-center border w-1/2 justify-around rounded-md">
+        <div className="flex flex-row items-center mx-auto border md:w-1/2 justify-around rounded-md">
           <div className="w-56">
             <Image
               src={Watch}
@@ -262,7 +262,7 @@ const Payment = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-row items-center border w-1/2 rounded-md">
+        <div className="flex flex-row items-center mx-auto border md:w-1/2 rounded-md">
           <div className="w-56">
             <Image
               src={Watch}
@@ -309,6 +309,16 @@ const Payment = () => {
           </div>
         </div>
       </div>
+      {/* Cart Summary */}
+      <div className="flex justify-between items-center gap-6 mb-6">
+        <span className="text-[#2E2E2E] text-base font-normal">2 items</span>
+        <span className="text-[#2E2E2E] text-xl font-medium">EGP 2900</span>
+      </div>
+
+      {/* Buy All Button */}
+      <button className="w-full bg-[#414B43] text-[#FFFFFF] py-3 rounded-md">
+        BUY ALL
+      </button>
     </div>
   );
 };
