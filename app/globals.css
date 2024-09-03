@@ -43,3 +43,6 @@ body {
 .mejor {
   @apply text-[#2E2E2E] font-medium text-xl mb-3;
 }
+.hoverr {
+  @apply hover:bg-[#414B434D];
+}

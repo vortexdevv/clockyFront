@@ -7,6 +7,7 @@ import Products2 from "./components/Products2";
 import One from "./components/One";
 import Arrivals from "./components/Arrivals";
 import Footer from "./components/Footer";
+import Payment from "./components/Payment";
 export default function Home() {
   const hosary: number = 0;
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <One />
       <Arrivals />
       <Footer />
+      <Payment />
     </main>
   );
 }
