@@ -216,8 +216,8 @@ const Payment = () => {
       <h2 className="text-xl font-medium text-[#2E2E2E]">MY CART</h2>
       <div className=" flex flex-col gap-6 md:flex-row w-full ">
         {/* First Item */}
-        <div className="flex flex-row items-center mx-auto border md:w-1/2 justify-around rounded-md">
-          <div className="w-56">
+        <div className="flex flex-row items-center justify-around mx-auto border md:w-1/2 rounded-md">
+          <div className="w-24">
             <Image
               src={Watch}
               alt="Jazzmaster"
@@ -262,15 +262,15 @@ const Payment = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-row items-center mx-auto border md:w-1/2 rounded-md">
-          <div className="w-56">
+        <div className="flex flex-row items-center border justify-around md:w-1/2 mx-auto rounded-md">
+          <div className="w-24">
             <Image
               src={Watch}
               alt="Jazzmaster"
               className="w-[230px] h-[230px] object-contain mb-4"
             />
           </div>
-          <div>
+          <div className="flex flex-col items-center justify-center">
             <h3 className="text-2xl font-medium text-[#2E2E2E]">Jazzmaster</h3>
             <p className="text-[#D4AF37] text-lg">EGP 1050</p>
             <div className="flex items-center mt-4 space-x-4">
@@ -310,13 +310,13 @@ const Payment = () => {
         </div>
       </div>
       {/* Cart Summary */}
-      <div className="flex justify-between items-center gap-6 mb-6">
+      <div className="flex justify-between items-center gap-10 mb-6">
         <span className="text-[#2E2E2E] text-base font-normal">2 items</span>
         <span className="text-[#2E2E2E] text-xl font-medium">EGP 2900</span>
       </div>
 
       {/* Buy All Button */}
-      <button className="w-96 bg-[#414B43] text-[#FFFFFF] py-3 rounded-md">
+      <button className="w-80 bg-[#414B43] text-[#FFFFFF] py-3 flex justify-center rounded-md">
         BUY ALL
       </button>
     </div>
