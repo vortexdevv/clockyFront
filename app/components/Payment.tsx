@@ -316,7 +316,7 @@ const Payment = () => {
       </div>
 
       {/* Buy All Button */}
-      <button className="w-full bg-[#414B43] text-[#FFFFFF] py-3 rounded-md">
+      <button className="w-96 bg-[#414B43] text-[#FFFFFF] py-3 rounded-md">
         BUY ALL
       </button>
     </div>
