@@ -1,18 +1,43 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/search-alt-1-svgrepo-com.svg";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const toggleSearch = () => {
+    setShowSearch(!showSearch);
+  };
+
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="bg-transparent flex justify-between items-center p-5 fixed w-4/5 mx-auto left-[10%] z-10">
+    <div
+      className={`fixed w-full md:w-4/5 mx-auto md:left-[10%] z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
+        isScrolled ? "bg-black/60 shadow-lg" : "bg-transparent"
+      }`}
+    >
       <div>
         <h1 className="text-2xl">Clocky</h1>
       </div>
@@ -53,19 +78,16 @@ const Nav = () => {
         </Link>
       </div>
 
-      {/* Desktop Search */}
-      <div className="md:flex bg-white p-[5px] w-1/4 items-center hidden">
-        <Image className="w-1/12" src={logo} alt="Search Logo" />
-        <input
-          className="w-1/2 text-black"
-          type="search"
-          placeholder="Search"
-        />
+      {/* Search Icon for Desktop */}
+      <div className="md:flex items-center hidden">
+        <button onClick={toggleSearch} className="focus:outline-none">
+          <Image className="w-6 h-6" src={logo} alt="Search Icon" />
+        </button>
       </div>
 
       {/* Burger Menu for Mobile */}
       <div className="md:hidden">
-        <button onClick={toggleMenu} className="text-white focus:outline-none">
+        <button onClick={toggleMenu} className="focus:outline-none">
           <svg
             className={`h-6 w-6 transform transition-transform duration-300 ${
               isOpen ? "rotate-90" : ""
@@ -87,7 +109,7 @@ const Nav = () => {
 
       {/* Mobile Navigation */}
       <div
-        className={`${
+        className={`text-center ${
           isOpen ? "block" : "hidden"
         } md:hidden absolute top-full left-0 w-full bg-gray-800 transition-all duration-300 ease-in-out transform ${
           isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
@@ -129,7 +151,7 @@ const Nav = () => {
           Filter
         </Link>
         <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700"
+          className="flex justify-center px-4 py-2 text-white hover:bg-gray-700"
           href="/cart"
           onClick={() => setIsOpen(false)}
         >
@@ -149,7 +171,32 @@ const Nav = () => {
             ></path>
           </svg>
         </Link>
+        <button onClick={toggleSearch} className="focus:outline-none px-4 py-2">
+          <Image className="w-6 h-6" src={logo} alt="Search Icon" />
+        </button>
       </div>
+
+      {/* Search Popup */}
+      {showSearch && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-20">
+          <div className="bg-white p-4 rounded-lg shadow-lg w-4/5 md:w-1/3">
+            <div className="flex items-center">
+              <input
+                className="w-full text-black p-2 border border-gray-300 rounded"
+                type="search"
+                placeholder="Search..."
+                autoFocus
+              />
+              <button
+                onClick={toggleSearch}
+                className="ml-3 text-gray-500 hover:text-gray-800"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

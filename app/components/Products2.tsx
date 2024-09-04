@@ -19,7 +19,7 @@ const Products2 = () => {
           return (
             <div
               key={index}
-              className="border-solid border-2  border-[#F0F0F0] flex flex-col items-center justify-center p-11 gap-4 md:w-56 "
+              className="border-solid border-2 shadow-2xl border-[#F0F0F0] flex flex-col items-center justify-center p-11 gap-4 md:w-56 "
             >
               <Image src={abc} alt="watch" width={155} height={155} />
               <h1 className="text-[#2E2E2E] text-3xl font-medium">
