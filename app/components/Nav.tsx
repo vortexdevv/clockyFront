@@ -19,7 +19,7 @@ const Nav = () => {
           Brands
         </Link>
         <Link className=" hover:text-[#D4AF37]" href="#New arraival">
-          New arraival
+          New arrival
         </Link>
         <Link className=" hover:text-[#D4AF37]" href="#Filter">
           Filter

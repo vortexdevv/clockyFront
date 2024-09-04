@@ -51,54 +51,26 @@ const Footer = () => {
           <h4 className="mejor">Social</h4>
           <div className="w-24 flex md:flex-col md:gap-6 md:justify-center -m-10">
             <button>
+              {/* facebook */}
               <svg
-                width="90px"
-                height="20px"
-                viewBox="-5 0 20 20"
-                version="1.1"
                 xmlns="http://www.w3.org/2000/svg"
-                fill="#595959"
+                width="90"
+                height="20"
+                viewBox="-5 0 20 20"
               >
-                <g id="SVGRepo_bgCarrier" stroke-width="0" />
-
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-
-                <g id="SVGRepo_iconCarrier">
-                  {" "}
-                  <title>facebook [#176]</title>{" "}
-                  <desc>Created with Sketch.</desc> <defs> </defs>{" "}
+                <g>
                   <g
-                    id="Page-1"
-                    stroke="none"
-                    stroke-width="1"
                     fill="none"
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
+                    stroke="none"
+                    strokeWidth="1"
                   >
-                    {" "}
-                    <g
-                      id="Dribbble-Light-Preview"
-                      transform="translate(-385.000000, -7399.000000)"
-                      fill="#595959"
-                    >
-                      {" "}
-                      <g
-                        id="icons"
-                        transform="translate(56.000000, 160.000000)"
-                      >
-                        {" "}
-                        <path
-                          d="M335.821282,7259 L335.821282,7250 L338.553693,7250 L339,7246 L335.821282,7246 L335.821282,7244.052 C335.821282,7243.022 335.847593,7242 337.286884,7242 L338.744689,7242 L338.744689,7239.14 C338.744689,7239.097 337.492497,7239 336.225687,7239 C333.580004,7239 331.923407,7240.657 331.923407,7243.7 L331.923407,7246 L329,7246 L329,7250 L331.923407,7250 L331.923407,7259 L335.821282,7259 Z"
-                          id="facebook-[#176]"
-                        >
-                          {" "}
-                        </path>{" "}
-                      </g>{" "}
-                    </g>{" "}
-                  </g>{" "}
+                    <g fill="#000" transform="translate(-385 -7399)">
+                      <g transform="translate(56 160)">
+                        <path d="M335.821 7259v-9h2.733l.446-4h-3.179v-1.948c0-1.03.027-2.052 1.466-2.052h1.458v-2.86c0-.043-1.253-.14-2.52-.14-2.645 0-4.302 1.657-4.302 4.7v2.3H329v4h2.923v9h3.898z"></path>
+                      </g>
+                    </g>
+                  </g>
                 </g>
               </svg>
             </button>
