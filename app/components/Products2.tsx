@@ -14,7 +14,7 @@ const Products2 = () => {
         <span className=" border-t-2 border-[#D4AF37] w-20 px-1 font-medium"></span>
         <h1 className="text-xl font-medium text-[#2E2E2E]">PRODUCTS</h1>
       </div>
-      <div className="md:grid md:grid-cols-3 sm:grid sm:grid-cols-2 gap-6">
+      <div className="md:grid md:grid-cols-2 sm:grid sm:grid-cols-2 gap-6 xl:grid-cols-3">
         {data.map((card: any, index: number) => {
           return (
             <div

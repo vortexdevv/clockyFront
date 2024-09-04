@@ -20,7 +20,7 @@
 }
 * {
   font-family: "Roboto", sans-serif;
-  transition: 0.03s;
+  transition: 0.3s !important;
 }
 body {
   color: rgb(var(--foreground-rgb));
