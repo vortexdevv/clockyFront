@@ -1,6 +1,6 @@
 const Hero = () => {
   return (
-    <div className=" home bg-cover bg-bottom  mx-auto h-[720px] flex  flex-col items-center justify-center md:w-4/5 sm:full relative">
+    <div className=" text-white home bg-cover bg-bottom  mx-auto h-[720px] flex  flex-col items-center justify-center md:w-4/5 sm:full relative">
       <div className="w-9/12 absolute top-[20%] m-auto">
         <h1 className=" text-4xl md:text-5xl font-bold  text-left md:leading-[56px] sm:leading-[45px] my-2">
           Welcome to <span className="text-[#D4AF37]"> CLOCKY</span> <br />

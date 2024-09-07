@@ -34,17 +34,19 @@ const Nav = () => {
 
   return (
     <div
-      className={`fixed w-full md:w-4/5 mx-auto md:left-[10%] z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
+      className={`text-white fixed w-full md:w-4/5 mx-auto md:left-[10%] z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
         isScrolled ? "bg-black/60 shadow-lg w-full" : "bg-transparent"
       }`}
     >
       <div>
-        <h1 className="text-2xl">Clocky</h1>
+        <Link href="/">
+          <h1 className="text-2xl ">Clocky</h1>
+        </Link>
       </div>
 
       {/* Desktop Navigation */}
       <div className="md:flex md:gap-3 lg:gap-8 items-center text-[15px] hidden">
-        <Link className="hover:text-[#D4AF37]" href="#Home">
+        <Link className="hover:text-[#D4AF37]" href="/">
           Home
         </Link>
         <Link className="hover:text-[#D4AF37]" href="#Gender">
@@ -119,7 +121,7 @@ const Nav = () => {
       >
         <Link
           className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
-          href="#Home"
+          href="/"
           onClick={() => setIsOpen(false)}
         >
           Home
