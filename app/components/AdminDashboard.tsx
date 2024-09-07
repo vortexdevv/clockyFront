@@ -8,6 +8,7 @@ type Product = {
   price: number;
   description: string;
   countInStock: number;
+  img: string;
 };
 
 const AdminDashboard = () => {
@@ -18,13 +19,14 @@ const AdminDashboard = () => {
     price: "",
     description: "",
     countInStock: "",
+    img: "",
   });
 
   useEffect(() => {
     // Fetch products from the backend
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("/api/products");
+        const response = await axios.get("http://localhost:5000/api/products");
         setProducts(response.data);
       } catch (error) {
         console.error("Failed to fetch products", error);
@@ -43,14 +45,21 @@ const AdminDashboard = () => {
 
   const handleAddProduct = async () => {
     try {
-      const response = await axios.post("/api/products", {
+      const response = await axios.post("http://localhost:5000/api/products", {
         name: form.name,
         price: parseFloat(form.price),
         description: form.description,
         countInStock: parseInt(form.countInStock),
+        img: form.img,
       });
       setProducts([...products, response.data]);
-      setForm({ name: "", price: "", description: "", countInStock: "" });
+      setForm({
+        name: "",
+        price: "",
+        description: "",
+        countInStock: "",
+        img: "",
+      });
     } catch (error) {
       console.error("Failed to add product", error);
     }
@@ -63,6 +72,7 @@ const AdminDashboard = () => {
       price: product.price.toString(),
       description: product.description,
       countInStock: product.countInStock.toString(),
+      img: product.img,
     });
   };
 
@@ -70,12 +80,13 @@ const AdminDashboard = () => {
     if (editingProduct) {
       try {
         const response = await axios.put(
-          `/api/products/${editingProduct._id}`,
+          `http://localhost:5000/api/products/${editingProduct._id}`,
           {
             name: form.name,
             price: parseFloat(form.price),
             description: form.description,
             countInStock: parseInt(form.countInStock),
+            img: form.img,
           }
         );
         setProducts(
@@ -84,7 +95,13 @@ const AdminDashboard = () => {
           )
         );
         setEditingProduct(null);
-        setForm({ name: "", price: "", description: "", countInStock: "" });
+        setForm({
+          name: "",
+          price: "",
+          description: "",
+          countInStock: "",
+          img: "",
+        });
       } catch (error) {
         console.error("Failed to update product", error);
       }
@@ -93,7 +110,7 @@ const AdminDashboard = () => {
 
   const handleDeleteProduct = async (id: string) => {
     try {
-      await axios.delete(`/api/products/${id}`);
+      await axios.delete(`http://localhost:5000/api/products/${id}`);
       setProducts(products.filter((product) => product._id !== id));
     } catch (error) {
       console.error("Failed to delete product", error);
@@ -140,6 +157,17 @@ const AdminDashboard = () => {
             onChange={handleInputChange}
             className="w-full p-2 border border-gray-300 rounded mt-1"
             placeholder="Enter count in stock"
+          />
+        </div>
+        <div className="mb-3">
+          <label className="block text-gray-700">Picture URL</label>
+          <input
+            type="text"
+            name="img"
+            value={form.img}
+            onChange={handleInputChange}
+            className="w-full p-2 border border-gray-300 rounded mt-1"
+            placeholder="Enter picture URL"
           />
         </div>
         <div className="mb-3">
