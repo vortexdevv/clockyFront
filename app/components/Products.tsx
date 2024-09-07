@@ -28,18 +28,17 @@ const Products = () => {
     fetchProducts();
   }, []);
   const data: any = products;
-  console.log(data);
 
   return (
     <div className="mx-auto flex justify-center flex-col items-center md:w-4/5 sm:w-full bg-[#FCFCFC] pt-10">
       <div className="border-t-2 border-[#D4AF37] w-20 p-1 font-medium"></div>
       <h2 className="text-[#2E2E2E]">FEATURED</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {data.map((card: any, index: number) => {
           return (
             <div
               key={index}
-              className="mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center p-16 gap-5 relative shadow-xl"
+              className="mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center p-16 gap-5 relative shadow-xl transition-transform duration-300 ease-in-out transform hover:scale-105"
             >
               <span className="-rotate-90 bg-[#414B43] py-2 px-5 absolute -left-4 top-12">
                 SALE

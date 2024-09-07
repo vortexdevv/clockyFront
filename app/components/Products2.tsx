@@ -1,34 +1,55 @@
+"use client";
 import Image from "next/image";
 import abc from "../../public/abc.png";
+import { useEffect, useState } from "react";
+import axios from "axios";
+type Product = {
+  _id: string;
+  name: string;
+  price: number;
+  description: string;
+  countInStock: number;
+  pic: string;
+};
 const Products2 = () => {
-  const data: any = [
-    { title: "product", price: 1276, image: "" },
-    { title: "product", price: 1276, image: "" },
-    { title: "product", price: 1276, image: "" },
-    { title: "product", price: 1276, image: "" },
-    { title: "product", price: 1276, image: "" },
-  ];
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    // Fetch products from the backend
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/products");
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Failed to fetch products", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+  const data: any = products;
+
   return (
-    <div className=" mx-auto flex justify-center flex-col items-center  md:w-4/5 sm:w-full bg-[#FCFCFC] p-5 gap-4 ">
-      <div className=" flex flex-col justify-center items-center gap-4">
-        <span className=" border-t-2 border-[#D4AF37] w-20 px-1 font-medium"></span>
+    <div className="mx-auto flex justify-center flex-col items-center md:w-4/5 sm:w-full bg-[#FCFCFC] p-5 gap-4">
+      <div className="flex flex-col justify-center items-center gap-4">
+        <span className="border-t-2 border-[#D4AF37] w-20 px-1 font-medium"></span>
         <h1 className="text-xl font-medium text-[#2E2E2E]">PRODUCTS</h1>
       </div>
-      <div className="grid grid-cols-2 gap-6 xl:grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:grid-cols-3">
         {data.map((card: any, index: number) => {
           return (
             <div
               key={index}
-              className="border-solid border-2 shadow-2xl border-[#F0F0F0] flex flex-col items-center justify-center p-11 gap-4 md:w-56 "
+              className="border-solid border-2 shadow-2xl border-[#F0F0F0] flex flex-col items-center justify-center p-11 gap-4 md:w-56 transition-transform duration-300 ease-in-out transform hover:scale-105"
             >
-              <Image src={abc} alt="watch" width={155} height={155} />
+              <img src={card.img} alt="watch" className="w-[155px] h-[155px]" />
               <h1 className="text-[#2E2E2E] text-3xl font-medium">
-                {card.title}
+                {card.name}
               </h1>
               <h2 className="text-[#D4AF37] text-2xl font-black">
                 {card.price}
               </h2>
-              <button className=" bg-[#2B2B2B] p-4 relative md:top-11 md:left-20 ">
+              <button className="bg-[#2B2B2B] p-4 relative md:top-11 md:left-20">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"

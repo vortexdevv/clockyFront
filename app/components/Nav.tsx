@@ -35,7 +35,7 @@ const Nav = () => {
   return (
     <div
       className={`fixed w-full md:w-4/5 mx-auto md:left-[10%] z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
-        isScrolled ? "bg-black/60 shadow-lg" : "bg-transparent"
+        isScrolled ? "bg-black/60 shadow-lg w-full" : "bg-transparent"
       }`}
     >
       <div>
@@ -109,49 +109,51 @@ const Nav = () => {
 
       {/* Mobile Navigation */}
       <div
-        className={`text-center ${
+        className={`text-center p-5 ${
           isOpen ? "block" : "hidden"
         } md:hidden absolute top-full left-0 w-full bg-gray-800 transition-all duration-300 ease-in-out transform ${
-          isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
+          isOpen
+            ? "opacity-100 translate-y-0 flex flex-col gap-2"
+            : "opacity-0 -translate-y-2"
         }`}
       >
         <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700"
+          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
           href="#Home"
           onClick={() => setIsOpen(false)}
         >
           Home
         </Link>
         <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700"
+          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
           href="#Gender"
           onClick={() => setIsOpen(false)}
         >
           Gender
         </Link>
         <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700"
+          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
           href="#Brands"
           onClick={() => setIsOpen(false)}
         >
           Brands
         </Link>
         <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700"
+          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
           href="#New arraival"
           onClick={() => setIsOpen(false)}
         >
           New arrival
         </Link>
         <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700"
+          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
           href="#Filter"
           onClick={() => setIsOpen(false)}
         >
           Filter
         </Link>
         <Link
-          className="flex justify-center px-4 py-2 text-white hover:bg-gray-700"
+          className="flex justify-center px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
           href="/cart"
           onClick={() => setIsOpen(false)}
         >
@@ -171,7 +173,10 @@ const Nav = () => {
             ></path>
           </svg>
         </Link>
-        <button onClick={toggleSearch} className="focus:outline-none px-4 py-2">
+        <button
+          onClick={toggleSearch}
+          className="focus:outline-none px-4 py-2 bg-[#0000004d] w-full flex justify-center"
+        >
           <Image className="w-6 h-6" src={logo} alt="Search Icon" />
         </button>
       </div>
