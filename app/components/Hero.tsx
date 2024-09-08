@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Hero = () => {
   return (
     <div className=" text-white bg-[#414B43] bg-cover bg-bottom  mx-auto h-[720px] flex  flex-col items-center justify-center md:w-4/5 sm:full relative">
@@ -18,9 +20,12 @@ const Hero = () => {
           {/* <button className=" px-3 py-4 bg-[#FFFFFFE5] text-black w-28 ">
             Discover
           </button> */}
-          <button className="px-3 py-6 bg-white text-black w-40 hover:bg-[#8b8b8b]">
+          <Link
+            href={"/login"}
+            className="px-3 py-6 bg-white text-black w-40 hover:bg-[#8b8b8b]"
+          >
             Create account
-          </button>
+          </Link>
         </div>
       </div>
     </div>

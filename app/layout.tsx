@@ -32,7 +32,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} h-[100dvh]`}>
-        <Nav />
+        {/* <Nav /> */}
         {children}
         <Toaster />
       </body>
