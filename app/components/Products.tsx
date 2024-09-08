@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Watch from "../../public/watch.png";
+import Watch from "./watch.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
@@ -16,23 +16,56 @@ type Product = {
 };
 
 const Products = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  // const [products, setProducts] = useState<Product[]>([]);
   const { toast } = useToast();
 
-  useEffect(() => {
-    // Fetch products from the backend
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/api/products");
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Failed to fetch products", error);
-      }
-    };
+  // useEffect(() => {
+  //   // Fetch products from the backend
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await axios.get("http://localhost:5000/api/products");
+  //       setProducts(response.data);
+  //     } catch (error) {
+  //       console.error("Failed to fetch products", error);
+  //     }
+  //   };
 
-    fetchProducts();
-  }, []);
-
+  //   fetchProducts();
+  // }, []);
+  const products: Product[] = [
+    {
+      _id: "1",
+      name: "p1",
+      price: 2222,
+      description: "ddff",
+      countInStock: 255,
+      img: "fgdfgdg",
+    },
+    {
+      _id: "2",
+      name: "p1",
+      price: 2222,
+      description: "ddff",
+      countInStock: 255,
+      img: "fgdfgdg",
+    },
+    {
+      _id: "3",
+      name: "p1",
+      price: 2222,
+      description: "ddff",
+      countInStock: 255,
+      img: "fgdfgdg",
+    },
+    {
+      _id: "4",
+      name: "p1",
+      price: 2222,
+      description: "ddff",
+      countInStock: 255,
+      img: "fgdfgdg",
+    },
+  ];
   const addToCart = (product: Product) => {
     // Get the current cart from localStorage
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -73,11 +106,18 @@ const Products = () => {
             <span className="-rotate-90 bg-[#414B43] py-2 px-5 absolute -left-4 top-12">
               SALE
             </span>
-            <img
-              src={product.img}
+            <Image
+              src={Watch}
+              width={140}
+              height={215}
+              alt={product.name}
+              className="w-[155px] h-[155px]"
+            />
+            {/* <img
+              src={Watch}
               alt={product.name}
               className="w-[140px] h-[215px]"
-            />
+            /> */}
             <h1 className="text-[#2E2E2E] font-bold text-3xl">
               {product.name}
             </h1>

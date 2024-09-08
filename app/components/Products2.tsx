@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
-
+// import Watch from "./watch.png";
+// import Image from "next/image";
 type Product = {
   _id: string;
   name: string;
@@ -32,6 +33,40 @@ const Products2 = () => {
     fetchProducts();
   }, []);
 
+  // const products: Product[] = [
+  //   {
+  //     _id: "1",
+  //     name: "p1",
+  //     price: 2222,
+  //     description: "ddff",
+  //     countInStock: 255,
+  //     img: "fgdfgdg",
+  //   },
+  //   {
+  //     _id: "2",
+  //     name: "p1",
+  //     price: 2222,
+  //     description: "ddff",
+  //     countInStock: 255,
+  //     img: "fgdfgdg",
+  //   },
+  //   {
+  //     _id: "3",
+  //     name: "p1",
+  //     price: 2222,
+  //     description: "ddff",
+  //     countInStock: 255,
+  //     img: "fgdfgdg",
+  //   },
+  //   {
+  //     _id: "4",
+  //     name: "p1",
+  //     price: 2222,
+  //     description: "ddff",
+  //     countInStock: 255,
+  //     img: "fgdfgdg",
+  //   },
+  // ];
   const addToCart = (product: Product) => {
     // Get the current cart from localStorage
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");

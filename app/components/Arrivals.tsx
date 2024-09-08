@@ -8,7 +8,10 @@ const Arrivals = () => {
     { title: "product", price: 1276, image: "" },
   ];
   return (
-    <div className="text-white mx-auto flex justify-center flex-col items-center md:w-4/5 w-full bg-[#FCFCFC] p-16">
+    <div
+      id="newarraival"
+      className="text-white mx-auto flex justify-center flex-col items-center md:w-4/5 w-full bg-[#FCFCFC] p-16"
+    >
       <div className="border-t-2 border-[#D4AF37] w-20 p-2 font-medium"></div>
       <h2 className="text-[#2E2E2E]">NEW ARRIVALS</h2>
       <div className="md:flex md:flex-nowrap gap-4 flex flex-wrap">
