@@ -49,17 +49,20 @@ const Nav = () => {
         <Link className="hover:text-[#D4AF37]" href="/">
           Home
         </Link>
-        <Link className="hover:text-[#D4AF37]" href="#Gender">
+        <Link className="hover:text-[#D4AF37]" href="/Gender">
           Gender
         </Link>
-        <Link className="hover:text-[#D4AF37]" href="#Brands">
-          Brands
+        <Link className="hover:text-[#D4AF37]" href="/unisex">
+          Unisex
         </Link>
         <Link className="hover:text-[#D4AF37]" href="#newarraival">
           New arrival
         </Link>
-        <Link className="hover:text-[#D4AF37]" href="#Filter">
-          Filter
+        <Link className="hover:text-[#D4AF37]" href="/brand">
+          Brand
+        </Link>
+        <Link className="hover:text-[#D4AF37]" href="#contact-us">
+          Contact Us
         </Link>
         <Link className="hover:text-[#D4AF37]" href="/cart">
           <svg

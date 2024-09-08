@@ -24,22 +24,12 @@ export const One = () => {
             especially with the attention you receive, they <br /> are always
             attentive to your questions.
           </p>
-          <h1 className=" font-medium text-[#2E2E2E] text-base">
-            {" "}
-            March 27. 2023{" "}
-          </h1>
         </div>
-        <div className=" flex items-center my-9">
-          <Image
-            src={Delmondo}
-            alt="watch"
-            className="w-[60px] h-[60px] rounded-full "
-          />
-          <div className=" text-[#2E2E2E]">
-            <h1 className=" font-medium  text-base">Ahmed Hassan</h1>
-            <p className="font-normal ] text-sm">Ahmedhassan@gmail.com</p>
-          </div>
+        <div className="flex flex-col my-11 gap-5">
+          <h1 className="text-[#2E2E2E] font-bold text-3xl">Name</h1>
+          <p className="text-[#D4AF37] font-bold text-2xl">1921</p>
         </div>
+
         <div className="flex gap-20">
           <button className=" shadow-2xl">
             <svg
