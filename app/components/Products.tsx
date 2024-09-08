@@ -9,6 +9,7 @@ import Link from "next/link";
 type Product = {
   _id: string;
   name: string;
+  before: number; // Original price
   price: number;
   description: string;
   countInStock: number;
@@ -36,6 +37,7 @@ const Products = () => {
     {
       _id: "1",
       name: "p1",
+      before: 1000,
       price: 2222,
       description: "ddff",
       countInStock: 255,
@@ -44,6 +46,7 @@ const Products = () => {
     {
       _id: "2",
       name: "p1",
+      before: 1000,
       price: 2222,
       description: "ddff",
       countInStock: 255,
@@ -52,6 +55,7 @@ const Products = () => {
     {
       _id: "3",
       name: "p1",
+      before: 1000,
       price: 2222,
       description: "ddff",
       countInStock: 255,
@@ -60,6 +64,7 @@ const Products = () => {
     {
       _id: "4",
       name: "p1",
+      before: 1000,
       price: 2222,
       description: "ddff",
       countInStock: 255,
@@ -121,7 +126,12 @@ const Products = () => {
             <h1 className="text-[#2E2E2E] font-bold text-3xl">
               {product.name}
             </h1>
-            <p className="text-[#D4AF37] font-bold text-2xl">{product.price}</p>
+            <p className="text-[#595959] font-bold text-base line-through">
+              {product.before} L.E
+            </p>
+            <p className="text-[#D4AF37] font-bold text-2xl ">
+              {product.price} L.E
+            </p>
             <button
               onClick={() => addToCart(product)}
               className="py-5 px-8 bg-[#414B43]"
