@@ -33,6 +33,9 @@ html {
     text-wrap: balance;
   }
 }
+.hero {
+  background-image: url("../public/hero.png");
+}
 .idara {
   @apply font-normal text-base leading-8 text-[#595959];
 }
