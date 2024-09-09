@@ -102,7 +102,7 @@ const Products = () => {
     <div className="mx-auto text-white flex justify-center flex-col items-center md:w-4/5 sm:w-full bg-[#FCFCFC] pt-10">
       <div className="border-t-2 border-[#D4AF37] w-20 p-1 font-medium"></div>
       <h2 className="text-[#2E2E2E]">FEATURED</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {products.map((product, index) => (
           <div
             key={index}
