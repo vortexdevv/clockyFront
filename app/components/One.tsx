@@ -27,6 +27,9 @@ export const One = () => {
         </div>
         <div className="flex flex-col my-11 gap-5">
           <h1 className="text-[#2E2E2E] font-bold text-3xl">Name</h1>
+          <p className="text-[#595959] font-bold text-base line-through text-start">
+            1000 L.E
+          </p>
           <p className="text-[#D4AF37] font-bold text-2xl">1921</p>
         </div>
 

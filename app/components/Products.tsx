@@ -102,13 +102,13 @@ const Products = () => {
     <div className="mx-auto text-white flex justify-center flex-col items-center md:w-4/5 sm:w-full bg-[#FCFCFC] pt-10">
       <div className="border-t-2 border-[#D4AF37] w-20 p-1 font-medium"></div>
       <h2 className="text-[#2E2E2E]">FEATURED</h2>
-      <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 md:gap-6 gap-2">
         {products.map((product, index) => (
           <div
             key={index}
-            className="mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center p-16 gap-5 relative shadow-xl transition-transform duration-300 ease-in-out transform hover:scale-105"
+            className="mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center md:p-16 p-8 gap-5 relative shadow-xl transition-transform duration-300 ease-in-out transform hover:scale-105"
           >
-            <span className="-rotate-90 bg-[#414B43] py-2 px-5 absolute -left-4 top-12">
+            <span className="-rotate-90 bg-[#414B43] py-2 px-5 absolute -left-4 md:top-12 top-[1.3rem]">
               SALE
             </span>
             <Image
@@ -126,15 +126,15 @@ const Products = () => {
             <h1 className="text-[#2E2E2E] font-bold text-3xl">
               {product.name}
             </h1>
-            <p className="text-[#595959] font-bold text-base line-through">
+            <p className="text-[#595959] font-bold text-base line-through text-center">
               {product.before} L.E
             </p>
-            <p className="text-[#D4AF37] font-bold text-2xl ">
+            <p className="text-[#D4AF37] font-bold text-2xl text-center">
               {product.price} L.E
             </p>
             <button
               onClick={() => addToCart(product)}
-              className="py-5 px-8 bg-[#414B43]"
+              className="md:py-5 md:px-8 px-1 py-4 w-32 bg-[#414B43]"
             >
               ADD TO CART
             </button>

@@ -46,23 +46,23 @@ const Nav = () => {
 
       {/* Desktop Navigation */}
       <div className="md:flex md:gap-3 lg:gap-8 items-center text-[15px] hidden">
-        <Link className="hover:text-[#D4AF37]" href="/">
-          Home
+        <Link className="hover:text-[#D4AF37]" href="#newarraival">
+          New arrival
+        </Link>
+        <Link className="hover:text-[#D4AF37]" href="/shop">
+          shop
+        </Link>
+        <Link className="hover:text-[#D4AF37]" href="/brands">
+          Brands
         </Link>
         <Link className="hover:text-[#D4AF37]" href="/Gender">
           Gender
         </Link>
-        <Link className="hover:text-[#D4AF37]" href="/unisex">
-          Unisex
-        </Link>
-        <Link className="hover:text-[#D4AF37]" href="#newarraival">
-          New arrival
-        </Link>
-        <Link className="hover:text-[#D4AF37]" href="/brand">
-          Brand
-        </Link>
         <Link className="hover:text-[#D4AF37]" href="#contact-us">
           Contact Us
+        </Link>
+        <Link className="hover:text-[#D4AF37]" href="/Policy">
+          Policy
         </Link>
         <Link className="hover:text-[#D4AF37]" href="/cart">
           <svg

@@ -10,16 +10,16 @@ const Arrivals = () => {
   return (
     <div
       id="newarraival"
-      className="text-white mx-auto flex justify-center flex-col items-center md:w-4/5 w-full bg-[#FCFCFC] p-16"
+      className="text-white mx-auto flex justify-center flex-col items-center md:w-4/5 w-full bg-[#FCFCFC] md:p-16"
     >
       <div className="border-t-2 border-[#D4AF37] w-20 p-2 font-medium"></div>
       <h2 className="text-[#2E2E2E]">NEW ARRIVALS</h2>
-      <div className="md:flex md:flex-nowrap gap-4 flex flex-wrap">
+      <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 md:gap-6 gap-2">
         {data.map((card: any, index: number) => {
           return (
             <div
               key={index}
-              className="group m-auto md:mt-20 md:p-8 lg:p-16 mt-7 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center p-14 gap-4 relative shadow-2xl transition-transform duration-300 ease-in-out transform hover:scale-105"
+              className="group mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center md:p-16 p-8 gap-5 relative shadow-xl transition-transform duration-300 ease-in-out transform hover:scale-105"
             >
               <span className="bg-[#414B43] py-2 px-2 absolute top-0 right-0">
                 NEW
@@ -28,8 +28,11 @@ const Arrivals = () => {
               <h1 className="text-[#2E2E2E] font-bold text-3xl">
                 {card.title}
               </h1>
+              <p className="text-[#595959] font-bold text-base line-through text-center">
+                1000 L.E
+              </p>
               <p className="text-[#D4AF37] font-bold text-2xl">{card.price}</p>
-              <button className="bg-[#414B43] block p-4 md:hidden md:group-hover:block transition-opacity duration-300 ease-in-out ">
+              <button className="bg-[#414B43] block md:py-5 md:px-8 px-1 py-4 w-32 md:hidden md:group-hover:block transition-opacity duration-300 ease-in-out ">
                 ADD TO CARD
               </button>
             </div>
