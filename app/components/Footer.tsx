@@ -7,29 +7,29 @@ const Footer = () => {
   return (
     <div
       id="contact-us"
-      className="mx-auto flex justify-center  items-center md:w-4/5  w-full bg-[#FCFCFC] p-20"
+      className="mx-auto flex justify-center  items-center md:w-4/5  w-full bg-[#414b43] p-20 text-white"
     >
       <footer className="flex justify-between w-5/6 md:flex-row  flex-col gap-10">
         <div className="">
-          <h4 className="mejor">Our information</h4>
-          <p className="idara">Cairo - Egypt</p>
-          <p className="idara">01113283189</p>
+          <h4 className="font-medium text-xl mb-3">Our information</h4>
+          <p className="font-normal text-base leading-8">Cairo - Egypt</p>
+          <p className="font-normal text-base leading-8">01113283189</p>
         </div>
         <div className="about-us">
-          <h4 className="mejor">About Us</h4>
-          <a className="idara" href="#">
+          <h4 className="font-medium text-xl mb-3">About Us</h4>
+          <a className="font-normal text-base leading-8" href="#">
             Support Center
           </a>
           <br />
-          <a className="idara" href="#">
+          <a className="font-normal text-base leading-8" href="#">
             Customer Support
           </a>
           <br />
-          <a className="idara" href="#">
+          <a className="font-normal text-base leading-8" href="#">
             About Us
           </a>
           <br />
-          <a className="idara" href="#">
+          <a className="font-normal text-base leading-8" href="#">
             Copy Right
           </a>
         </div>
@@ -51,8 +51,8 @@ const Footer = () => {
             Accessories
           </a>
         </div> */}
-        <div className="flex  md:items-center flex-col gap-14 ">
-          <h4 className="mejor">Social</h4>
+        <div className="flex  md:items-center flex-col gap-14 text-white">
+          <h4 className="font-medium text-xl mb-3">Social</h4>
           <div className="w-24 flex md:flex-col md:gap-6 md:justify-center -m-10 items-center">
             <Link href={""}>
               {/* facebook */}

@@ -34,7 +34,7 @@ html {
   }
 }
 .idara {
-  @apply font-normal text-base text-[#595959] leading-8;
+  @apply font-normal text-base leading-8 text-[#595959];
 }
 .mejor {
   @apply text-[#2E2E2E] font-medium text-xl mb-3;

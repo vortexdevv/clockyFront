@@ -93,6 +93,35 @@ const Products2 = () => {
       action: <Link href="/cart">Go to cart</Link>,
     });
   };
+  // const AddToCart = (productId: string, quantity: number) => {
+  //   const token = localStorage.getItem('token');
+
+  //   // If user is not logged in, save the cart in local storage
+  //   if (!token) {
+  //     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  //     const productExists = cart.find((item: any) => item.productId === productId);
+
+  //     if (productExists) {
+  //       productExists.quantity += quantity; // Increment quantity if product already in cart
+  //     } else {
+  //       cart.push({ productId, quantity }); // Add new product to cart
+  //     }
+
+  //     localStorage.setItem('cart', JSON.stringify(cart));
+  //     console.log('Product added to local cart:', cart);
+  //   } else {
+  //     // If user is logged in, send the cart to the backend
+  //     axios.post(`/api/cart/add`, { productId, quantity }, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     }).then(response => {
+  //       console.log('Product added to user cart:', response.data);
+  //     }).catch(error => {
+  //       console.error('Failed to add product to user cart', error);
+  //     });
+  //   }
+  // };
 
   return (
     <div className="mx-auto flex justify-center flex-col items-center md:w-4/5 sm:w-full bg-[#FCFCFC] p-5 gap-4">

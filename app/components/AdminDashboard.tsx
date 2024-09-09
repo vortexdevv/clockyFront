@@ -124,7 +124,7 @@ const AdminDashboard = () => {
   };
   return (
     <>
-      {isAuthenticated ? (
+      {!isAuthenticated ? (
         <div className="p-6 bg-black min-h-screen w-full mt-10 text-black">
           <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
 
@@ -149,6 +149,17 @@ const AdminDashboard = () => {
               <input
                 type="number"
                 name="price"
+                value={form.price}
+                onChange={handleInputChange}
+                className="w-full p-2 border border-gray-300 rounded mt-1"
+                placeholder="Enter product price"
+              />
+            </div>
+            <div className="mb-3">
+              <label className="block text-gray-700">Price Before</label>
+              <input
+                type="number"
+                name="before"
                 value={form.price}
                 onChange={handleInputChange}
                 className="w-full p-2 border border-gray-300 rounded mt-1"

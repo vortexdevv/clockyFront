@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Traje from "../../public/traje.png";
-export const Recomended = () => {
+export const Recommended = () => {
   return (
     <div className=" text-white mx-auto md:flex md:flex-row-reverse md:justify-evenly  md:items-center  md:w-4/5   bg-[#FCFCFC] p-12 md:p-8 md:py-24 gap-20 sm:flex sm:flex-col sm:justify-center sm:items-center sm:w-full">
       <div className=" flex flex-col gap-6 text-left md:items-start sm:items-center">
@@ -15,8 +15,8 @@ export const Recomended = () => {
             various presentations in this store,
             <br /> discover them now.
           </p>
-          <button className="py-4 w-28  px-6 bg-[rgb(65,75,67)] shadow-xl">
-            Discover
+          <button className="py-4 w-40  px-6 bg-[rgb(65,75,67)] shadow-xl">
+            Order now
           </button>
         </div>
       </div>
@@ -30,4 +30,4 @@ export const Recomended = () => {
     </div>
   );
 };
-export default Recomended;
+export default Recommended;

@@ -116,7 +116,7 @@ const Nav = () => {
       <div
         className={`text-center p-5 ${
           isOpen ? "block" : "hidden"
-        } md:hidden absolute top-full left-0 w-full bg-gray-800 transition-all duration-300 ease-in-out transform ${
+        } md:hidden absolute top-full left-0 w-full bg-[#414b43] transition-all duration-300 ease-in-out transform ${
           isOpen
             ? "opacity-100 translate-y-0 flex flex-col gap-2"
             : "opacity-0 -translate-y-2"
