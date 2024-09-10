@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import axiosInstance from "@/lib/axiosConfig";
 
 type Product = {
   _id: string;
@@ -124,7 +125,7 @@ const AdminDashboard = () => {
   };
   return (
     <>
-      {!isAuthenticated ? (
+      {isAuthenticated ? (
         <div className="p-6 bg-black min-h-screen w-full mt-10 text-black">
           <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
 

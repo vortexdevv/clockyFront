@@ -129,7 +129,7 @@ const Products2 = () => {
         <span className="border-t-2 border-[#D4AF37] w-20 px-1 font-medium"></span>
         <h1 className="text-xl font-medium text-[#2E2E2E]">PRODUCTS</h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:grid-cols-3">
+      <div className="grid grid-cols-3 md:grid-cols-2 gap-6 xl:grid-cols-3">
         {products.map((product: Product, index: number) => (
           <div
             key={index}

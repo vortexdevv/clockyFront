@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import Watch from "../../public/watch.png";
+import Watch from "../../../public/watch.png";
 const page = () => {
   return (
     <div className="h-full bg-[#FCFCFC] flex justify-center items-center">
       <div className=" md:w-4/5 flex md:flex-row items-center justify-around w-full flex-col ">
         <div>
-          <Image src={Watch} alt="watch" className=" w-[350px] h-[350px]" />
+          <Image src={Watch} alt="watch" className=" w-[350px] " />
         </div>
         <div>
           <div className="flex flex-col justify-center items-center p-6 gap-3">

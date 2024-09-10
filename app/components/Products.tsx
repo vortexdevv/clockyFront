@@ -106,17 +106,16 @@ const Products = () => {
         {products.map((product, index) => (
           <div
             key={index}
-            className="mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center md:p-16 p-8 gap-5 relative shadow-xl transition-transform duration-300 ease-in-out transform hover:scale-105"
+            className="mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center md:p-16 p-4 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform hover:scale-105"
           >
-            <span className="-rotate-90 bg-[#414B43] py-2 px-5 absolute -left-4 md:top-12 top-[1.3rem]">
+            <span className="-rotate-90 bg-[#414B43] py-2 px-2 absolute -left-[6px] md:top-12 top-[10px]">
               SALE
             </span>
             <Image
               src={Watch}
-              width={140}
-              height={215}
+              width={100}
               alt={product.name}
-              className="w-[155px] h-[155px]"
+              className="w-[100px]"
             />
             {/* <img
               src={Watch}
@@ -134,7 +133,7 @@ const Products = () => {
             </p>
             <button
               onClick={() => addToCart(product)}
-              className="md:py-5 md:px-8 px-1 py-4 w-32 bg-[#414B43]"
+              className="md:py-5 md:px-8 px-1 py-2 w-32 bg-[#414B43]"
             >
               ADD TO CART
             </button>
