@@ -1,26 +1,77 @@
 "use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
-// import Watch from "./watch.png";
-// import Image from "next/image";
+import { useToast } from "@/hooks/use-toast";
+
 type Product = {
   _id: string;
   name: string;
   price: number;
   description: string;
-  countInStock: number;
   img: string;
-  quantity?: number; // Add quantity field for cart
+  quantity?: number;
+};
+// Utility function to get the cart from localStorage
+const getCartFromLocalStorage = (): Product[] => {
+  return JSON.parse(localStorage.getItem("cart") || "[]");
+};
+
+// Utility function to save the cart to localStorage
+const saveCartToLocalStorage = (cart: Product[]) => {
+  localStorage.setItem("cart", JSON.stringify(cart));
+};
+
+// Function to add a product to the cart
+const addProductToCart = (cart: Product[], product: Product): Product[] => {
+  const existingProduct = cart.find((item) => item._id === product._id);
+
+  if (existingProduct) {
+    return cart.map((item) =>
+      item._id === product._id
+        ? { ...item, quantity: (item.quantity || 1) + 1 }
+        : item
+    );
+  } else {
+    return [...cart, { ...product, quantity: 1 }];
+  }
+};
+
+// Function to update product quantity in the cart
+const updateProductQuantity = (
+  cart: Product[],
+  productId: string,
+  change: number
+): Product[] => {
+  return cart.map((item) => {
+    if (item._id === productId) {
+      const newQuantity = (item.quantity || 1) + change;
+      return { ...item, quantity: Math.max(newQuantity, 1) }; // Ensure quantity is at least 1
+    }
+    return item;
+  });
+};
+
+// Function to sync the cart with the server (for authenticated users)
+const syncCartWithServer = async (products: Product[]) => {
+  try {
+    const token = localStorage.getItem("userId");
+    if (token) {
+      await axios.post(`http://localhost:5000/api/products/cart/${token}`, {
+        products,
+      });
+    }
+  } catch (error) {
+    console.error("Failed to sync cart with server", error);
+  }
 };
 
 const Products2 = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [cartItems, setCartItems] = useState<Product[]>([]);
   const { toast } = useToast();
 
   useEffect(() => {
-    // Fetch products from the backend
     const fetchProducts = async () => {
       try {
         const response = await axios.get("http://localhost:5000/api/products");
@@ -30,99 +81,72 @@ const Products2 = () => {
       }
     };
 
+    // Load cart items from localStorage on component mount
+    const cartFromLocalStorage = getCartFromLocalStorage();
+    setCartItems(cartFromLocalStorage);
+
     fetchProducts();
   }, []);
 
-  // const products: Product[] = [
-  //   {
-  //     _id: "1",
-  //     name: "p1",
-  //     price: 2222,
-  //     description: "ddff",
-  //     countInStock: 255,
-  //     img: "fgdfgdg",
-  //   },
-  //   {
-  //     _id: "2",
-  //     name: "p1",
-  //     price: 2222,
-  //     description: "ddff",
-  //     countInStock: 255,
-  //     img: "fgdfgdg",
-  //   },
-  //   {
-  //     _id: "3",
-  //     name: "p1",
-  //     price: 2222,
-  //     description: "ddff",
-  //     countInStock: 255,
-  //     img: "fgdfgdg",
-  //   },
-  //   {
-  //     _id: "4",
-  //     name: "p1",
-  //     price: 2222,
-  //     description: "ddff",
-  //     countInStock: 255,
-  //     img: "fgdfgdg",
-  //   },
-  // ];
-  const addToCart = (product: Product) => {
-    // Get the current cart from localStorage
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-
-    // Check if the product already exists in the cart
-    const existingProduct = cart.find(
-      (item: Product) => item._id === product._id
-    );
-
-    if (existingProduct) {
-      // If the product exists, increment its quantity
-      existingProduct.quantity += 1;
-    } else {
-      // Otherwise, add the product with an initial quantity of 1
-      cart.push({ ...product, quantity: 1 });
-    }
-
-    // Save the updated cart back to localStorage
-    localStorage.setItem("cart", JSON.stringify(cart));
-    console.log(`${product.name} added to cart`);
+  // Handle adding a product to the cart
+  const handleAddToCart = (product: Product) => {
+    const updatedCart = addProductToCart(cartItems, product);
+    setCartItems(updatedCart);
+    saveCartToLocalStorage(updatedCart);
     toast({
       title: product.name,
       description: "added to cart",
       action: <Link href="/cart">Go to cart</Link>,
     });
+
+    // Sync with server if authenticated
+    syncCartWithServer(updatedCart);
   };
-  // const AddToCart = (productId: string, quantity: number) => {
-  //   const token = localStorage.getItem('token');
 
-  //   // If user is not logged in, save the cart in local storage
-  //   if (!token) {
-  //     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-  //     const productExists = cart.find((item: any) => item.productId === productId);
+  // Handle changing product quantity
+  const handleQuantityChange = async (productId: string, change: number) => {
+    const updatedCart = updateProductQuantity(cartItems, productId, change);
+    setCartItems(updatedCart);
+    saveCartToLocalStorage(updatedCart);
 
-  //     if (productExists) {
-  //       productExists.quantity += quantity; // Increment quantity if product already in cart
-  //     } else {
-  //       cart.push({ productId, quantity }); // Add new product to cart
-  //     }
+    // Sync with server if authenticated
+    syncCartWithServer(updatedCart);
+  };
 
-  //     localStorage.setItem('cart', JSON.stringify(cart));
-  //     console.log('Product added to local cart:', cart);
-  //   } else {
-  //     // If user is logged in, send the cart to the backend
-  //     axios.post(`/api/cart/add`, { productId, quantity }, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     }).then(response => {
-  //       console.log('Product added to user cart:', response.data);
-  //     }).catch(error => {
-  //       console.error('Failed to add product to user cart', error);
-  //     });
-  //   }
-  // };
-
+  // return (
+  //   <div className="mx-auto flex justify-center flex-col items-center md:w-4/5 sm:w-full bg-[#FCFCFC] p-5 gap-4">
+  //     <div className="flex flex-col justify-center items-center gap-4">
+  //       <span className="border-t-2 border-[#D4AF37] w-20 px-1 font-medium"></span>
+  //       <h1 className="text-xl font-medium text-[#2E2E2E]">PRODUCTS</h1>
+  //     </div>
+  //     <div className="grid grid-cols-3 md:grid-cols-2 gap-6 xl:grid-cols-3">
+  //       {products.map((product: Product, index: number) => (
+  //         <div
+  //           key={index}
+  //           className="border-solid border-2 shadow-2xl border-[#F0F0F0] flex flex-col items-center justify-center p-11 gap-4 md:w-56 transition-transform duration-300 ease-in-out transform hover:scale-105"
+  //         >
+  //           <img
+  //             src={product.img}
+  //             alt={product.name}
+  //             className="w-[155px] h-[155px]"
+  //           />
+  //           <h1 className="text-[#2E2E2E] text-3xl font-medium">
+  //             {product.name}
+  //           </h1>
+  //           <h2 className="text-[#D4AF37] text-2xl font-black">
+  //             ${product.price}
+  //           </h2>
+  //           <button
+  //             onClick={() => handleAddToCart(product)}
+  //             className="bg-[#2B2B2B] p-4 relative md:top-11 md:left-20"
+  //           >
+  //             Add to Cart
+  //           </button>
+  //         </div>
+  //       ))}
+  //     </div>
+  //   </div>
+  // );
   return (
     <div className="mx-auto flex justify-center flex-col items-center md:w-4/5 sm:w-full bg-[#FCFCFC] p-5 gap-4">
       <div className="flex flex-col justify-center items-center gap-4">
@@ -147,7 +171,7 @@ const Products2 = () => {
               ${product.price}
             </h2>
             <button
-              onClick={() => addToCart(product)}
+              onClick={() => handleAddToCart(product)}
               className="bg-[#2B2B2B] p-4 relative md:top-11 md:left-20"
             >
               <svg

@@ -2,7 +2,8 @@ import axios from "axios";
 
 // Create an instance of axios
 const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api", // Change the baseURL to your backend URL
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api",
+  withCredentials: true, // Add this if you need to send credentials with the request
 });
 
 // Add an interceptor to attach the token to every request

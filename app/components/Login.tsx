@@ -52,6 +52,7 @@ const Login = () => {
 
       // Save token in local storage
       localStorage.setItem("token", token);
+      localStorage.setItem("userId", userData._id); // Save user data in local storage
 
       // Navigate to home page after login/signup
       router.push("/");

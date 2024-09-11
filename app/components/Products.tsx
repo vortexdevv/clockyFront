@@ -133,7 +133,7 @@ const Products = () => {
             </p>
             <button
               onClick={() => addToCart(product)}
-              className="md:py-5 md:px-8 px-1 py-2 w-32 bg-[#414B43]"
+              className="md:py-5 md:px-2 px-1 py-2 w-32 bg-[#414B43]"
             >
               ADD TO CART
             </button>

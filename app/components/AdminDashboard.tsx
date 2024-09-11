@@ -1,12 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import axiosInstance from "@/lib/axiosConfig";
 
 type Product = {
   _id: string;
   name: string;
   price: number;
+  before: number;
   description: string;
   countInStock: number;
   img: string;
@@ -18,28 +18,26 @@ const AdminDashboard = () => {
   const [form, setForm] = useState({
     name: "",
     price: "",
+    before: "",
     description: "",
     countInStock: "",
     img: "",
   });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   useEffect(() => {
-    // Check if there's a valid token in localStorage
     const token = localStorage.getItem("token");
     if (token) setIsAuthenticated(true);
   }, []);
-
+  const fetchProducts = async () => {
+    try {
+      const response = await axiosInstance.get("products/dashboard");
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Failed to fetch products", error);
+    }
+  };
   useEffect(() => {
-    // Fetch products from the backend
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/api/products");
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Failed to fetch products", error);
-      }
-    };
-
     fetchProducts();
   }, []);
 
@@ -52,17 +50,22 @@ const AdminDashboard = () => {
 
   const handleAddProduct = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/products", {
+      const response = await axiosInstance.post("/products", {
         name: form.name,
         price: parseFloat(form.price),
+        before: parseFloat(form.before),
         description: form.description,
         countInStock: parseInt(form.countInStock),
         img: form.img,
       });
-      setProducts([...products, response.data]);
+
+      const newProduct = response.data;
+      // setProducts([...products, newProduct]); // Add the new product including _id
+      fetchProducts();
       setForm({
         name: "",
         price: "",
+        before: "",
         description: "",
         countInStock: "",
         img: "",
@@ -77,6 +80,7 @@ const AdminDashboard = () => {
     setForm({
       name: product.name,
       price: product.price.toString(),
+      before: product.before.toString(),
       description: product.description,
       countInStock: product.countInStock.toString(),
       img: product.img,
@@ -86,11 +90,12 @@ const AdminDashboard = () => {
   const handleUpdateProduct = async () => {
     if (editingProduct) {
       try {
-        const response = await axios.put(
-          `http://localhost:5000/api/products/${editingProduct._id}`,
+        const response = await axiosInstance.put(
+          `/products/${editingProduct._id}`,
           {
             name: form.name,
             price: parseFloat(form.price),
+            before: parseFloat(form.before),
             description: form.description,
             countInStock: parseInt(form.countInStock),
             img: form.img,
@@ -105,6 +110,7 @@ const AdminDashboard = () => {
         setForm({
           name: "",
           price: "",
+          before: "",
           description: "",
           countInStock: "",
           img: "",
@@ -117,16 +123,17 @@ const AdminDashboard = () => {
 
   const handleDeleteProduct = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:5000/api/products/${id}`);
+      await axiosInstance.delete(`/products/${id}`);
       setProducts(products.filter((product) => product._id !== id));
     } catch (error) {
       console.error("Failed to delete product", error);
     }
   };
+
   return (
     <>
       {isAuthenticated ? (
-        <div className="p-6 bg-black min-h-screen w-full mt-10 text-black">
+        <div className="p-6 bg-black min-h-screen w-full text-black">
           <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
 
           {/* Add/Edit Product Form */}
@@ -161,10 +168,10 @@ const AdminDashboard = () => {
               <input
                 type="number"
                 name="before"
-                value={form.price}
+                value={form.before}
                 onChange={handleInputChange}
                 className="w-full p-2 border border-gray-300 rounded mt-1"
-                placeholder="Enter product price"
+                placeholder="Enter previous price"
               />
             </div>
             <div className="mb-3">
@@ -235,9 +242,7 @@ const AdminDashboard = () => {
                 {products.map((product) => (
                   <tr key={product._id}>
                     <td className="border-b p-2">{product.name}</td>
-                    <td className="border-b p-2">
-                      ${product.price.toFixed(2)}
-                    </td>
+                    <td className="border-b p-2">${product.price}</td>
                     <td className="border-b p-2">{product.countInStock}</td>
                     <td className="border-b p-2">{product.description}</td>
                     <td className="border-b p-2 flex gap-2">

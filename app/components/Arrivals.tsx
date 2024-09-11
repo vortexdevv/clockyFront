@@ -32,7 +32,7 @@ const Arrivals = () => {
                 1000 L.E
               </p>
               <p className="text-[#D4AF37] font-bold text-2xl">{card.price}</p>
-              <button className="bg-[#414B43] block md:py-5 md:px-8 px-1 py-2 w-32 md:hidden md:group-hover:block transition-opacity duration-300 ease-in-out ">
+              <button className="bg-[#414B43] block md:py-2 md:px-2 px-1 py-2 w-32  transition-opacity duration-300 ease-in-out ">
                 ADD TO CARD
               </button>
             </div>
