@@ -1,8 +1,16 @@
 "use client";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const Hero = () => {
-  const token = localStorage.getItem("token");
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    // This will only run in the browser
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+  }, []); // Empty dependency array ensures it runs once on mount
+
   return (
     <div
       className={`text-white bg-[#414B43] bg-cover bg-bottom mx-auto flex flex-col items-center justify-center md:w-4/5 sm:full relative ${
@@ -23,9 +31,6 @@ const Hero = () => {
           the latest modern and international <br /> brands for men and women
         </p>
         <div className="my-20">
-          {/* <button className=" px-3 py-4 bg-[#FFFFFFE5] text-black w-28 ">
-            Discover
-          </button> */}
           <Link
             href={"/login"}
             className={`px-3 py-6 bg-white text-black w-40 hover:bg-[#8b8b8b] ${
