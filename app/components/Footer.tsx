@@ -52,7 +52,7 @@ const Footer = () => {
           </a>
         </div> */}
         <div className="flex  md:items-center flex-col gap-14 text-white">
-          <h4 className="font-medium text-xl md:mb-3 mb-16">Social</h4>
+          <h4 className="font-medium text-xl md:mb-3 mb-4">Social</h4>
           <div className="w-24 flex md:flex-col md:gap-6 md:justify-center -m-10 items-center">
             <Link href={"https://www.facebook.com/Clocky.Eg?mibextid=kFxxJD"}>
               {/* facebook */}

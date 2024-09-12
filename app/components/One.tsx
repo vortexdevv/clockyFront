@@ -5,7 +5,7 @@ import Big from "../../public/big.png";
 import Delmondo from "../../public/delmondo.jpeg";
 export const One = () => {
   return (
-    <div className=" md:w-4/5 sm:h-full md:flex md:justify-around md:flex-row sm:flex sm:flex-col items-center mx-auto p-20">
+    <div className=" md:w-4/5 sm:h-full md:flex md:justify-around md:flex-row flex flex-col items-center justify-center mx-auto p-8">
       <div className="">
         <div className="flex flex-col gap-10">
           <svg
@@ -72,11 +72,7 @@ export const One = () => {
         </div>
       </div>
       <div>
-        <Image
-          src={Big}
-          alt="watch"
-          className=" w-[342px] h-[456px]  rounded-full"
-        />
+        <Image src={Big} alt="watch" className=" w-[342px]   rounded-full" />
       </div>
     </div>
   );

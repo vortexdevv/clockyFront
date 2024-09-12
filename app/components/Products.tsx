@@ -108,7 +108,7 @@ const Products = () => {
             key={index}
             className="mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center md:p-16 p-4 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform hover:scale-105"
           >
-            <span className="-rotate-90 bg-[#414B43] py-2 px-2 absolute -left-[6px] md:top-12 top-[10px]">
+            <span className="-rotate-90 bg-[#414B43] py-2 px-2 absolute -left-[6px] md:top-2 top-[10px]">
               SALE
             </span>
             <Image

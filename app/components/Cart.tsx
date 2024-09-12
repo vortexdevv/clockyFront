@@ -94,8 +94,8 @@ const Cart = () => {
   }
 
   return (
-    <div className="w-full bg-red-500 p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="w-full bg-[#414B43] p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 ">
         {cartItems.map((item) => (
           <div
             key={item._id}

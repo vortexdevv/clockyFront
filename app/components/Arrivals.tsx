@@ -14,7 +14,7 @@ const Arrivals = () => {
     >
       <div className="border-t-2 border-[#D4AF37] w-20 p-2 font-medium"></div>
       <h2 className="text-[#2E2E2E]">NEW ARRIVALS</h2>
-      <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 md:gap-6 gap-2">
+      <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 md:gap-6 gap-2 mb-3">
         {data.map((card: any, index: number) => {
           return (
             <div
