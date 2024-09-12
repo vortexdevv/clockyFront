@@ -7,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 type Product = {
   _id: string;
   name: string;
+  sale: number;
   price: number;
   description: string;
   img: string;
@@ -153,11 +154,11 @@ const Products2 = () => {
         <span className="border-t-2 border-[#D4AF37] w-20 px-1 font-medium"></span>
         <h1 className="text-xl font-medium text-[#2E2E2E]">PRODUCTS</h1>
       </div>
-      <div className="grid grid-cols-3 md:grid-cols-2 gap-6 xl:grid-cols-3">
+      <div className="grid grid-cols-2 md:grid-cols-2 gap-6 xl:grid-cols-3">
         {products.map((product: Product, index: number) => (
           <div
             key={index}
-            className="border-solid border-2 shadow-2xl border-[#F0F0F0] flex flex-col items-center justify-center p-11 gap-4 md:w-56 transition-transform duration-300 ease-in-out transform hover:scale-105"
+            className="border-solid border-2 shadow-2xl border-[#F0F0F0] flex flex-col items-center justify-center p-4 gap-4 md:w-56 transition-transform duration-300 ease-in-out transform hover:scale-105"
           >
             <img
               src={product.img}
@@ -167,12 +168,15 @@ const Products2 = () => {
             <h1 className="text-[#2E2E2E] text-3xl font-medium">
               {product.name}
             </h1>
+            <p className="text-[#595959] font-bold text-base line-through text-center">
+              {product.sale} 1000 L.E
+            </p>
             <h2 className="text-[#D4AF37] text-2xl font-black">
               ${product.price}
             </h2>
             <button
               onClick={() => handleAddToCart(product)}
-              className="bg-[#2B2B2B] p-4 relative md:top-11 md:left-20"
+              className="bg-[#2B2B2B] p-4 relative md:top-4 md:left-20"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

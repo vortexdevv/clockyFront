@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
+import Watch from "./watch.png";
+import { watch } from "fs";
 
 type Product = {
   _id: string;
@@ -94,14 +97,14 @@ const Cart = () => {
   }
 
   return (
-    <div className="w-full h-full p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-full">
+    <div className="w-full h-full md:w-3/4 p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-full justify-items-center">
         {cartItems.map((item) => (
           <div
             key={item._id}
-            className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl"
+            className="bg-white shadow-lg w-60 flex flex-col justify-around rounded-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl"
           >
-            <img src="../icon.png" alt="" className="w-2/5 mx-auto" />
+            <Image src={Watch} alt="" className="w-2/5 mx-auto w-1/2" />
             <div className="p-6 flex flex-col items-center">
               <h2 className="text-xl font-semibold text-gray-800 mb-2">
                 {item.name}
@@ -111,7 +114,7 @@ const Cart = () => {
               <div className="flex space-x-4">
                 <button
                   onClick={() => handleQuantityChange(item._id, 1)}
-                  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors"
+                  className="bg-[#5abd6e] text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors"
                 >
                   +
                 </button>
