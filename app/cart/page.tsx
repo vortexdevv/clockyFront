@@ -3,7 +3,7 @@ import Cart from "../components/Cart";
 
 const page = () => {
   return (
-    <div className="center h-full bg-black">
+    <div className="center bg-[#414B43] md:h-full">
       <Cart />
     </div>
   );

@@ -19,7 +19,7 @@ const Arrivals = () => {
           return (
             <div
               key={index}
-              className="group mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center md:p-16 p-2 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform hover:scale-105"
+              className="group mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center md:p-16 p-4 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform hover:scale-105"
             >
               <span className="bg-[#414B43] py-2 px-2 absolute top-0 right-0">
                 NEW
