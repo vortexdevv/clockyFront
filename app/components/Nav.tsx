@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/search-alt-1-svgrepo-com.svg";
+import { MinimalistGenderDropdown } from "@/components/minimalist-gender-dropdown";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,13 +56,13 @@ const Nav = () => {
         <Link className="hover:text-[#D4AF37]" href="/brands">
           Brands
         </Link>
-        <Link className="hover:text-[#D4AF37]" href="/Gender">
-          Gender
-        </Link>
+        <div className="hover:text-[#D4AF37]">
+          <MinimalistGenderDropdown />
+        </div>
         <Link className="hover:text-[#D4AF37]" href="#contact-us">
           Contact Us
         </Link>
-        <Link className="hover:text-[#D4AF37]" href="/Policy">
+        <Link className="hover:text-[#D4AF37]" href="/policy">
           Policy
         </Link>
         <Link className="hover:text-[#D4AF37]" href="/cart">
@@ -124,38 +125,45 @@ const Nav = () => {
       >
         <Link
           className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
-          href="/"
-          onClick={() => setIsOpen(false)}
-        >
-          Home
-        </Link>
-        <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
-          href="#Gender"
-          onClick={() => setIsOpen(false)}
-        >
-          Gender
-        </Link>
-        <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
-          href="#Brands"
-          onClick={() => setIsOpen(false)}
-        >
-          Brands
-        </Link>
-        <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
-          href="#New arraival"
+          href="#newarraival"
           onClick={() => setIsOpen(false)}
         >
           New arrival
         </Link>
         <Link
           className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
-          href="#Filter"
+          href="#shop"
           onClick={() => setIsOpen(false)}
         >
-          Filter
+          shop
+        </Link>
+        <Link
+          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+          href="/brands"
+          onClick={() => setIsOpen(false)}
+        >
+          Brands
+        </Link>
+        <div
+          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+          // onClick={() => setIsOpen(false)}
+        >
+          <MinimalistGenderDropdown />
+        </div>
+
+        <Link
+          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+          href="#contact-us"
+          onClick={() => setIsOpen(false)}
+        >
+          Contact Us
+        </Link>
+        <Link
+          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+          href="/policy"
+          onClick={() => setIsOpen(false)}
+        >
+          Policy
         </Link>
         <Link
           className="flex justify-center px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"

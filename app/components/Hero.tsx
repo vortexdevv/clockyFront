@@ -1,8 +1,14 @@
+"use client";
 import Link from "next/link";
 
 const Hero = () => {
+  const token = localStorage.getItem("token");
   return (
-    <div className=" text-white bg-[#414B43] bg-cover bg-bottom  mx-auto h-[720px] flex  flex-col items-center justify-center md:w-4/5 sm:full relative">
+    <div
+      className={`text-white bg-[#414B43] bg-cover bg-bottom mx-auto flex flex-col items-center justify-center md:w-4/5 sm:full relative ${
+        token ? "h-[500px]" : "h-[600px]"
+      }`}
+    >
       <div className="w-9/12 absolute top-[20%] m-auto">
         <h1
           style={{ textWrap: "pretty" }}
@@ -22,7 +28,9 @@ const Hero = () => {
           </button> */}
           <Link
             href={"/login"}
-            className="px-3 py-6 bg-white text-black w-40 hover:bg-[#8b8b8b]"
+            className={`px-3 py-6 bg-white text-black w-40 hover:bg-[#8b8b8b] ${
+              token ? "hidden" : ""
+            }`}
           >
             Create account
           </Link>

@@ -63,7 +63,7 @@ const Login = () => {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#414B43] text-[#414B43] p-4">
       <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
         <h2 className="text-center text-2xl font-semibold mb-6">
           {isLogin ? "Login" : "Sign Up"}
@@ -114,7 +114,11 @@ const Login = () => {
           </div>
 
           {/* Submit Button with Loading Feedback */}
-          <Button type="submit" className="w-full" disabled={loading}>
+          <Button
+            type="submit"
+            className="w-full bg-[#414B43]"
+            disabled={loading}
+          >
             {loading ? "Please wait..." : isLogin ? "Login" : "Sign Up"}
           </Button>
         </form>
