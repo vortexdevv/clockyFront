@@ -15,7 +15,7 @@ const Arrivals = () => {
     >
       <div className="border-t-2 border-[#D4AF37] w-20 p-2 font-medium"></div>
       <h2 className="text-[#2E2E2E]">NEW ARRIVALS</h2>
-      <div className="grid grid-cols-2   sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5  md:gap-6 gap-2 mb-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5  md:gap-6 gap-2 mb-3 media">
         {data.map((card: any, index: number) => {
           return (
             <div
@@ -33,7 +33,7 @@ const Arrivals = () => {
                 1000 L.E
               </p>
               <p className="text-[#D4AF37] font-bold text-2xl">{card.price}</p>
-              <button className="bg-[#414B43] block md:py-2 md:px-2 px-1 py-2 w-32  transition-opacity duration-300 ease-in-out ">
+              <button className="bg-[#414B43] block md:py-2 md:px-2 px-1 py-2 w-32 transition-opacity duration-300 ease-in-out ">
                 ADD TO CARD
               </button>
             </div>
