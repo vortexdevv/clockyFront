@@ -2,34 +2,47 @@ import Link from "next/link";
 import Icon1 from "../../public/facebook-176-svgrepo-com.svg";
 import Icon2 from "../../public/instagram-svgrepo-com.svg";
 import Icon3 from "../../public/twitter-svgrepo-com.svg";
-
+import Image from "next/image";
+import Watch from "../../public/home.png";
 const Footer = () => {
   return (
     <div
       id="contact-us"
-      className="mx-auto flex justify-center  items-center md:w-4/5  w-full bg-[#414b43] p-20 text-white"
+      className="hero  mx-auto flex justify-center  items-center md:bg-cover sm:bg-right  w-full bg-[#414b43] p-20 text-white"
     >
       <footer className="flex justify-between w-5/6 md:flex-row  flex-col gap-10">
         <div className="">
-          <h4 className="font-medium text-xl mb-3">Our information</h4>
+          <h4 className="font-medium text-3xl mb-3 ">Our information</h4>
           <p className="font-normal text-base leading-8">Cairo - Egypt</p>
           <p className="font-normal text-base leading-8">01113283189</p>
         </div>
         <div className="about-us">
-          <h4 className="font-medium text-xl mb-3">About Us</h4>
-          <a className="font-normal text-base leading-8" href="#">
+          <h4 className="font-medium text-3xl mb-3">About Us</h4>
+          <a
+            className="font-normal text-base leading-8 hover:text-[#D4AF37]"
+            href="#"
+          >
             Support Center
           </a>
           <br />
-          <a className="font-normal text-base leading-8" href="#">
+          <a
+            className="font-normal text-base leading-8 hover:text-[#D4AF37]"
+            href="#"
+          >
             Customer Support
           </a>
           <br />
-          <a className="font-normal text-base leading-8" href="#">
+          <a
+            className="font-normal text-base leading-8 hover:text-[#D4AF37]"
+            href="#"
+          >
             About Us
           </a>
           <br />
-          <a className="font-normal text-base leading-8" href="#">
+          <a
+            className="font-normal text-base leading-8 hover:text-[#D4AF37]"
+            href="#"
+          >
             Copy Right
           </a>
         </div>
@@ -52,7 +65,7 @@ const Footer = () => {
           </a>
         </div> */}
         <div className="flex  md:items-center flex-col gap-14 text-white">
-          <h4 className="font-medium text-xl md:mb-3 mb-4">Social</h4>
+          <h4 className="font-medium text-3xl md:mb-3 mb-4">Social</h4>
           <div className="w-24 flex md:flex-col md:gap-5 md:justify-center -m-10 items-center">
             <Link href={"https://www.facebook.com/Clocky.Eg?mibextid=kFxxJD"}>
               {/* facebook */}
