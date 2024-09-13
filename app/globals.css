@@ -122,3 +122,7 @@ html {
 .your-element {
   scrollbar-width: none; /* Firefox 64 */
 }
+
+.backgroundd {
+  background-image: url("../public/herooo.png");
+}
