@@ -126,3 +126,8 @@ html {
 .backgroundd {
   background-image: url("../public/herooo.png");
 }
+@media (min-width: 1280px) and (max-width: 1415px) {
+  .media {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
