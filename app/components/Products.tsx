@@ -207,8 +207,11 @@ const Products = () => {
             </Link>
             <button
               onClick={() => addToCart(product)}
-              className="md:py-5 md:px-2 px-1 py-2 w-32 bg-main"
+              className="relative px-6 py-3  bg-main text-white font-semibold border  rounded overflow-hidden group"
             >
+              <div className="absolute inset-0 bg-two w-full h-full transform translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-in-out center">
+                ADD TO CART
+              </div>
               ADD TO CART
             </button>
           </div>
