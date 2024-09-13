@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <div
       id="contact-us"
-      className="hero  mx-auto flex justify-center  items-center md:bg-cover sm:bg-right  w-full bg-[#414b43] p-20 text-white"
+      className="hero  mx-auto flex justify-center  items-center md:bg-cover sm:bg-right  w-full bg-main p-20 text-white"
     >
       <footer className="flex justify-between w-5/6 md:flex-row  flex-col gap-10">
         <div className="">
@@ -19,28 +19,28 @@ const Footer = () => {
         <div className="about-us">
           <h4 className="font-medium text-3xl mb-3">About Us</h4>
           <a
-            className="font-normal text-base leading-8 hover:text-[#D4AF37]"
+            className="font-normal text-base leading-8 hover:text-two"
             href="#"
           >
             Support Center
           </a>
           <br />
           <a
-            className="font-normal text-base leading-8 hover:text-[#D4AF37]"
+            className="font-normal text-base leading-8 hover:text-two"
             href="#"
           >
             Customer Support
           </a>
           <br />
           <a
-            className="font-normal text-base leading-8 hover:text-[#D4AF37]"
+            className="font-normal text-base leading-8 hover:text-two"
             href="#"
           >
             About Us
           </a>
           <br />
           <a
-            className="font-normal text-base leading-8 hover:text-[#D4AF37]"
+            className="font-normal text-base leading-8 hover:text-two"
             href="#"
           >
             Copy Right

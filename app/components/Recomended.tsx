@@ -4,7 +4,7 @@ export const Recommended = () => {
   return (
     <div className=" text-white mx-auto md:flex md:flex-row-reverse md:justify-evenly  md:items-center  md:w-4/5   bg-[#FCFCFC] p-12 md:p-8 md:py-24 gap-20 flex flex-col sm:justify-center items-center w-full">
       <div className=" flex flex-col gap-6 text-left md:items-start items-center">
-        <span className=" border-t-2 border-[#D4AF37] w-20 px-1 font-medium "></span>
+        <span className=" border-t-2 border-two w-20 px-1 font-medium "></span>
         <h3 className="text-[#2E2E2E] font-medium text-xl ">Recommended</h3>
         <div className="flex flex-col gap-6 text-left ">
           <h1 className=" text-4xl text-[#2E2E2E] font-medium">

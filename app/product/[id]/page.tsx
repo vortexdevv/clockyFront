@@ -22,7 +22,7 @@ const page = () => {
             <button className="text-[#2E2E2E] px-8 py-3 w-96">
               ADD TO CHART
             </button>
-            <button className="bg-[#414B43] text-[#FFFFFF] px-8 py-3 w-96">
+            <button className="bg-main text-[#FFFFFF] px-8 py-3 w-96">
               BYE NOW
             </button>
           </div>
@@ -34,7 +34,7 @@ const page = () => {
               name="ADD "
             />
             <div className="text-end">
-              <button className="bg-[#414B43] text-[#FFFFFF] w-24">ADD</button>
+              <button className="bg-main text-[#FFFFFF] w-24">ADD</button>
             </div>
           </div>
         </div>

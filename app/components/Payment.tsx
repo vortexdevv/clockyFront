@@ -206,13 +206,13 @@ const Payment = () => {
                 Instapay - انستاباى
               </span>
             </label>
-            <button className="bg-[#414B43] text-[#FFFFFF] w-full p-3 rounded-md text-lg  font-normal">
+            <button className="bg-main text-[#FFFFFF] w-full p-3 rounded-md text-lg  font-normal">
               COMBLETE ORDER
             </button>
           </div>
         </div>
       </div>
-      <span className=" border-t-2 border-[#D4AF37]  w-20 px-1 font-medium "></span>
+      <span className=" border-t-2 border-two  w-20 px-1 font-medium "></span>
       <h2 className="text-xl font-medium text-[#2E2E2E]">MY CART</h2>
       <div className=" flex flex-col gap-6 md:flex-row w-full ">
         {/* First Item */}
@@ -226,7 +226,7 @@ const Payment = () => {
           </div>
           <div className="flex flex-col items-center justify-center">
             <h3 className="text-2xl font-medium text-[#2E2E2E]">Jazzmaster</h3>
-            <p className="text-[#D4AF37] text-lg">EGP 1050</p>
+            <p className="text-two text-lg">EGP 1050</p>
             <div className="flex items-center mt-4 space-x-4">
               <button className="text-gray-700 text-lg">-</button>
               <span className="text-gray-900">1</span>
@@ -261,7 +261,7 @@ const Payment = () => {
           </div>
           <div className="flex flex-col items-center justify-center">
             <h3 className="text-2xl font-medium text-[#2E2E2E]">Jazzmaster</h3>
-            <p className="text-[#D4AF37] text-lg">EGP 1050</p>
+            <p className="text-two text-lg">EGP 1050</p>
             <div className="flex items-center mt-4 space-x-4">
               <button className="text-gray-700 text-lg">-</button>
               <span className="text-gray-900">1</span>
@@ -294,7 +294,7 @@ const Payment = () => {
       </div>
 
       {/* Buy All Button */}
-      <button className="w-80 bg-[#414B43] text-[#FFFFFF] py-3 flex justify-center rounded-md">
+      <button className="w-80 bg-main text-[#FFFFFF] py-3 flex justify-center rounded-md">
         BUY ALL
       </button>
     </div>

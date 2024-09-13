@@ -117,7 +117,7 @@ const Products2 = () => {
   // return (
   //   <div className="mx-auto flex justify-center flex-col items-center md:w-4/5 sm:w-full bg-[#FCFCFC] p-5 gap-4">
   //     <div className="flex flex-col justify-center items-center gap-4">
-  //       <span className="border-t-2 border-[#D4AF37] w-20 px-1 font-medium"></span>
+  //       <span className="border-t-2 border-two w-20 px-1 font-medium"></span>
   //       <h1 className="text-xl font-medium text-[#2E2E2E]">PRODUCTS</h1>
   //     </div>
   //     <div className="grid grid-cols-3 md:grid-cols-2 gap-6 xl:grid-cols-3">
@@ -134,7 +134,7 @@ const Products2 = () => {
   //           <h1 className="text-[#2E2E2E] text-3xl font-medium">
   //             {product.name}
   //           </h1>
-  //           <h2 className="text-[#D4AF37] text-2xl font-black">
+  //           <h2 className="text-two text-2xl font-black">
   //             ${product.price}
   //           </h2>
   //           <button
@@ -151,7 +151,7 @@ const Products2 = () => {
   return (
     <div className="mx-auto flex justify-center flex-col items-center md:w-4/5 sm:w-full bg-[#FCFCFC] p-5 gap-4">
       <div className="flex flex-col justify-center items-center gap-4">
-        <span className="border-t-2 border-[#D4AF37] w-20 px-1 font-medium"></span>
+        <span className="border-t-2 border-two w-20 px-1 font-medium"></span>
         <h1 className="text-xl font-medium text-[#2E2E2E]">PRODUCTS</h1>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-2 gap-6 xl:grid-cols-3">
@@ -171,9 +171,7 @@ const Products2 = () => {
             <p className="text-[#595959] font-bold text-base line-through text-center">
               {product.sale} 1000 L.E
             </p>
-            <h2 className="text-[#D4AF37] text-2xl font-black">
-              ${product.price}
-            </h2>
+            <h2 className="text-two text-2xl font-black">${product.price}</h2>
             <button
               onClick={() => handleAddToCart(product)}
               className="bg-[#2B2B2B] p-4 relative md:top-4 md:left-20"

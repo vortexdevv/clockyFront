@@ -2,7 +2,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="min-h-screen bg-[#414B43] p-8 flex flex-col items-center">
+    <div className="min-h-screen bg-main p-8 flex flex-col items-center">
       <div className="max-w-4xl w-full bg-white shadow-md rounded-lg p-8">
         {/* English Section */}
         <section className="text-left mb-12">

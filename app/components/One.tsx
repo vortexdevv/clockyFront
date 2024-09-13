@@ -30,7 +30,7 @@ export const One = () => {
           <p className="text-[#595959] font-bold text-base line-through text-start">
             1000 L.E
           </p>
-          <p className="text-[#D4AF37] font-bold text-2xl">1921</p>
+          <p className="text-two font-bold text-2xl">1921</p>
         </div>
 
         <div className="flex gap-20">

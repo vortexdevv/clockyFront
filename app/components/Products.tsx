@@ -172,7 +172,7 @@ const Products = () => {
 
   return (
     <div className=" text-white flex justify-center flex-col items-center w-full bg-[#FCFCFC] pt-10">
-      <div className="border-t-2 border-[#D4AF37] w-20 p-1 font-medium"></div>
+      <div className="border-t-2 border-two w-20 p-1 font-medium"></div>
       <h2 className="text-[#2E2E2E]">FEATURED</h2>
       <div className="grid sm:grid-cols-3 grid-cols-2 md:grid-cols-4 xl:grid-cols-5 md:gap-6 gap-2 media">
         {products.map((product, index) => (
@@ -201,13 +201,13 @@ const Products = () => {
               <p className="text-[#595959] font-bold text-base line-through text-center">
                 {product.before} L.E
               </p>
-              <p className="text-[#D4AF37] font-bold text-2xl text-center">
+              <p className="text-two font-bold text-2xl text-center">
                 {product.price} L.E
               </p>
             </Link>
             <button
               onClick={() => addToCart(product)}
-              className="md:py-5 md:px-2 px-1 py-2 w-32 bg-[#414B43]"
+              className="md:py-5 md:px-2 px-1 py-2 w-32 bg-main"
             >
               ADD TO CART
             </button>

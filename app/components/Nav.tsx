@@ -36,7 +36,7 @@ const Nav = () => {
   return (
     <div
       className={`text-white fixed w-full  mx-auto  z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
-        isScrolled ? "bg-[#414B43] shadow-lg w-full" : "bg-transparent"
+        isScrolled ? "bg-main shadow-lg w-full" : "bg-transparent"
       }`}
     >
       <div>
@@ -47,25 +47,25 @@ const Nav = () => {
 
       {/* Desktop Navigation */}
       <div className="md:flex md:gap-3 lg:gap-8 items-center text-[15px] hidden">
-        <Link className="hover:text-[#D4AF37]" href="#newarraival">
+        <Link className="hover:text-two" href="#newarraival">
           New arrival
         </Link>
-        <Link className="hover:text-[#D4AF37]" href="/shop">
+        <Link className="hover:text-two" href="/shop">
           shop
         </Link>
-        <Link className="hover:text-[#D4AF37]" href="/brands">
+        <Link className="hover:text-two" href="/brands">
           Brands
         </Link>
-        <div className="hover:text-[#D4AF37]">
+        <div className="hover:text-two">
           <MinimalistGenderDropdown />
         </div>
-        <Link className="hover:text-[#D4AF37]" href="#contact-us">
+        <Link className="hover:text-two" href="#contact-us">
           Contact Us
         </Link>
-        <Link className="hover:text-[#D4AF37]" href="/policy">
+        <Link className="hover:text-two" href="/policy">
           Policy
         </Link>
-        <Link className="hover:text-[#D4AF37]" href="/cart">
+        <Link className="hover:text-two" href="/cart">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -117,7 +117,7 @@ const Nav = () => {
       <div
         className={`text-center p-5 ${
           isOpen ? "block" : "hidden"
-        } md:hidden absolute top-full left-0 w-full bg-[#414b43] transition-all duration-300 ease-in-out transform ${
+        } md:hidden absolute top-full left-0 w-full bg-main transition-all duration-300 ease-in-out transform ${
           isOpen
             ? "opacity-100 translate-y-0 flex flex-col gap-2"
             : "opacity-0 -translate-y-2"
