@@ -1,5 +1,6 @@
 "use client";
-
+import Image from "next/image";
+import Watch from "./watch.png";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
@@ -14,11 +15,11 @@ const Hero = () => {
 
   return (
     <div
-      className={`text-white backgroundd bg-cover bg-bottom mx-auto flex flex-col items-center justify-center  sm:full relative ${
+      className={`text-white backgroundd bg-cover bg-center w-full flex items-center justify-around ${
         token ? "h-[500px]" : "h-[600px]"
       }`}
     >
-      <div className="w-full absolute top-[20%] m-auto">
+      <div className="  ">
         <h1
           style={{ textWrap: "pretty" }}
           className=" text-4xl md:text-5xl font-bold  text-left md:leading-[56px] sm:leading-[45px] my-2"
@@ -31,6 +32,7 @@ const Hero = () => {
           Here you will find everything that suits you from watches from <br />
           the latest modern and international <br /> brands for men and women
         </p>
+
         {/* <div className="my-20">
           <Link
             href={"/login"}
@@ -41,6 +43,9 @@ const Hero = () => {
             Create account
           </Link>
         </div> */}
+      </div>
+      <div>
+        <Image src={Watch} alt="Watch" className="w-60 " />
       </div>
     </div>
   );

@@ -35,7 +35,7 @@ const Nav = () => {
 
   return (
     <div
-      className={`text-white fixed w-full md:w-4/5 mx-auto md:left-[10%] z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
+      className={`text-white fixed w-full  mx-auto  z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
         isScrolled ? "bg-[#414B43] shadow-lg w-full" : "bg-transparent"
       }`}
     >
