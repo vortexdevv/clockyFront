@@ -19,6 +19,7 @@ type Product = {
 const Products = () => {
   // const [products, setProducts] = useState<Product[]>([]);
   const { toast } = useToast();
+  const [activeProductId, setActiveProductId] = useState<string | null>(null);
 
   // useEffect(() => {
   //   // Fetch products from the backend
@@ -71,7 +72,7 @@ const Products = () => {
       img: "fgdfgdg",
     },
     {
-      _id: "4",
+      _id: "5",
       name: "p1",
       before: 1000,
       price: 2222,
@@ -80,7 +81,7 @@ const Products = () => {
       img: "fgdfgdg",
     },
     {
-      _id: "4",
+      _id: "6",
       name: "p1",
       before: 1000,
       price: 2222,
@@ -89,7 +90,7 @@ const Products = () => {
       img: "fgdfgdg",
     },
     {
-      _id: "4",
+      _id: "7",
       name: "p1",
       before: 1000,
       price: 2222,
@@ -98,7 +99,7 @@ const Products = () => {
       img: "fgdfgdg",
     },
     {
-      _id: "4",
+      _id: "8",
       name: "p1",
       before: 1000,
       price: 2222,
@@ -107,7 +108,7 @@ const Products = () => {
       img: "fgdfgdg",
     },
     {
-      _id: "4",
+      _id: "9",
       name: "p1",
       before: 1000,
       price: 2222,
@@ -116,7 +117,7 @@ const Products = () => {
       img: "fgdfgdg",
     },
     {
-      _id: "4",
+      _id: "10",
       name: "p1",
       before: 1000,
       price: 2222,
@@ -125,7 +126,7 @@ const Products = () => {
       img: "fgdfgdg",
     },
     {
-      _id: "4",
+      _id: "11",
       name: "p1",
       before: 1000,
       price: 2222,
@@ -134,7 +135,7 @@ const Products = () => {
       img: "fgdfgdg",
     },
     {
-      _id: "4",
+      _id: "12",
       name: "p1",
       before: 1000,
       price: 2222,
@@ -144,6 +145,12 @@ const Products = () => {
     },
   ];
   const addToCart = (product: Product) => {
+    setActiveProductId(product._id);
+    setTimeout(() => {
+      setActiveProductId(null); // Clear the animation after 1 second
+    }, 1000); // Match the transition duration (1000ms)
+
+    // Set the active product id
     // Get the current cart from localStorage
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
 
@@ -206,10 +213,14 @@ const Products = () => {
               </p>
             </Link>
             <button
-              onClick={() => addToCart(product)}
-              className="relative px-6 py-3  bg-main text-white font-semibold border  rounded overflow-hidden group"
+              onClick={() => addToCart(product)} // Pass the product's id
+              className="relative px-6 py-1 md:py-3 bg-main text-white font-semibold border rounded overflow-hidden group"
             >
-              <div className="absolute  inset-0 bg-two w-full h-full transform translate-x-full group-hover:translate-x-0 transition-transform !duration-500 ease-in-out center">
+              <div
+                className={`absolute inset-0 bg-two w-full h-full transform translate-x-full transition-transform !duration-1000 ease-in-out center ${
+                  activeProductId === product._id ? "translate-x-0" : ""
+                }`}
+              >
                 ADD TO CART
               </div>
               ADD TO CART
