@@ -69,7 +69,7 @@ const Arrivals = () => {
           return (
             <div
               key={index}
-              className="group mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center md:p-8 p-4 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform md:hover:scale-105"
+              className="mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center md:p-8 p-4 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform md:hover:scale-105"
             >
               <span className="bg-main py-2 px-2 absolute top-0 right-0">
                 NEW
@@ -84,7 +84,7 @@ const Arrivals = () => {
               <p className="text-two font-bold text-2xl">{card.price}</p>
               <button
                 onClick={() => addToCart(card)} // Pass the product's id
-                className="relative px-4 py-1 md:py-3 bg-main text-white font-semibold border rounded overflow-hidden group"
+                className="relative px-4 py-1 md:py-2 bg-main text-white font-semibold border rounded overflow-hidden group"
               >
                 <div
                   className={`absolute inset-0 md:group-hover:translate-x-0 bg-two w-full h-full transform translate-x-full transition-transform md:!duration-500 !duration-1000 ease-in-out center ${

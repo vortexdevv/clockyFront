@@ -214,7 +214,7 @@ const Products = () => {
             </Link>
             <button
               onClick={() => addToCart(product)} // Pass the product's id
-              className="relative px-4 py-1 md:py-3 bg-main text-white font-semibold border rounded overflow-hidden group"
+              className="relative px-4 py-1 md:py-3 bg-main text-white font-semibold border  overflow-hidden group"
             >
               <div
                 className={`absolute inset-0 md:group-hover:translate-x-0 bg-two w-full h-full transform translate-x-full transition-transform md:!duration-500 !duration-1000 ease-in-out center ${

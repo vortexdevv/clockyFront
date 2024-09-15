@@ -6,6 +6,49 @@ import Delmondo from "../../public/delmondo.jpeg";
 export const One = () => {
   return (
     <div className=" md:w-4/5 sm:h-full md:flex md:justify-around md:flex-row flex flex-col items-center justify-center mx-auto p-8">
+      <div>
+        {" "}
+        <div>
+          <Image src={Big} alt="watch" className=" w-[342px]   rounded-full" />
+        </div>
+        <div className="flex gap-20 justify-center">
+          <button className=" shadow-2xl">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              fill="none"
+              stroke="#D4AF37"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="#D4AF37"
+                fillRule="evenodd"
+                d="M11.707 4.293a1 1 0 010 1.414L6.414 11H20a1 1 0 110 2H6.414l5.293 5.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 0z"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+          </button>
+          <button className=" shadow-2xl">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              fill="none"
+              stroke="#D4AF37"
+              transform="rotate(180)"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="#D4AF37"
+                fillRule="evenodd"
+                d="M11.707 4.293a1 1 0 010 1.414L6.414 11H20a1 1 0 110 2H6.414l5.293 5.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 0z"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
       <div className="">
         <div className="flex flex-col gap-10">
           <svg
@@ -32,46 +75,6 @@ export const One = () => {
           </p>
           <p className="text-two font-bold text-2xl">1921</p>
         </div>
-      </div>
-      <div className="flex gap-20">
-        <button className=" shadow-2xl">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#D4AF37"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill="#D4AF37"
-              fillRule="evenodd"
-              d="M11.707 4.293a1 1 0 010 1.414L6.414 11H20a1 1 0 110 2H6.414l5.293 5.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 0z"
-              clipRule="evenodd"
-            ></path>
-          </svg>
-        </button>
-        <button className=" shadow-2xl">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="40"
-            height="40"
-            fill="none"
-            stroke="#D4AF37"
-            transform="rotate(180)"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill="#D4AF37"
-              fillRule="evenodd"
-              d="M11.707 4.293a1 1 0 010 1.414L6.414 11H20a1 1 0 110 2H6.414l5.293 5.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 0z"
-              clipRule="evenodd"
-            ></path>
-          </svg>
-        </button>
-      </div>
-      <div>
-        <Image src={Big} alt="watch" className=" w-[342px]   rounded-full" />
       </div>
     </div>
   );
