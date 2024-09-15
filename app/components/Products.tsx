@@ -185,7 +185,7 @@ const Products = () => {
         {products.map((product, index) => (
           <div
             key={index}
-            className="mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center md:p-8 xl:p-16 p-4 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform hover:scale-105"
+            className="mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center md:p-8 xl:p-16 p-4 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform md:hover:scale-105"
           >
             <Link href={`/product/${product._id}`}>
               <span className="-rotate-90 bg-main py-2 px-2 absolute -left-[6px] md:top-2 top-[10px]">
@@ -214,11 +214,13 @@ const Products = () => {
             </Link>
             <button
               onClick={() => addToCart(product)} // Pass the product's id
-              className="relative px-6 py-1 md:py-3 bg-main text-white font-semibold border rounded overflow-hidden group"
+              className="relative px-4 py-1 md:py-3 bg-main text-white font-semibold border rounded overflow-hidden group"
             >
               <div
-                className={`absolute inset-0 bg-two w-full h-full transform translate-x-full transition-transform !duration-1000 ease-in-out center ${
-                  activeProductId === product._id ? "translate-x-0" : ""
+                className={`absolute inset-0 md:group-hover:translate-x-0 bg-two w-full h-full transform translate-x-full transition-transform md:!duration-500 !duration-1000 ease-in-out center ${
+                  activeProductId === product._id
+                    ? "group-hover:translate-x-0"
+                    : ""
                 }`}
               >
                 ADD TO CART
