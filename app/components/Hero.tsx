@@ -19,16 +19,19 @@ const Hero = () => {
         token ? "h-[500px]" : "h-[600px]"
       }`}
     >
-      <div className="  ">
+      <div className=" w-[35%] md:w-1/2 ">
         <h1
           style={{ textWrap: "pretty" }}
-          className=" text-4xl md:text-5xl font-bold  text-left md:leading-[56px] sm:leading-[45px] my-2"
+          className=" text-3xl md:text-5xl  text-left  my-2"
         >
           Welcome to <span className="text-[#bc975b]"> CLOCKY</span> <br />
           the biggest online watches store in Egypt
         </h1>
 
-        <p className="text-base font-normal text-left flex my-2">
+        <p
+          style={{ textWrap: "pretty" }}
+          className="text-base font-normal text-left flex my-2"
+        >
           Here you will find everything that suits you from watches from <br />
           the latest modern and international <br /> brands for men and women
         </p>

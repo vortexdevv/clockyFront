@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Kenjo";
+  src: local("Kenjo II"), local("Kenjo-II"),
+    url("KenjoII.woff2") format("woff2"), url("KenjoII.woff") format("woff"),
+    url("KenjoII.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: "Kenjo", sans-serif;
+}

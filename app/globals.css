@@ -4,7 +4,24 @@
 html {
   scroll-behavior: smooth;
 }
-
+@font-face {
+  font-family: "Kenjo";
+  src: local("Kenjo II"), local("Kenjo-II"),
+    url("../public/fonts/KenjoII.woff2") format("woff2"),
+    url("../public/fonts/KenjoII.woff") format("woff"),
+    url("../public/fonts/KenjoII.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+/* @font-face {
+  font-family: "Kenjo";
+  src: url("../public/fonts/KenjoII.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+} */
+* {
+  font-family: "Kenjo", sans-serif !important;
+}
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -24,7 +41,7 @@ html {
   background-image: url("../public/home.png");
 }
 * {
-  font-family: "Roboto", sans-serif;
+  /* font-family: "Roboto", sans-serif; */
   transition: 0.3s !important;
 }
 
