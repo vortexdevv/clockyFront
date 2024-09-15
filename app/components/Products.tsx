@@ -202,7 +202,7 @@ const Products = () => {
               alt={product.name}
               className="w-[140px] h-[215px]"
             /> */}
-              <h1 className="text-[#2E2E2E] font-bold text-3xl">
+              <h1 className="text-[#2E2E2E] font-bold text-3xl center">
                 {product.name}
               </h1>
               <p className="text-[#595959] font-bold text-base line-through text-center">
