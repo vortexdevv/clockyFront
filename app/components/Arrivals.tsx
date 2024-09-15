@@ -1,7 +1,23 @@
 "use client";
 import Image from "next/image";
 import Watch from "../../public/watch.png";
+import { useState } from "react";
+import { toast } from "@/hooks/use-toast";
+import Link from "next/link";
+
+type Product = {
+  _id: string;
+  name: string;
+  before: number; // Original price
+  price: number;
+  description: string;
+  countInStock: number;
+  img: string;
+};
+
 const Arrivals = () => {
+  const [activeProductId, setActiveProductId] = useState<string | null>(null);
+
   const data: any = [
     { title: "product", price: 1276, image: "" },
     { title: "product", price: 1276, image: "" },
@@ -9,6 +25,38 @@ const Arrivals = () => {
     { title: "product", price: 1276, image: "" },
     { title: "product", price: 1276, image: "" },
   ];
+  const addToCart = (product: Product) => {
+    setActiveProductId(product._id);
+    setTimeout(() => {
+      setActiveProductId(null); // Clear the animation after 1 second
+    }, 1000); // Match the transition duration (1000ms)
+
+    // Set the active product id
+    // Get the current cart from localStorage
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    // Check if the product already exists in the cart
+    const existingProduct = cart.find((item: any) => item._id === product._id);
+
+    if (existingProduct) {
+      // If the product exists, increment its quantity
+      existingProduct.quantity += 1;
+    } else {
+      // Otherwise, add the product with an initial quantity of 1
+      cart.push({ ...product, quantity: 1 });
+    }
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    console.log(`${product.name} added to cart`);
+
+    toast({
+      title: product.name,
+      description: "added to cart",
+      action: <Link href="/cart">Go to cart</Link>,
+    });
+  };
   return (
     <div
       id="newarraival"
@@ -21,7 +69,7 @@ const Arrivals = () => {
           return (
             <div
               key={index}
-              className="group mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center md:p-8 p-4 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform hover:scale-105"
+              className="group mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center justify-center md:p-8 p-4 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform md:hover:scale-105"
             >
               <span className="bg-main py-2 px-2 absolute top-0 right-0">
                 NEW
@@ -34,8 +82,17 @@ const Arrivals = () => {
                 1000 L.E
               </p>
               <p className="text-two font-bold text-2xl">{card.price}</p>
-              <button className="relative px-6 py-3  bg-main text-white font-semibold border  rounded overflow-hidden group">
-                <div className="absolute  inset-0 bg-two w-full h-full transform translate-x-full group-hover:translate-x-0 transition-transform !duration-500 ease-in-out center">
+              <button
+                onClick={() => addToCart(card)} // Pass the product's id
+                className="relative px-4 py-1 md:py-3 bg-main text-white font-semibold border rounded overflow-hidden group"
+              >
+                <div
+                  className={`absolute inset-0 md:group-hover:translate-x-0 bg-two w-full h-full transform translate-x-full transition-transform md:!duration-500 !duration-1000 ease-in-out center ${
+                    activeProductId === card._id
+                      ? "group-hover:translate-x-0"
+                      : ""
+                  }`}
+                >
                   ADD TO CART
                 </div>
                 ADD TO CART
