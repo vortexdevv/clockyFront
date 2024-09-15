@@ -202,7 +202,7 @@ const Products = () => {
               alt={product.name}
               className="w-[140px] h-[215px]"
             /> */}
-              <h1 className="text-[#2E2E2E] font-bold text-3xl">
+              <h1 className="text-[#2E2E2E] font-bold text-3xl center">
                 {product.name}
               </h1>
               <p className="text-[#595959] font-bold text-base line-through text-center">
@@ -217,7 +217,7 @@ const Products = () => {
               className="relative px-6 py-1 md:py-3 bg-main text-white font-semibold border rounded overflow-hidden group"
             >
               <div
-                className={`absolute inset-0 bg-two w-full h-full transform translate-x-full transition-transform !duration-1000 ease-in-out center ${
+                className={`absolute inset-0 bg-two w-full h-full transform translate-x-full group-hover:translate-x-0 transition-transform !duration-1000 ease-in-out center ${
                   activeProductId === product._id ? "translate-x-0" : ""
                 }`}
               >

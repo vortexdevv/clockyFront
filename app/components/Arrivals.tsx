@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Watch from "../../public/watch.png";
 const Arrivals = () => {
@@ -33,8 +34,11 @@ const Arrivals = () => {
                 1000 L.E
               </p>
               <p className="text-two font-bold text-2xl">{card.price}</p>
-              <button className="bg-main block md:py-2 md:px-2 px-1 py-2 w-32 hover:bg-two transition-opacity duration-300 ease-in-out ">
-                ADD TO CARD
+              <button className="relative px-6 py-3  bg-main text-white font-semibold border  rounded overflow-hidden group">
+                <div className="absolute  inset-0 bg-two w-full h-full transform translate-x-full group-hover:translate-x-0 transition-transform !duration-500 ease-in-out center">
+                  ADD TO CART
+                </div>
+                ADD TO CART
               </button>
             </div>
           );
