@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <div
       id="contact-us"
-      className="hero  mx-auto flex justify-center  items-center md:bg-cover sm:bg-right  w-full bg-main p-20 text-white"
+      className="backgroundd bg-contain bg-no-repeat bg-center  mx-auto flex justify-center  items-center  w-full bg-main p-20 text-white"
     >
       <footer className="flex justify-between w-5/6 md:flex-row  flex-col gap-10">
         <div className="">

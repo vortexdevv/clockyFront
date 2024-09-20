@@ -180,7 +180,7 @@ const Products = () => {
   return (
     <div className=" text-white flex justify-center flex-col items-center w-full bg-[#FCFCFC] pt-10 text-center">
       <div className="border-t-2 border-two w-20 p-1 font-medium"></div>
-      <h2 className="text-[#2E2E2E]">FEATURED</h2>
+      <h2 className="text-[#2E2E2E] mainFont">FEATURED</h2>
       <div className="grid sm:grid-cols-3 grid-cols-2 md:grid-cols-4 xl:grid-cols-5 md:gap-6 gap-2 media">
         {products.map((product, index) => (
           <div

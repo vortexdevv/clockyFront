@@ -35,37 +35,37 @@ const Nav = () => {
 
   return (
     <div
-      className={`text-white fixed w-full  mx-auto  z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
+      className={`mainFont text-white fixed w-full  mx-auto  z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
         isScrolled ? "bg-main shadow-lg w-full" : "bg-transparent"
       }`}
     >
       <div>
         <Link href="/">
-          <h1 className="text-2xl ">Clocky</h1>
+          <h1 className="text-2xl mainFont">Clocky</h1>
         </Link>
       </div>
 
       {/* Desktop Navigation */}
       <div className="md:flex md:gap-3 lg:gap-8 items-center text-[15px] hidden">
-        <Link className="hover:text-two" href="#newarraival">
+        <Link className="hover:text-two mainFont" href="#newarraival">
           New arrival
         </Link>
-        <Link className="hover:text-two" href="/shop">
+        <Link className="hover:text-two mainFont" href="/shop">
           shop
         </Link>
-        <Link className="hover:text-two" href="/brands">
+        <Link className="hover:text-two mainFont" href="/brands">
           Brands
         </Link>
-        <div className="hover:text-two">
+        <div className="hover:text-two mainFont">
           <MinimalistGenderDropdown />
         </div>
-        <Link className="hover:text-two" href="#contact-us">
+        <Link className="hover:text-two mainFont" href="#contact-us">
           Contact Us
         </Link>
-        <Link className="hover:text-two" href="/policy">
+        <Link className="hover:text-two mainFont" href="/policy">
           Policy
         </Link>
-        <Link className="hover:text-two" href="/cart">
+        <Link className="hover:text-two mainFont" href="/cart">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"

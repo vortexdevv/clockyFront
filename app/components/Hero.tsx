@@ -3,7 +3,7 @@ import Image from "next/image";
 import Watch from "./watch.png";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-
+import clocky from "../../public/clockyyyy.png";
 const Hero = () => {
   const [token, setToken] = useState<string | null>(null);
 
@@ -15,14 +15,14 @@ const Hero = () => {
 
   return (
     <div
-      className={`text-white backgroundd bg-cover bg-center w-full flex items-center justify-around ${
+      className={`text-white backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex items-center justify-around ${
         token ? "h-[500px]" : "h-[600px]"
       }`}
     >
-      <div className=" w-[35%] md:w-1/2 ">
+      <div className=" w-[90%] md:w-1/2 ">
         <h1
           style={{ textWrap: "pretty" }}
-          className=" text-3xl md:text-5xl  text-left  my-2"
+          className="mainFont text-3xl md:text-5xl  text-left  my-2"
         >
           Welcome to <span className="text-[#bc975b]"> CLOCKY</span> <br />
           the biggest online watches store in Egypt
@@ -48,7 +48,7 @@ const Hero = () => {
         </div> */}
       </div>
       <div>
-        <Image src={Watch} alt="Watch" className="w-60 " />
+        <Image src={Watch} alt="Watch" className="w-60 hidden md:block" />
       </div>
     </div>
   );

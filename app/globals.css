@@ -20,6 +20,9 @@ html {
   font-style: normal;
 } */
 * {
+  font-family: "Kenjo II", sans-serif;
+}
+.mainFont {
   font-family: "Kenjo", sans-serif !important;
 }
 :root {
@@ -141,7 +144,7 @@ html {
 }
 
 .backgroundd {
-  background-image: url("../public/herooo.png");
+  background-image: url("../public/clockyyyy.png");
 }
 @media (min-width: 1280px) and (max-width: 1415px) {
   .media {
