@@ -63,8 +63,8 @@ const Login = () => {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-main text-[#414B43] p-4">
-      <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-white text-white p-4">
+      <div className="bg-main shadow-lg rounded-lg p-6 w-full max-w-md">
         <h2 className="text-center text-2xl font-semibold mb-6">
           {isLogin ? "Login" : "Sign Up"}
         </h2>
@@ -77,6 +77,7 @@ const Login = () => {
             <div>
               <Label htmlFor="name">Name</Label>
               <Input
+                className="border-none bg-white text-black"
                 id="name"
                 type="text"
                 value={name}
@@ -90,6 +91,7 @@ const Login = () => {
           <div>
             <Label htmlFor="email">Email</Label>
             <Input
+              className="border-none bg-white text-black"
               id="email"
               type="email"
               value={email}
@@ -102,6 +104,7 @@ const Login = () => {
           <div>
             <Label htmlFor="password">Password</Label>
             <Input
+              className="border-none bg-white text-black"
               id="password"
               type="password"
               value={password}
@@ -112,9 +115,12 @@ const Login = () => {
               disabled={loading}
             />
           </div>
-
           {/* Submit Button with Loading Feedback */}
-          <Button type="submit" className="w-full bg-main" disabled={loading}>
+          <Button
+            type="submit"
+            className="w-full bg-white text-black hover:bg-two hover:text-white"
+            disabled={loading}
+          >
             {loading ? "Please wait..." : isLogin ? "Login" : "Sign Up"}
           </Button>
         </form>
@@ -123,7 +129,7 @@ const Login = () => {
           {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
           <Button
             variant="link"
-            className="text-blue-600 hover:text-blue-800"
+            className="text-two hover:text-white"
             onClick={() => setIsLogin(!isLogin)}
             disabled={loading}
           >

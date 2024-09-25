@@ -151,3 +151,9 @@ html {
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   }
 }
+
+@media (min-width: 0) and (max-width: 720px) {
+  .hide {
+    display: none !important;
+  }
+}

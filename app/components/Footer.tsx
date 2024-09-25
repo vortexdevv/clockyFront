@@ -8,14 +8,14 @@ const Footer = () => {
   return (
     <div
       id="contact-us"
-      className="backgroundd bg-contain bg-no-repeat bg-center  mx-auto flex justify-center  items-center  w-full bg-main p-20 text-white"
+      className=" bg-contain bg-no-repeat bg-center  mx-auto flex justify-center  items-center  w-full bg-main p-20 text-white"
     >
       <footer className="flex justify-between w-5/6 md:flex-row  flex-col gap-10">
-        <div className="">
+        {/* <div className="">
           <h4 className="font-medium text-3xl mb-3 ">Our information</h4>
           <p className="font-normal text-base leading-8">Cairo - Egypt</p>
           <p className="font-normal text-base leading-8">01113283189</p>
-        </div>
+        </div> */}
         <div className="about-us">
           <h4 className="font-medium text-3xl mb-3">About Us</h4>
           <a
@@ -65,13 +65,14 @@ const Footer = () => {
           </a>
         </div> */}
         <div className="flex  md:items-center flex-col gap-14 text-white">
-          <h4 className="font-medium text-3xl md:mb-3 mb-4">Social</h4>
-          <div className="w-24 flex md:flex-col md:gap-5 md:justify-center -m-10 items-center">
+          <div className="w-24 flex md:flex-col md:gap-5 md:justify-center -m-10 items-center gap-5 mt-1">
+            <h4 className="font-medium text-3xl md:mb-3">Social</h4>
+
             <Link href={"https://www.facebook.com/Clocky.Eg?mibextid=kFxxJD"}>
               {/* facebook */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="90"
+                width="20"
                 height="20"
                 viewBox="-5 0 20 20"
               >
@@ -99,7 +100,7 @@ const Footer = () => {
               {/* instagram */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="90"
+                width="20"
                 height="20"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -123,7 +124,7 @@ const Footer = () => {
               {/*  WhatsApp */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="90"
+                width="20"
                 height="20"
                 fill="none"
                 viewBox="0 0 24 24"

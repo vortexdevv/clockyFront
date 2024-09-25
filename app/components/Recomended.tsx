@@ -17,8 +17,13 @@ export const Recommended = () => {
             various presentations in this store,
             <br /> discover them now.
           </p>
-          <button className="py-4 w-40  px-6 bg-[rgb(65,75,67)] shadow-xl">
+          <button className="py-4 w-40  px-6 shadow-xl -- relative  md:py-3 bg-main text-white font-semibold border  overflow-hidden group">
             Order now
+            <div
+              className={`group-hover:translate-x-0 absolute inset-0 md:group-hover:translate-x-0 bg-two w-full h-full transform translate-x-full transition-transform md:!duration-500 !duration-1000 ease-in-out center`}
+            >
+              Order now
+            </div>
           </button>
         </div>
       </div>

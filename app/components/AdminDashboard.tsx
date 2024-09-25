@@ -10,8 +10,11 @@ type Product = {
   description: string;
   countInStock: number;
   img: string;
+  gender: string;
+  caseColor: string;
+  dialColor: string;
+  movmentType: string;
 };
-
 const AdminDashboard = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
@@ -22,6 +25,10 @@ const AdminDashboard = () => {
     description: "",
     countInStock: "",
     img: "",
+    gender: "",
+    caseColor: "",
+    dialColor: "",
+    movmentType: "",
   });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -41,7 +48,7 @@ const AdminDashboard = () => {
     fetchProducts();
   }, []);
 
-  const handleInputChange = (
+  const handleInputChange: any = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
@@ -57,6 +64,10 @@ const AdminDashboard = () => {
         description: form.description,
         countInStock: parseInt(form.countInStock),
         img: form.img,
+        gender: form.gender,
+        caseColor: form.caseColor,
+        dialColor: form.dialColor,
+        movmentType: form.movmentType,
       });
 
       const newProduct = response.data;
@@ -69,6 +80,10 @@ const AdminDashboard = () => {
         description: "",
         countInStock: "",
         img: "",
+        gender: "",
+        caseColor: "",
+        dialColor: "",
+        movmentType: "",
       });
     } catch (error) {
       console.error("Failed to add product", error);
@@ -84,6 +99,10 @@ const AdminDashboard = () => {
       description: product.description,
       countInStock: product.countInStock.toString(),
       img: product.img,
+      gender: product.gender,
+      caseColor: product.caseColor,
+      dialColor: product.dialColor,
+      movmentType: product.movmentType,
     });
   };
 
@@ -114,6 +133,10 @@ const AdminDashboard = () => {
           description: "",
           countInStock: "",
           img: "",
+          gender: "",
+          caseColor: "",
+          dialColor: "",
+          movmentType: "",
         });
       } catch (error) {
         console.error("Failed to update product", error);
@@ -197,6 +220,56 @@ const AdminDashboard = () => {
               />
             </div>
             <div className="mb-3">
+              <label className="block text-gray-700">Gender</label>
+              <select
+                name="gender"
+                value={form.gender}
+                onChange={handleInputChange}
+                className="w-full p-2 border border-gray-300 rounded mt-1"
+              >
+                <option value="" disabled>
+                  Select Gender
+                </option>
+                <option value="men">Men</option>
+                <option value="women">Women</option>
+                <option value="unisex">Unisex</option>
+              </select>
+            </div>
+
+            <div className="mb-3">
+              <label className="block text-gray-700">Case Color</label>
+              <input
+                type="text"
+                name="caseColor"
+                value={form.caseColor}
+                onChange={handleInputChange}
+                className="w-full p-2 border border-gray-300 rounded mt-1"
+                placeholder="Enter picture URL"
+              />
+            </div>
+            <div className="mb-3">
+              <label className="block text-gray-700">Dial Color</label>
+              <input
+                type="text"
+                name="dialColor"
+                value={form.dialColor}
+                onChange={handleInputChange}
+                className="w-full p-2 border border-gray-300 rounded mt-1"
+                placeholder="Enter picture URL"
+              />
+            </div>
+            <div className="mb-3">
+              <label className="block text-gray-700">Movement Type</label>
+              <input
+                type="text"
+                name="movmentType"
+                value={form.movmentType}
+                onChange={handleInputChange}
+                className="w-full p-2 border border-gray-300 rounded mt-1"
+                placeholder="Enter picture URL"
+              />
+            </div>
+            <div className="mb-3">
               <label className="block text-gray-700">Description</label>
               <textarea
                 name="description"
@@ -232,9 +305,9 @@ const AdminDashboard = () => {
               <thead>
                 <tr>
                   <th className="border-b p-2">Name</th>
-                  <th className="border-b p-2">Price</th>
+                  <th className="border-b p-2 hide">Price</th>
                   <th className="border-b p-2">Count in Stock</th>
-                  <th className="border-b p-2">Description</th>
+                  <th className="border-b p-2 hide">Description</th>
                   <th className="border-b p-2">Actions</th>
                 </tr>
               </thead>
@@ -242,9 +315,9 @@ const AdminDashboard = () => {
                 {products.map((product) => (
                   <tr key={product._id}>
                     <td className="border-b p-2">{product.name}</td>
-                    <td className="border-b p-2">${product.price}</td>
+                    <td className="border-b p-2 hide">${product.price}</td>
                     <td className="border-b p-2">{product.countInStock}</td>
-                    <td className="border-b p-2">{product.description}</td>
+                    <td className="border-b p-2 hide">{product.description}</td>
                     <td className="border-b p-2 flex gap-2">
                       <button
                         onClick={() => handleEditProduct(product)}

@@ -35,37 +35,37 @@ const Nav = () => {
 
   return (
     <div
-      className={`mainFont text-white fixed w-full  mx-auto  z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
-        isScrolled ? "bg-main shadow-lg w-full" : "bg-transparent"
+      className={`mainFont shadow-lg text-white fixed w-full  mx-auto  z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
+        isScrolled ? "bg-main  w-full" : "bg-tranmainFontsparent"
       }`}
     >
       <div>
         <Link href="/">
-          <h1 className="text-2xl mainFont">Clocky</h1>
+          <h1 className="text-2xl mainFont hover:text-two">Clocky</h1>
         </Link>
       </div>
 
       {/* Desktop Navigation */}
       <div className="md:flex md:gap-3 lg:gap-8 items-center text-[15px] hidden">
-        <Link className="hover:text-two mainFont" href="#newarraival">
-          New arrival
+        <Link className="hover:text-two " href="#newarraival">
+          NEW ARRIVAL
         </Link>
-        <Link className="hover:text-two mainFont" href="/shop">
-          shop
+        <Link className="hover:text-two " href="/shop">
+          SHOP
         </Link>
-        <Link className="hover:text-two mainFont" href="/brands">
-          Brands
+        <Link className="hover:text-two " href="/brands">
+          BRANDS
         </Link>
-        <div className="hover:text-two mainFont">
+        <div className="hover:text-two ">
           <MinimalistGenderDropdown />
         </div>
-        <Link className="hover:text-two mainFont" href="#contact-us">
-          Contact Us
+        <Link className="hover:text-two " href="#contact-us">
+          CONTACT US
         </Link>
-        <Link className="hover:text-two mainFont" href="/policy">
-          Policy
+        <Link className="hover:text-two " href="/policy">
+          POLICY
         </Link>
-        <Link className="hover:text-two mainFont" href="/cart">
+        <Link className="hover:text-two " href="/cart">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"

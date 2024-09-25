@@ -15,17 +15,16 @@ const Hero = () => {
 
   return (
     <div
-      className={`text-white backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex items-center justify-around ${
-        token ? "h-[500px]" : "h-[600px]"
-      }`}
+      className={`text-white backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex items-center justify-around h-[488px] md:h-[600px]`}
     >
       <div className=" w-[90%] md:w-1/2 ">
         <h1
           style={{ textWrap: "pretty" }}
-          className="mainFont text-3xl md:text-5xl  text-left  my-2"
+          className="text-3xl md:text-5xl  text-left  my-2"
         >
-          Welcome to <span className="text-[#bc975b]"> CLOCKY</span> <br />
-          the biggest online watches store in Egypt
+          WELCOME TO <span className="text-[#bc975b] font-bold"> CLOCKY</span>{" "}
+          <br />
+          THE LARGEST ONLINE WATCHES STORE IN EGYPT
         </h1>
 
         <p
