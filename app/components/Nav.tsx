@@ -5,6 +5,7 @@ import Link from "next/link";
 import logo from "../../public/search-alt-1-svgrepo-com.svg";
 import { MinimalistGenderDropdown } from "@/components/minimalist-gender-dropdown";
 import { useToast } from "@/hooks/use-toast";
+import DropdownMenu from "./DropdownMenu";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -76,7 +77,9 @@ const Nav = () => {
           BRANDS
         </Link>
         <div className="hover:text-two ">
-          <MinimalistGenderDropdown />
+          {/* <MinimalistGenderDropdown /> */}
+          {/* <GenderSelect /> */}
+          <DropdownMenu />
         </div>
         <Link className="hover:text-two " href="#contact-us">
           CONTACT US
@@ -177,10 +180,10 @@ const Nav = () => {
           Brands
         </Link>
         <div
-          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+          className="block px-4 py-2 text-white hover:bg-two bg-[#0000004d]"
           // onClick={() => setIsOpen(false)}
         >
-          <MinimalistGenderDropdown />
+          <DropdownMenu />
         </div>
 
         <Link
