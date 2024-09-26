@@ -4,12 +4,25 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/search-alt-1-svgrepo-com.svg";
 import { MinimalistGenderDropdown } from "@/components/minimalist-gender-dropdown";
+import { useToast } from "@/hooks/use-toast";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [storageValue, setStorageValue] = useState<string | null>(null);
+  const { toast } = useToast();
 
+  useEffect(() => {
+    // This will run only on the client-side
+    if (typeof window !== "undefined") {
+      const value = localStorage.getItem("token");
+      setStorageValue(value);
+    }
+    toast({
+      title: "LoggedIn successfully",
+    });
+  }, []);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -32,7 +45,13 @@ const Nav = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
+  const handleClick = () => {
+    localStorage.removeItem("token");
+    setStorageValue(null);
+    toast({
+      title: "Logged Out successfully",
+    });
+  };
   return (
     <div
       className={`mainFont shadow-lg text-white fixed w-full  mx-auto  z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
@@ -64,6 +83,19 @@ const Nav = () => {
         </Link>
         <Link className="hover:text-two " href="/policy">
           POLICY
+        </Link>
+        <Link
+          className={`hover:text-two ${storageValue ? "hidden" : ""}`}
+          href="/login"
+        >
+          LOGIN
+        </Link>
+        <Link
+          className={`hover:text-two ${storageValue ? "" : "hidden"}`}
+          onClick={handleClick}
+          href="/"
+        >
+          LOGOUT
         </Link>
         <Link className="hover:text-two " href="/cart">
           <svg
