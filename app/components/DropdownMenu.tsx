@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 
 const DropdownMenu = () => {
@@ -10,7 +11,7 @@ const DropdownMenu = () => {
         className="px-4 bg-transparent focus:outline-none lg:hover:bg-transparent w-full"
         onClick={() => setIsOpen(!isOpen)} // For smaller screens, allow click
       >
-        CATEGORIES
+        GENDER
       </button>
 
       {/* Dropdown Menu */}
@@ -20,9 +21,15 @@ const DropdownMenu = () => {
         } lg:invisible lg:opacity-0 lg:group-hover:opacity-100 lg:group-hover:visible`}
       >
         <ul className="py-2 text-white text-center">
-          <li className="px-4 py-2 hover:bg-two cursor-pointer">Men</li>
-          <li className="px-4 py-2 hover:bg-two cursor-pointer">Women</li>
-          <li className="px-4 py-2 hover:bg-two cursor-pointer">Unisex</li>
+          <li className="px-4 py-2 hover:bg-two cursor-pointer">
+            <Link href={"/male"}>MALE</Link>
+          </li>
+          <li className="px-4 py-2 hover:bg-two cursor-pointer">
+            <Link href={"/female"}>FEMALE</Link>
+          </li>
+          <li className="px-4 py-2 hover:bg-two cursor-pointer">
+            <Link href={"/unisex"}>UNISEX</Link>
+          </li>
         </ul>
       </div>
     </div>
