@@ -36,7 +36,7 @@ const Products = () => {
   // }, []);
   const products: Product[] = [
     {
-      _id: "1",
+      _id: "6",
       name: "p1",
       before: 1000,
       price: 2222,
@@ -45,7 +45,7 @@ const Products = () => {
       img: "fgdfgdg",
     },
     {
-      _id: "2",
+      _id: "7",
       name: "p1",
       before: 1000,
       price: 2222,
@@ -54,7 +54,7 @@ const Products = () => {
       img: "fgdfgdg",
     },
     {
-      _id: "3",
+      _id: "8",
       name: "p1",
       before: 1000,
       price: 2222,
@@ -63,7 +63,7 @@ const Products = () => {
       img: "fgdfgdg",
     },
     {
-      _id: "4",
+      _id: "9",
       name: "p1",
       before: 1000,
       price: 2222,

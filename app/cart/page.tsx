@@ -3,7 +3,7 @@ import Cart from "../components/Cart";
 
 const page = () => {
   return (
-    <div className="center bg-main md:h-full">
+    <div className="center bg-main min-h-full">
       <Cart />
     </div>
   );

@@ -19,10 +19,10 @@ const Arrivals = () => {
   const [activeProductId, setActiveProductId] = useState<string | null>(null);
 
   const data: any = [
-    { title: "product", price: 1276, image: "" },
-    { title: "product", price: 1276, image: "" },
-    { title: "product", price: 1276, image: "" },
-    { title: "product", price: 1276, image: "" },
+    { _id: 1, name: "product", price: 1276, image: "" },
+    { _id: 2, name: "product", price: 1276, image: "" },
+    { _id: 3, name: "product", price: 1276, image: "" },
+    { _id: 4, name: "product", price: 1276, image: "" },
     // { title: "product", price: 1276, image: "" },
   ];
   const addToCart = (product: Product) => {
@@ -75,9 +75,7 @@ const Arrivals = () => {
                 NEW
               </span>
               <Image src={Watch} alt="watch" className="w-[100px]" />
-              <h1 className="text-[#2E2E2E] font-bold text-3xl">
-                {card.title}
-              </h1>
+              <h1 className="text-[#2E2E2E] font-bold text-3xl">{card.name}</h1>
               <p className="text-[#595959] font-bold text-base line-through text-center">
                 1000 L.E
               </p>
