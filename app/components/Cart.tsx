@@ -175,7 +175,7 @@ const Cart = () => {
     <div className="flex flex-col-reverse md:flex-row justify-center w-full h-full">
       {/* Product List Section */}
       <div className="w-full md:w-2/3 p-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
+        <div className="grid gap-4 grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center">
           {cartItems.map((item) => (
             <div
               key={item._id}
