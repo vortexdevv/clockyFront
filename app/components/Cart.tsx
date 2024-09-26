@@ -98,11 +98,11 @@ const Cart = () => {
 
   return (
     <div className="w-full h-full md:w-3/4 p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-full justify-items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-full justify-items-center ">
         {cartItems.map((item) => (
           <div
             key={item._id}
-            className="bg-white shadow-lg w-60  flex flex-col justify-around rounded-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl"
+            className="bg-white shadow-lg w-60 max-h-[50%] flex flex-col justify-around rounded-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl"
           >
             <Image src={Watch} alt="" className=" mx-auto w-1/2" />
             <div className="p-6 flex flex-col items-center">
