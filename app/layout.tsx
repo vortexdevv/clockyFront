@@ -32,7 +32,7 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </head>
-      <body className={`${inter.className} h-[100dvh]`}>
+      <body className={`${inter.className} h-[100dvh] bg-main`}>
         {/* <Nav /> */}
         {children}
         <Toaster />

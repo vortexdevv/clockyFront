@@ -14,6 +14,9 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      animation: {
+        "spin-slow": "spin 1s linear infinite",
+      },
       boxShadow: {
         "3xl": " -85px 68px 0px 3px   rgb(65,75,67)",
         "4xl": "-30px 43px 0px 2px rgb(65, 75, 67) ",
