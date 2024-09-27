@@ -3,7 +3,7 @@ import Products from "../components/Products";
 
 const page = () => {
   return (
-    <div>
+    <div className="bg-main h-full center">
       <Products />
     </div>
   );

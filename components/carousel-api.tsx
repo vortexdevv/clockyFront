@@ -36,14 +36,14 @@ export function CarouselApi() {
       const nextIndex =
         (api.selectedScrollSnap() + 1) % api.scrollSnapList().length;
       api.scrollTo(nextIndex);
-    }, 8000);
+    }, 4000);
 
     // Clean up the interval when the component unmounts
     return () => clearInterval(autoSlideInterval);
   }, [api]);
 
   return (
-    <div className="mx-auto max-w-xs">
+    <div className="mx-auto max-w-[15rem]">
       <Carousel setApi={setApi} className="w-full max-w-xs">
         <CarouselContent>
           {Array.from({ length: 5 }).map((_, index) => (
@@ -57,8 +57,8 @@ export function CarouselApi() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        {/* <CarouselPrevious />
-        <CarouselNext /> */}
+        <CarouselPrevious className="hidden bg-two md:flex items-center" />
+        <CarouselNext className="hidden bg-two md:flex items-center" />
       </Carousel>
       <div className="py-2 text-center text-sm text-muted-foreground">
         Slide {current} of {count}

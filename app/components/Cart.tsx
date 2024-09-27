@@ -191,13 +191,13 @@ const Cart = () => {
                 <div className="flex space-x-4">
                   <button
                     onClick={() => handleQuantityChange(item._id, 1)}
-                    className="bg-[#5abd6e] text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors"
+                    className="bg-main text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors"
                   >
                     +
                   </button>
                   <button
                     onClick={() => handleQuantityChange(item._id, -1)}
-                    className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors"
+                    className="bg-[#c81111] text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors"
                   >
                     -
                   </button>

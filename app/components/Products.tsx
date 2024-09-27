@@ -118,11 +118,11 @@ const Products = () => {
     <div className=" text-white flex justify-center flex-col items-center w-full bg-[#FCFCFC] pt-10 p-2 text-center mx-auto xl:w-3/4">
       <div className="border-t-2 border-two w-20 p-1 font-medium"></div>
       <h2 className="text-[#2E2E2E] font-bold">FEATURED</h2>
-      <div className="grid gap-4 xl:gap-16 grid-cols-[repeat(auto-fit,minmax(150px,1fr))] place-items-center w-full md:w-4/5">
+      <div className="grid gap-4 md:gap-16 xl:gap-20 grid-cols-[repeat(auto-fit,minmax(150px,1fr))] place-items-center w-full md:w-4/5">
         {products.map((product, index) => (
           <div
             key={index}
-            className="mt-4 md:mt-6 border-solid  border-2 border-[#F0F0F0] flex flex-col items-center justify-center md:p-8 xl:p-16 p-4 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform md:hover:scale-105"
+            className="mt-4 md:mt-6 border-solid md:w-[225px]  border-2 border-[#F0F0F0] flex flex-col items-center justify-center md:px-4 xl:px-4 p-4 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform md:hover:scale-105"
           >
             <Link href={`/product/${product._id}`}>
               <span className="-rotate-90 bg-main py-2 px-2 absolute font-bold -left-[6px] md:top-2 top-[10px]">

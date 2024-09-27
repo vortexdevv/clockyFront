@@ -70,9 +70,9 @@ const Nav = () => {
         <Link className="hover:text-two " href="/shop">
           SHOP
         </Link>
-        <Link className="hover:text-two " href="/brands">
+        {/* <Link className="hover:text-two " href="/brands">
           BRANDS
-        </Link>
+        </Link> */}
         <div className="hover:text-two ">
           {/* <MinimalistGenderDropdown /> */}
           {/* <GenderSelect /> */}
@@ -169,13 +169,13 @@ const Nav = () => {
         >
           shop
         </Link>
-        <Link
+        {/* <Link
           className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
           href="/brands"
           onClick={() => setIsOpen(false)}
         >
           Brands
-        </Link>
+        </Link> */}
         <div
           className="block px-4 py-2 text-white hover:bg-two bg-[#0000004d]"
           // onClick={() => setIsOpen(false)}
