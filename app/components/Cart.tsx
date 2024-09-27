@@ -181,7 +181,7 @@ const Cart = () => {
               key={item._id}
               className="bg-white shadow-lg w-60 max-h-full flex flex-col justify-around rounded-lg overflow-hidden transition-transform transform md:hover:scale-105 hover:shadow-2xl"
             >
-              <Image src={Watch} alt="" className="mx-auto w-1/2" />
+              <img src={item.img} alt="" className="mx-auto w-full" />
               <div className="p-6 flex flex-col items-center">
                 <h2 className="text-xl font-semibold text-gray-800 mb-2">
                   {item.name}
