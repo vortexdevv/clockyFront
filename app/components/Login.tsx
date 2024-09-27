@@ -40,6 +40,9 @@ const Login = () => {
           {
             email,
             password,
+          },
+          {
+            withCredentials: true, // Include credentials like cookies or authorization headers
           }
         );
       } else {
