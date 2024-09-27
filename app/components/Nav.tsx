@@ -164,7 +164,7 @@ const Nav = () => {
         </Link>
         <Link
           className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
-          href="#shop"
+          href="/shop"
           onClick={() => setIsOpen(false)}
         >
           shop
@@ -236,12 +236,12 @@ const Nav = () => {
         >
           LOGOUT
         </Link>
-        <button
+        {/* <button
           onClick={toggleSearch}
           className="focus:outline-none px-4 py-2 bg-[#0000004d] w-full flex justify-center"
         >
           <Image className="w-6 h-6" src={logo} alt="Search Icon" />
-        </button>
+        </button> */}
       </div>
 
       {/* Search Popup */}
