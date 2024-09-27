@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 export default function Home() {
   const hosary: number = 0;
   return (
-    <main className="h-auto bg-main">
+    <main className="h-auto bg-[#FCFCFC]">
       <Nav />
       <Hero />
       <Products />

@@ -56,7 +56,7 @@ const Cart = () => {
     fullName: "",
     address: "",
     city: "",
-    postalCode: "",
+    // postalCode: "",
     country: "",
     phone: "",
   }); // Track shipping address
@@ -106,7 +106,7 @@ const Cart = () => {
       !shippingAddress.fullName ||
       !shippingAddress.address ||
       !shippingAddress.city ||
-      !shippingAddress.postalCode ||
+      // !shippingAddress.postalCode ||
       !shippingAddress.country ||
       !shippingAddress.phone
     ) {
