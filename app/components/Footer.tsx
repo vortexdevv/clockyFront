@@ -121,7 +121,7 @@ const Footer = () => {
               </svg>
             </Link>
             <a
-              href="https://wa.me/01113283189?text=I'm%20interested%20in%20your%20services"
+              href="https://wa.me/201113283189?text=I'm%20interested%20in%20your%20services"
               target="_blank"
             >
               {/*  WhatsApp */}
