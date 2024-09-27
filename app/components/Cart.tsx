@@ -139,7 +139,7 @@ const Cart = () => {
 
       // Send the data to the backend
       const response = await axios.post(
-        `https://clockyexpress.vercel.app//api/products/checkout`,
+        `https://clockyexpress.vercel.app/api/products/checkout`,
         checkoutPayload,
         {
           headers: {
