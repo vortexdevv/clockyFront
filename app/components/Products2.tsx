@@ -58,9 +58,12 @@ const syncCartWithServer = async (products: Product[]) => {
   try {
     const token = localStorage.getItem("userId");
     if (token) {
-      await axios.post(`http://localhost:5000/api/products/cart/${token}`, {
-        products,
-      });
+      await axios.post(
+        `https://clockyexpress.vercel.app//api/products/cart/${token}`,
+        {
+          products,
+        }
+      );
     }
   } catch (error) {
     console.error("Failed to sync cart with server", error);
@@ -75,7 +78,9 @@ const Products2 = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/products");
+        const response = await axios.get(
+          "https://clockyexpress.vercel.app//api/products"
+        );
         setProducts(response.data);
       } catch (error) {
         console.error("Failed to fetch products", error);

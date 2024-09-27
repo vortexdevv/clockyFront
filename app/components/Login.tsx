@@ -35,10 +35,13 @@ const Login = () => {
       let response;
       if (isLogin) {
         // Login API call
-        response = await axios.post("http://localhost:5000/api/users/login", {
-          email,
-          password,
-        });
+        response = await axios.post(
+          "https://clockyexpress.vercel.app//api/users/login",
+          {
+            email,
+            password,
+          }
+        );
       } else {
         // Signup API call
         response = await axiosInstance.post("/users/register", {
