@@ -18,16 +18,16 @@ const Footer = () => {
         </div> */}
         <div className="about-us">
           <h4 className="font-medium text-3xl mb-3">About Us</h4>
-          <a
+          {/* <a
             className="font-normal text-base leading-8 hover:text-two"
             href="#"
           >
             Support Center
           </a>
-          <br />
+          <br /> */}
           <a
             className="font-normal text-base leading-8 hover:text-two"
-            href="#"
+            href="tel:+201113283189"
           >
             Customer Support
           </a>

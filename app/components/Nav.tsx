@@ -52,7 +52,7 @@ const Nav = () => {
   };
   return (
     <div
-      className={`mainFont shadow-lg text-white fixed w-full  mx-auto  z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
+      className={`mainFont top-0 shadow-lg text-white fixed w-full  mx-auto  z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
         isScrolled ? "bg-main  w-full" : "bg-tranmainFontsparent"
       }`}
     >
@@ -119,7 +119,7 @@ const Nav = () => {
       {/* Search Icon for Desktop */}
       <div className="md:flex items-center hidden">
         <button onClick={toggleSearch} className="focus:outline-none">
-          <Image className="w-6 h-6" src={logo} alt="Search Icon" />
+          {/* <Image className="w-6 h-6" src={logo} alt="Search Icon" /> */}
         </button>
       </div>
 

@@ -1,59 +1,217 @@
 import React from "react";
+import Nav from "../components/Nav";
 
 const page = () => {
   return (
-    <div className="min-h-screen bg-main p-8 flex flex-col items-center">
-      <div className="max-w-4xl w-full bg-white shadow-md rounded-lg p-8">
+    <div className="min-h-screen bg-main p-8 flex flex-col items-center text-pretty">
+      <Nav />
+      <div className="max-w-4xl w-full bg-white shadow-md rounded-lg p-8 mt-20">
         {/* English Section */}
-        <section className="text-left mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">About Us</h1>
-          <p className="text-gray-700 leading-relaxed">
-            Welcome to Kloki Watches, your premier destination for luxury
-            watches. Our company was founded on a passion for precision and
-            excellence, offering the finest timepieces that blend elegance and
-            advanced technology. We take pride in providing a diverse range of
-            watches that cater to all tastes and needs, from classic to modern
-            designs.
-            <br />
-            <br />
-            At Kloki, we believe that a watch is not just a tool for telling
-            time, but an expression of personality and style. That’s why we
-            carefully select the best global brands known for their high quality
-            and unique design. We also offer after-sales services to ensure
-            customer satisfaction, including maintenance and repair.
-            <br />
-            <br />
-            We are committed to providing a distinguished and easy shopping
-            experience, with flexible payment options and fast, secure delivery
-            across the country. Join us on a journey of excellence and style,
-            and explore the world of luxury watches with Kloki.
+        <div className="max-w-4xl mx-auto p-6 bg-gray-100 text-gray-900">
+          <h1 className="text-3xl font-bold mb-6 text-center">
+            Replacement and Return Policy for Clocky Watches
+          </h1>
+          <p className="mb-4">
+            At Clocky Watches, we are committed to customer satisfaction and
+            providing the best shopping experience possible. Therefore, we offer
+            a flexible replacement and return policy that complies with Egyptian
+            consumer protection laws.
           </p>
-        </section>
+
+          <h2 className="text-2xl font-semibold mt-6 mb-4">
+            Replacement and Return Conditions:
+          </h2>
+          <ul className="list-disc list-inside mb-4">
+            <li>
+              <strong>Timeframe:</strong> Customers have the right to exchange
+              or return the product within 14 days of the purchase date.
+            </li>
+            <li>
+              <strong>Product Condition:</strong> The product must be in its
+              original condition, unused, and include all components and
+              accessories.
+            </li>
+            <li>
+              <strong>Proof of Purchase:</strong> A receipt or invoice must be
+              provided as proof of purchase.
+            </li>
+          </ul>
+
+          <h2 className="text-2xl font-semibold mt-6 mb-4">
+            Replacement and Return Process:
+          </h2>
+          <ol className="list-decimal list-inside mb-4">
+            <li>
+              <strong>Contact Customer Service:</strong> Customers can reach out
+              to customer service by phone or email to initiate the replacement
+              or return process.
+            </li>
+            <li>
+              <strong>Packaging and Shipping:</strong> The customer must
+              securely pack the product and send it to the company&#39;s
+              specified address.
+            </li>
+            <li>
+              <strong>Product Receipt and Inspection:</strong> After receiving
+              the product, our team will inspect it to ensure its condition.
+            </li>
+          </ol>
+
+          <h2 className="text-2xl font-semibold mt-6 mb-4">Shipping Costs:</h2>
+          <ul className="list-disc list-inside mb-4">
+            <li>
+              <strong>Store Error:</strong> If the product is defective or does
+              not match the order, the company will cover the shipping costs.
+            </li>
+            <li>
+              <strong>Personal Preference:</strong> If the customer wishes to
+              return the product for personal reasons, they will be responsible
+              for the shipping costs.
+            </li>
+          </ul>
+
+          <h2 className="text-2xl font-semibold mt-6 mb-4">Refunds:</h2>
+          <ul className="list-disc list-inside mb-4">
+            <li>
+              Refunds will be issued to the bank card used for the purchase or
+              in cash upon receipt of the returned product.
+            </li>
+            <li>The refund process may take 7 to 14 business days.</li>
+          </ul>
+
+          <h2 className="text-2xl font-semibold mt-6 mb-4">Exceptions:</h2>
+          <ul className="list-disc list-inside mb-4">
+            <li>Perishable products such as food items.</li>
+            <li>
+              Customized products that have been made according to the
+              customer&#39;s request.
+            </li>
+          </ul>
+
+          <h2 className="text-2xl font-semibold mt-6 mb-4">Contact Us:</h2>
+          <p className="mb-4">
+            For any inquiries or issues related to our replacement and return
+            policy, please contact us via:
+          </p>
+          <ul className="list-none mb-6">
+            <li>
+              <strong>Phone:</strong>{" "}
+              <a href="tel:201113283189" className="text-blue-600 underline">
+                01113283189
+              </a>
+            </li>
+            <li>
+              <strong>Email:</strong>{" "}
+              <a
+                href="mailto:info@clocky.com"
+                className="text-blue-600 underline"
+              >
+                info@clocky.com
+              </a>
+            </li>
+          </ul>
+        </div>
 
         <hr className="border-t border-gray-300 my-8" />
 
         {/* Arabic Section */}
-        <section className="text-right">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">من نحن</h1>
-          <p className="text-gray-700 leading-relaxed">
-            مرحبًا بكم في كلوكي للساعات، وجهتكم الأولى لعالم الساعات الفاخرة.
-            تأسست شركتنا على أساس الشغف والدقة في تقديم أفضل الساعات التي تجمع
-            بين الأناقة والتكنولوجيا المتقدمة. نحن نفخر بتقديم مجموعة متنوعة من
-            الساعات التي تلبي جميع الأذواق والاحتياجات، من الساعات الكلاسيكية
-            إلى التصاميم العصرية.
-            <br />
-            <br />
-            في كلوكي، نؤمن بأن الساعة ليست مجرد أداة لمعرفة الوقت، بل هي تعبير
-            عن الشخصية والأناقة. لذلك، نحرص على اختيار أفضل العلامات التجارية
-            العالمية التي تتميز بالجودة العالية والتصميم الفريد. كما نقدم خدمات
-            ما بعد البيع لضمان رضا عملائنا الكرام، بما في ذلك الصيانة والإصلاح.
-            <br />
-            <br />
-            نحن ملتزمون بتقديم تجربة تسوق مميزة وسهلة، مع خيارات دفع مرنة وخدمة
-            توصيل سريعة وآمنة لجميع أنحاء الجمهورية. انضموا إلينا في رحلة التميز
-            والأناقة، واكتشفوا عالم الساعات الفاخرة مع كلوكي.
+        <div className="max-w-4xl mx-auto p-6 bg-gray-100 text-gray-900 text-right">
+          <h1 className="text-3xl font-bold mb-6 text-center">
+            سياسة الاستبدال والاسترجاع لشركة كلوكي للساعات
+          </h1>
+          <p className="mb-4">
+            نحن في شركة كلوكي للساعات نحرص على رضا عملائنا وتقديم أفضل تجربة
+            تسوق ممكنة. لذلك، نقدم سياسة استبدال واسترجاع مرنة تتماشى مع
+            القوانين المصرية لحماية حقوق المستهلك.
           </p>
-        </section>
+
+          <h2 className="text-2xl font-semibold mt-6 mb-4">
+            :شروط الاستبدال والاسترجاع
+          </h2>
+          <ul className="list-disc list-inside mb-4">
+            <li>
+              <strong>المدة الزمنية:</strong> يحق للعميل استبدال أو استرجاع
+              المنتج خلال 14 يومًا من تاريخ الشراء.
+            </li>
+            <li>
+              <strong>حالة المنتج:</strong> يجب أن يكون المنتج في حالته الأصلية
+              وغير مستخدم، ويشمل جميع المكونات والإكسسوارات.
+            </li>
+            <li>
+              <strong>إثبات الشراء:</strong> يجب تقديم إيصال أو فاتورة الشراء
+              كدليل على الشراء.
+            </li>
+          </ul>
+
+          <h2 className="text-2xl font-semibold mt-6 mb-4">
+            :إجراءات الاستبدال والاسترجاع
+          </h2>
+          <ul className=" list-inside mb-4">
+            <li>
+              <strong>الاتصال بخدمة العملاء:</strong> يمكن للعميل التواصل مع
+              خدمة العملاء عبر الهاتف أو البريد الإلكتروني لبدء عملية الاستبدال
+              أو الاسترجاع.
+            </li>
+            <li>
+              <strong>التعبئة والشحن:</strong> يجب على العميل تعبئة المنتج بشكل
+              آمن وإرساله إلى عنوان الشركة المحدد.
+            </li>
+            <li>
+              <strong>استلام وفحص المنتج:</strong> بعد استلام المنتج، سيتم فحصه
+              من قبل فريقنا للتأكد من حالته.
+            </li>
+          </ul>
+
+          <h2 className="text-2xl font-semibold mt-6 mb-4">:تكاليف الشحن</h2>
+          <ul className="list-disc list-inside mb-4">
+            <li>
+              <strong>في حالة الخطأ من المتجر:</strong> إذا كان المنتج معيبًا أو
+              غير مطابق لما تم طلبه، تتحمل الشركة تكاليف الشحن.
+            </li>
+            <li>
+              <strong>في حالة رغبة العميل في الإرجاع لأسباب شخصية:</strong>{" "}
+              يتحمل العميل تكاليف الشحن.
+            </li>
+          </ul>
+
+          <h2 className="text-2xl font-semibold mt-6 mb-4">:استرداد الأموال</h2>
+          <ul className="list-disc list-inside mb-4">
+            <li>
+              سيتم استرداد الأموال إلى البطاقة البنكية المستخدمة في الشراء أو
+              كاش عند استلام المنتج المرتجع.
+            </li>
+            <li>تستغرق عملية استرداد الأموال من 7 إلى 14 يوم عمل.</li>
+          </ul>
+
+          <h2 className="text-2xl font-semibold mt-6 mb-4">:استثناءات</h2>
+          <ul className="list-disc list-inside mb-4">
+            <li>المنتجات القابلة للتلف مثل المواد الغذائية.</li>
+            <li>المنتجات المخصصة التي تم تصنيعها حسب طلب العميل.</li>
+          </ul>
+
+          <h2 className="text-2xl font-semibold mt-6 mb-4">:التواصل معنا</h2>
+          <p className="mb-4">
+            :لأي استفسارات أو مشكلات متعلقة بسياسة الاستبدال والاسترجاع، يرجى
+            التواصل معنا عبر
+          </p>
+          <ul className="list-none mb-6">
+            <li>
+              <strong>الهاتف:</strong>{" "}
+              <a href="tel:+201113283189" className="text-blue-600 underline">
+                01113283189
+              </a>
+            </li>
+            <li>
+              <strong>البريد الإلكتروني:</strong>{" "}
+              <a
+                href="mailto:info@clocky.com"
+                className="text-blue-600 underline"
+              >
+                info@clocky.com
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

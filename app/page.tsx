@@ -3,8 +3,8 @@ import Nav from "../app/components/Nav";
 import Hero from "./components/Hero";
 import Products from "./components/Products";
 import Recommended from "./components/Recomended";
-import Products2 from "./components/Products2";
-import One from "./components/One";
+// import Products2 from "./components/Products2";
+// import One from "./components/One";
 import Arrivals from "./components/Arrivals";
 import Footer from "./components/Footer";
 export default function Home() {
@@ -15,8 +15,8 @@ export default function Home() {
       <Hero />
       <Products />
       <Recommended />
-      <Products2 />
-      <One />
+      {/* <Products2 /> */}
+      {/* <One /> */}
       <Arrivals />
       <Footer />
       {/* <Payment /> */}
