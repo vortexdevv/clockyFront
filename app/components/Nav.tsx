@@ -2,8 +2,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../public/search-alt-1-svgrepo-com.svg";
-import { MinimalistGenderDropdown } from "@/components/minimalist-gender-dropdown";
 import { useToast } from "@/hooks/use-toast";
 import DropdownMenu from "./DropdownMenu";
 
