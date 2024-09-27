@@ -1,7 +1,11 @@
 import React from "react";
-
+import Famale from "./Famale";
 const page = () => {
-  return <div>page</div>;
+  return (
+    <div>
+      <Famale />
+    </div>
+  );
 };
 
 export default page;
