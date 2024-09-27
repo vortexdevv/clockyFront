@@ -115,7 +115,11 @@ const Products = () => {
     toast({
       title: product.name,
       description: "added to cart",
-      action: <Link href="/cart">Go to cart</Link>,
+      action: (
+        <Link href="/cart" className="p-[10px]">
+          Go to cart
+        </Link>
+      ),
     });
   };
 
