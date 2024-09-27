@@ -1,8 +1,9 @@
-'use client'
+"use client";
 
-import * as React from "react"
+import * as React from "react";
+import Watch from "../public/watch.png";
 
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -10,34 +11,36 @@ import {
   CarouselNext,
   CarouselPrevious,
   type CarouselApi,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
+import Image from "next/image";
 
 export function CarouselApi() {
-  const [api, setApi] = React.useState<CarouselApi>()
-  const [current, setCurrent] = React.useState(0)
-  const [count, setCount] = React.useState(0)
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [current, setCurrent] = React.useState(0);
+  const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
     if (!api) {
-      return
+      return;
     }
 
-    setCount(api.scrollSnapList().length)
-    setCurrent(api.selectedScrollSnap() + 1)
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
 
     api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1)
-    })
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
 
-    // Set up auto-sliding every 5 seconds
+    // Set up auto-sliding every 8 seconds
     const autoSlideInterval = setInterval(() => {
-      const nextIndex = (api.selectedScrollSnap() + 1) % api.scrollSnapList().length
-      api.scrollTo(nextIndex)
-    }, 5000)
+      const nextIndex =
+        (api.selectedScrollSnap() + 1) % api.scrollSnapList().length;
+      api.scrollTo(nextIndex);
+    }, 8000);
 
     // Clean up the interval when the component unmounts
-    return () => clearInterval(autoSlideInterval)
-  }, [api])
+    return () => clearInterval(autoSlideInterval);
+  }, [api]);
 
   return (
     <div className="mx-auto max-w-xs">
@@ -45,20 +48,21 @@ export function CarouselApi() {
         <CarouselContent>
           {Array.from({ length: 5 }).map((_, index) => (
             <CarouselItem key={index}>
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-4xl font-semibold">{index + 1}</span>
+              <Card className="bg-transparent border-none mx-auto">
+                <CardContent className="flex aspect-square items-center justify-center ">
+                  {/* <span className="text-4xl font-semibold">{index + 1}</span> */}
+                  <Image src={Watch} alt="Watch" className="w-40 md:w-60" />
                 </CardContent>
               </Card>
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        {/* <CarouselPrevious />
+        <CarouselNext /> */}
       </Carousel>
       <div className="py-2 text-center text-sm text-muted-foreground">
         Slide {current} of {count}
       </div>
     </div>
-  )
+  );
 }

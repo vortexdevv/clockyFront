@@ -4,6 +4,7 @@ import Watch from "./watch.png";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import clocky from "../../public/clockyyyy.png";
+import { CarouselApi } from "@/components/carousel-api";
 const Hero = () => {
   const [token, setToken] = useState<string | null>(null);
 
@@ -17,7 +18,7 @@ const Hero = () => {
     <div
       className={`text-white backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex items-center justify-around h-[488px] md:h-[600px]`}
     >
-      <div className=" w-[90%] md:w-1/2 ">
+      <div className=" w-[90%] md:w-1/2 hidden md:block ">
         <h1
           style={{ textWrap: "pretty" }}
           className="text-3xl md:text-5xl  text-left  my-2"
@@ -47,7 +48,8 @@ const Hero = () => {
         </div> */}
       </div>
       <div>
-        <Image src={Watch} alt="Watch" className="w-60 hidden md:block" />
+        {/* <Image src={Watch} alt="Watch" className="w-60 hidden md:block" /> */}
+        <CarouselApi />
       </div>
     </div>
   );
