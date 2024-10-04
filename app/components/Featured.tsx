@@ -117,7 +117,7 @@ const Featured = () => {
                   activeProductId === product._id ? "translate-x-0" : ""
                 }`}
               >
-                <span className="truncate">ADD TO CART</span>
+                <span className="truncate center">ADD TO CART</span>
               </div>
               <span className="truncate">ADD TO CART</span>
             </button>
