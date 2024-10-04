@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useToast } from "@/hooks/use-toast";
+import logo from "../../public/search-alt-1-svgrepo-com.svg";
 import DropdownMenu from "./DropdownMenu";
 
 const Nav = () => {
@@ -116,9 +117,12 @@ const Nav = () => {
 
       {/* Search Icon for Desktop */}
       <div className="md:flex items-center hidden">
-        <button onClick={toggleSearch} className="focus:outline-none">
-          {/* <Image className="w-6 h-6" src={logo} alt="Search Icon" /> */}
-        </button>
+        {/* <button onClick={toggleSearch} className="focus:outline-none"> */}
+        {/* <Image className="w-6 h-6" src={logo} alt="Search Icon" /> */}
+        {/* </button> */}
+        <Link href={"/search"}>
+          <Image className="w-6 h-6" src={logo} alt="Search Icon" />
+        </Link>
       </div>
 
       {/* Burger Menu for Mobile */}
@@ -240,6 +244,12 @@ const Nav = () => {
         >
           <Image className="w-6 h-6" src={logo} alt="Search Icon" />
         </button> */}
+        <Link
+          href={"/search"}
+          className="flex justify-center px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+        >
+          <Image className="w-6 h-6" src={logo} alt="Search Icon" />
+        </Link>
       </div>
 
       {/* Search Popup */}

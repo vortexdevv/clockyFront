@@ -1,8 +1,10 @@
 import React from "react";
 import Male from "./Male";
+import Nav from "../components/Nav";
 const page = () => {
   return (
-    <div>
+    <div className="h-full">
+      <Nav />
       <Male />
     </div>
   );

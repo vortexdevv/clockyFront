@@ -26,7 +26,7 @@ const DropdownMenu = () => {
     <div className="relative group" ref={dropdownRef}>
       {/* Trigger Button */}
       <button
-        className="px-4 bg-transparent focus:outline-none lg:hover:bg-transparent w-full"
+        className=" bg-transparent focus:outline-none lg:hover:bg-transparent w-full"
         onClick={() => setIsOpen(!isOpen)} // For smaller screens, allow click
       >
         GENDER
@@ -34,8 +34,8 @@ const DropdownMenu = () => {
 
       {/* Dropdown Menu */}
       <div
-        className={`absolute left-0 mt-2 w-full bg-main border border-gray-200 shadow-lg rounded-lg opacity-0 lg:group-hover:opacity-100 lg:group-hover:visible transition-opacity duration-300 ${
-          isOpen ? "opacity-100 visible" : "invisible"
+        className={`absolute left-[-15px] mt-2 w-[110%] md:w-[150%] bg-main border border-gray-200 shadow-lg rounded-lg opacity-0 lg:group-hover:opacity-100 lg:group-hover:visible transition-opacity duration-300 ${
+          isOpen ? "opacity-100 visible " : "invisible"
         } lg:invisible lg:opacity-0 lg:group-hover:opacity-100 lg:group-hover:visible`}
       >
         <ul className="py-2 text-white text-center">

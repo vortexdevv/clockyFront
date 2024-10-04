@@ -34,14 +34,14 @@ const Footer = () => {
           <br />
           <a
             className="font-normal text-base leading-8 hover:text-two"
-            href="#"
+            href="/aboutus"
           >
             About Us
           </a>
           <br />
           <a
             className="font-normal text-base leading-8 hover:text-two"
-            href="#"
+            href="/copyright"
           >
             Copy Right
           </a>

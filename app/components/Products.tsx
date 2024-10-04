@@ -1,11 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-import Image from "next/image";
-import Watch from "./watch.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
-
 type Product = {
   _id: string;
   name: string;
@@ -15,12 +13,10 @@ type Product = {
   countInStock: number;
   img: string;
 };
-
 const Products = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const { toast } = useToast();
   const [activeProductId, setActiveProductId] = useState<string | null>(null);
-
   useEffect(() => {
     // Fetch products from the backend
     const fetchProducts = async () => {
@@ -124,9 +120,9 @@ const Products = () => {
   };
 
   return (
-    <div className=" text-white flex justify-center flex-col items-center w-full bg-[#FCFCFC] pt-10 p-2 text-center mx-auto xl:w-3/4">
+    <div className="h-[90%] pb-14 mt-20 text-white flex  flex-col items-center w-full bg-[#FCFCFC] pt-10 p-2 text-center mx-auto xl:w-3/4">
       <div className="border-t-2 border-two w-20 p-1 font-medium"></div>
-      <h2 className="text-[#2E2E2E] font-bold">FEATURED</h2>
+      <h2 className="text-[#2E2E2E] font-bold">ALL PRODUCTS</h2>
       <div className="grid gap-4 md:gap-16 xl:gap-20 grid-cols-[repeat(auto-fit,minmax(150px,1fr))] place-items-center w-full md:w-4/5">
         {products.map((product, index) => (
           <div

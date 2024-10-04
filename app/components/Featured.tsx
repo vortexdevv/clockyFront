@@ -1,12 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import Image from "next/image";
-import Watch from "../../public/watch.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
-
 type Product = {
   _id: string;
   name: string;
@@ -16,20 +13,17 @@ type Product = {
   countInStock: number;
   img: string;
 };
-
-const Famale = () => {
+const Featured = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const { toast } = useToast();
   const [activeProductId, setActiveProductId] = useState<string | null>(null);
-
   useEffect(() => {
     // Fetch products from the backend
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://clockyexpress.vercel.app/api/products/gender",
+          "https://clockyexpress.vercel.app/api/products/featured",
           {
-            params: { gender: "women" },
             withCredentials: true,
           }
         );
@@ -71,65 +65,61 @@ const Famale = () => {
     toast({
       title: product.name,
       description: "added to cart",
-      action: <Link href="/cart">Go to cart</Link>,
+      action: (
+        <Link href="/cart" className="p-[10px]">
+          Go to cart
+        </Link>
+      ),
     });
   };
 
   return (
-    <div className="h-[90%] overflow-scroll mt-20 text-white center flex-col  w-full bg-[#FCFCFC] pt-10 text-center">
+    <div className="flex flex-col items-center w-full bg-[#FCFCFC] pt-10 p-2 mx-auto xl:w-3/4">
       <div className="border-t-2 border-two w-20 p-1 font-medium"></div>
-      <h2 className="text-[#2E2E2E] font-bold">FEMALE</h2>
-      <div className="grid sm:grid-cols-3 grid-cols-2 md:grid-cols-4 xl:grid-cols-4 md:gap-6 gap-2 media">
+      <h2 className="text-[#2E2E2E] font-bold text-xl md:text-2xl">FEATURED</h2>
+      <div className="grid gap-4 md:gap-8 xl:gap-12 grid-cols-[repeat(auto-fit,minmax(150px,1fr))] place-items-center w-full md:w-4/5">
         {products.map((product, index) => (
           <div
             key={index}
-            className="mt-4 h-full justify-between md:mt-6 border-solid md:w-[225px]  border-2 border-[#F0F0F0] flex flex-col items-center md:px-4 xl:px-4 p-4 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform md:hover:scale-105"
+            className="mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center p-4 gap-2 shadow-lg transition-transform duration-300 transform hover:scale-105 w-full md:w-[225px]"
           >
             <Link
               href={`/product/${product._id}`}
-              className="flex flex-col gap-4 justify-around h-full"
+              className="flex flex-col gap-2 justify-between h-full"
             >
-              <span className="-rotate-90 bg-main py-2 px-2 absolute font-bold -left-[6px] md:top-2 top-[10px]">
+              <span className="rotate-90 text-white bg-main py-1 px-2 absolute font-bold -left-[6px] top-4 text-xs md:text-sm">
                 SALE
               </span>
               <img
                 src={product.img}
-                // width={100}
                 loading="lazy"
                 alt={product.name}
-                className="w-full"
+                className="w-full object-cover h-40 md:h-64"
               />
-              {/* <img
-            src={Watch}
-            alt={product.name}
-            className="w-[140px] h-[215px]"
-          /> */}
-              <div>
-                <h1 className="text-[#2E2E2E] font-bold text-3xl">
+              <div className="text-center">
+                <h1 className="text-[#2E2E2E] font-bold text-lg md:text-xl truncate w-full">
                   {product.name}
                 </h1>
-                <p className="text-[#595959] font-bold text-base line-through">
+                <p className="text-[#595959] font-bold text-sm line-through">
                   {product.before} L.E
                 </p>
-                <p className="text-two font-bold text-2xl ">
+                <p className="text-two font-bold text-lg md:text-2xl">
                   {product.price} L.E
                 </p>
               </div>
             </Link>
             <button
-              onClick={() => addToCart(product)} // Pass the product's id
-              className="relative h-[10%] flex items-center justify-center whitespace-nowrap px-4 py-1 md:py-3 bg-main text-white font-semibold border overflow-hidden group"
+              onClick={() => addToCart(product)}
+              className="relative h-10 flex items-center justify-center px-4 py-2 bg-main text-white font-semibold border overflow-hidden group"
             >
               <div
-                className={`absolute inset-0 md:group-hover:translate-x-0 bg-two w-full h-full transform translate-x-full transition-transform md:!duration-500 !duration-1000 ease-in-out center ${
-                  activeProductId === product._id
-                    ? "group-hover:translate-x-0"
-                    : ""
+                className={`absolute inset-0 group-hover:translate-x-0 bg-two w-full h-full transform translate-x-full transition-transform duration-500 ease-in-out ${
+                  activeProductId === product._id ? "translate-x-0" : ""
                 }`}
               >
-                ADD TO CART
+                <span className="truncate">ADD TO CART</span>
               </div>
-              ADD TO CART
+              <span className="truncate">ADD TO CART</span>
             </button>
           </div>
         ))}
@@ -138,4 +128,4 @@ const Famale = () => {
   );
 };
 
-export default Famale;
+export default Featured;
