@@ -81,7 +81,7 @@ const Featured = () => {
         {products.map((product, index) => (
           <div
             key={index}
-            className="mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center p-4 gap-2 shadow-lg transition-transform duration-300 transform hover:scale-105 w-full md:w-[225px]"
+            className="mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center p-4 gap-2 shadow-lg transition-transform duration-300 transform md:hover:scale-105 w-full md:w-[225px]"
           >
             <Link
               href={`/product/${product._id}`}
