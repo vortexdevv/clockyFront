@@ -73,7 +73,7 @@ const ProductById = () => {
   }
 
   return (
-    <div className="min-h-screen bg-main flex justify-center items-center px-4 h-full mt-6 text-pretty">
+    <div className="min-h-screen  md:min-h-[70vh]  bg-main flex justify-center items-center px-4 h-full mt-6 text-pretty">
       <div className="md:w-4/5 flex md:flex-row items-center justify-around w-full flex-col bg-white h-[85%]">
         <div className="mb-6 md:mb-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}

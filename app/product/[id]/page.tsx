@@ -3,7 +3,7 @@ import Image from "next/image";
 import Watch from "../../../public/watch.png";
 import ProductById from "@/app/components/ProductById";
 import Nav from "@/app/components/Nav";
-
+import Mytable from "@/app/components/Mytable";
 const Page = () => {
   // return (
   //   <div className="min-h-screen bg-[#FCFCFC] flex justify-center items-center px-4">
@@ -47,9 +47,10 @@ const Page = () => {
   //   </div>
   // );
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col justify-evenly   ">
       <Nav />
       <ProductById />
+      <Mytable />
     </div>
   );
 };
