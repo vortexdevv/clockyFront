@@ -23,10 +23,10 @@ const watchDetails = [
   { attribute: "Face/Dial Type", value: "Analog" },
   { attribute: "Watch Movement", value: "Quartz" },
 ];
-const Mytable = () => {
+const Mytable = (product: any) => {
   return (
-    <div className="min-h-screen md:min-h-[70vh]  bg-main flex justify-center items-center px-4 h-full mt-6 text-pretty">
-      <Card className="w-full max-w-4xl m-auto ">
+    <div className="w-full bg-main flex justify-center items-center h-full text-pretty">
+      <Card className="w-full m-auto rounded-none mt-0">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center">
             Watch Specifications
@@ -42,14 +42,52 @@ const Mytable = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {watchDetails.map((detail) => (
-                  <TableRow key={detail.attribute}>
-                    <TableCell className="font-medium">
-                      {detail.attribute}
-                    </TableCell>
-                    <TableCell>{detail.value}</TableCell>
-                  </TableRow>
-                ))}
+                <TableRow>
+                  <TableCell className="font-medium">Gender</TableCell>
+                  <TableCell>{product.product.gender}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Dial Color</TableCell>
+                  <TableCell>{product.product.dialColor}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">
+                    Case Size / Diameter
+                  </TableCell>
+                  <TableCell>{product.product.CaseSizeORDiameter}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Face Material</TableCell>
+                  <TableCell>{product.product.FaceMaterial}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Features</TableCell>
+                  <TableCell>{product.product.Features}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Model Number</TableCell>
+                  <TableCell>{product.product.ModelNumber}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Band Closure</TableCell>
+                  <TableCell>{product.product.BandClosure}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">
+                    Face / Dial Shape
+                  </TableCell>
+                  <TableCell>{product.product.FaceORDialShape}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">
+                    Face / Dial Type
+                  </TableCell>
+                  <TableCell>{product.product.FaceORDialType}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Watch Movement</TableCell>
+                  <TableCell>{product.product.WatchMovement}</TableCell>
+                </TableRow>
               </TableBody>
             </Table>
           </div>

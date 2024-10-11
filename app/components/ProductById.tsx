@@ -6,6 +6,7 @@ import Watch from "../../public/watch.png"; // Keep this as a fallback image
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 import Loading from "./Loading";
+import Mytable from "./Mytable";
 
 const ProductById = () => {
   const { id } = useParams(); // Get the product id from the URL
@@ -73,8 +74,8 @@ const ProductById = () => {
   }
 
   return (
-    <div className="min-h-screen  md:min-h-[70vh]  bg-main flex justify-center items-center px-4 h-full mt-6 text-pretty">
-      <div className="md:w-4/5 flex md:flex-row items-center justify-around w-full flex-col bg-white h-[85%]">
+    <div className="flex-col bg-main flex  items-center px-4 h-full mt-24 w-full text-pretty">
+      <div className="flex md:flex-row items-center justify-around w-full flex-col bg-white ">
         <div className="mb-6 md:mb-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -122,6 +123,7 @@ const ProductById = () => {
           </div> */}
         </div>
       </div>
+      <Mytable product={product} />
     </div>
   );
 };

@@ -36,7 +36,6 @@ const Arrivals = () => {
         console.error("Failed to fetch products", error);
       }
     };
-
     fetchProducts();
   }, []);
 
@@ -45,14 +44,11 @@ const Arrivals = () => {
     setTimeout(() => {
       setActiveProductId(null); // Clear the animation after 1 second
     }, 1000); // Match the transition duration (1000ms)
-
     // Set the active product id
     // Get the current cart from localStorage
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-
     // Check if the product already exists in the cart
     const existingProduct = cart.find((item: any) => item._id === product._id);
-
     if (existingProduct) {
       // If the product exists, increment its quantity
       existingProduct.quantity += 1;
@@ -60,18 +56,16 @@ const Arrivals = () => {
       // Otherwise, add the product with an initial quantity of 1
       cart.push({ ...product, quantity: 1 });
     }
-
     // Save the updated cart back to localStorage
     localStorage.setItem("cart", JSON.stringify(cart));
-
-    console.log(`${product.name} added to cart`);
-
     toast({
       title: product.name,
       description: "added to cart",
       action: <Link href="/cart">Go to cart</Link>,
     });
   };
+  products;
+
   return (
     <div className="mb-14 text-white flex justify-center flex-col items-center w-full bg-[#FCFCFC] pt-10 p-2 text-center mx-auto xl:w-3/4">
       <div className="border-t-2 border-two w-20 p-1 font-medium"></div>

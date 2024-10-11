@@ -60,8 +60,6 @@ const Featured = () => {
     // Save the updated cart back to localStorage
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    console.log(`${product.name} added to cart`);
-
     toast({
       title: product.name,
       description: "added to cart",

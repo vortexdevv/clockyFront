@@ -135,8 +135,6 @@ const Cart = () => {
         paymentMethod,
         shippingAddress,
       };
-      console.log(checkoutPayload);
-
       // Send the data to the backend
       const response = await axios.post(
         `https://clockyexpress.vercel.app/api/products/checkout`,

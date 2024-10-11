@@ -16,7 +16,7 @@ const Signup = () => {
         email,
         password,
       });
-      console.log(response.data);
+
       // Handle successful signup (store token, navigate, etc.)
     } catch (error) {
       console.error("Signup failed", error);
