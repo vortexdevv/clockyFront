@@ -117,11 +117,6 @@ const Cart = () => {
     try {
       const userId = localStorage.getItem("userId"); // Assuming userId is stored in localStorage
 
-      if (!userId) {
-        alert("Please log in to proceed with the checkout.");
-        return;
-      }
-
       // Create the checkout payload
       const checkoutPayload = {
         userId,
