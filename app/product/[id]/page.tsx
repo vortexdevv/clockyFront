@@ -3,7 +3,7 @@ import ProductById from "@/app/components/ProductById";
 import Nav from "@/app/components/Nav";
 const Page = () => {
   return (
-    <div className="h-full  justify-evenly   ">
+    <div className="h-full w-full justify-evenly bg-white">
       <Nav />
       <ProductById />
     </div>

@@ -25,7 +25,7 @@ const watchDetails = [
 ];
 const Mytable = (product: any) => {
   return (
-    <div className="w-full bg-main flex justify-center items-center h-full text-pretty">
+    <div className="w-full  flex justify-center items-center h-full text-pretty">
       <Card className="w-full m-auto rounded-none mt-0">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center">

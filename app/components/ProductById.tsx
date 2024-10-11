@@ -74,7 +74,7 @@ const ProductById = () => {
   }
 
   return (
-    <div className="flex-col bg-main flex  items-center px-4 h-full mt-24 w-full text-pretty">
+    <div className="flex-col  flex  items-center  h-full mt-20 w-full text-pretty">
       <div className="flex md:flex-row items-center justify-around w-full flex-col bg-white ">
         <div className="mb-6 md:mb-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
