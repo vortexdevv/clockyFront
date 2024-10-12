@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons"; // Solid heart for favorite
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons"; // Outline heart for not favorite
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"; // Spinner for loading
+import Loading from "./Loading";
 
 const ProductById = () => {
   const { id } = useParams(); // Get the product id from the URL
@@ -22,13 +23,18 @@ const ProductById = () => {
   const [quantity, setQuantity] = useState(1); // Manage product quantity
   const [isFavorite, setIsFavorite] = useState(false); // Track if the product is a favorite
   const [favoriteLoading, setFavoriteLoading] = useState(false); // Manage loading state for add to favorite
+  const [userId, setUserId] = useState<string | null>(null); // Get the user
   const { toast } = useToast();
 
+  // Get the userId from localStorage
   useEffect(() => {
-    if (id) {
-      fetchProduct();
-      checkIfFavorite();
+    const userID = localStorage.getItem("userId");
+    setUserId(userID);
+
+    if (userID && id) {
+      checkIfFavorite(userID); // Pass userId to checkIfFavorite function
     }
+    fetchProduct();
   }, [id]);
 
   // Fetch product details
@@ -39,20 +45,23 @@ const ProductById = () => {
       );
       setProduct(res.data);
       setLoading(false);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error fetching product:", error);
       setLoading(false);
     }
   };
 
   // Check if the product is in the user's favorite list
-  const checkIfFavorite = async () => {
+  const checkIfFavorite = async (userId: string) => {
     try {
-      const res = await axiosInstance.post(`/products/isFavorite/${id}`, {
-        ProductId: id,
-      });
+      const res = await axios.post(
+        `https://clockyexpress.vercel.app/api/products/isFavorite/${userId}`,
+        {
+          ProductId: id,
+        }
+      );
       setIsFavorite(res.data.isFavorite);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error checking favorite:", error);
     }
   };
@@ -63,7 +72,7 @@ const ProductById = () => {
     try {
       if (isFavorite) {
         // Remove from favorites
-        await axiosInstance.delete(`/products/favorites/${id}`, {
+        await axiosInstance.delete(`/products/favorites/${userId}`, {
           data: { ProductId: product._id },
         });
         setIsFavorite(false);
@@ -72,7 +81,7 @@ const ProductById = () => {
         });
       } else {
         // Add to favorites
-        await axiosInstance.post(`/products/favorites/${id}`, {
+        await axiosInstance.post(`/products/favorites/${userId}`, {
           ProductId: product._id,
         });
         setIsFavorite(true);
@@ -80,8 +89,15 @@ const ProductById = () => {
           title: "Added to favorites",
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error updating favorite status:", error);
+      toast({
+        title: "error",
+        description: "You are not logged in please login and try again",
+        variant: "destructive",
+        action: <Link href="/login">Go to login page</Link>,
+      });
+      setFavoriteLoading(false);
     } finally {
       setFavoriteLoading(false);
     }
@@ -111,8 +127,8 @@ const ProductById = () => {
 
   if (loading) {
     return (
-      <div className="w-full h-full flex justify-center items-center">
-        <div className="text-center text-pretty">Loading...</div>
+      <div className="w-full h-full">
+        <Loading />
       </div>
     );
   }

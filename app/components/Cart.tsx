@@ -120,7 +120,7 @@ const Cart = () => {
 
       // Create the checkout payload
       const checkoutPayload = {
-        userId,
+        ...(userId && { userId }), // Only include userId if it exists
         products: cartItems.map((item) => ({
           productId: item._id,
           name: item.name,
