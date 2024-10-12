@@ -1,40 +1,90 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import axios from "axios";
 import Image from "next/image";
-import Watch from "../../public/watch.png"; // Keep this as a fallback image
+import Watch from "../../public/watch.png"; // Fallback image
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
-import Loading from "./Loading";
 import Mytable from "./Mytable";
+import axiosInstance from "@/lib/axiosConfig";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons"; // Solid heart for favorite
+import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons"; // Outline heart for not favorite
+import { faSpinner } from "@fortawesome/free-solid-svg-icons"; // Spinner for loading
 
 const ProductById = () => {
   const { id } = useParams(); // Get the product id from the URL
   const [product, setProduct] = useState<any>(null); // Store fetched product data
-  const [loading, setLoading] = useState(true); // Manage loading state
+  const [loading, setLoading] = useState(true); // Manage loading state for product fetch
   const [quantity, setQuantity] = useState(1); // Manage product quantity
+  const [isFavorite, setIsFavorite] = useState(false); // Track if the product is a favorite
+  const [favoriteLoading, setFavoriteLoading] = useState(false); // Manage loading state for add to favorite
   const { toast } = useToast();
 
   useEffect(() => {
-    // Fetch product details if id is available
     if (id) {
-      const fetchProduct = async () => {
-        try {
-          const res = await fetch(
-            `https://clockyexpress.vercel.app/api/products/${id}`
-          );
-          const data = await res.json();
-          setProduct(data); // Store product data in state
-          setLoading(false); // Turn off loading
-        } catch (error) {
-          console.error("Error fetching product:", error);
-          setLoading(false);
-        }
-      };
-
       fetchProduct();
+      checkIfFavorite();
     }
   }, [id]);
+
+  // Fetch product details
+  const fetchProduct = async () => {
+    try {
+      const res = await axios.get(
+        `https://clockyexpress.vercel.app/api/products/${id}`
+      );
+      setProduct(res.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching product:", error);
+      setLoading(false);
+    }
+  };
+
+  // Check if the product is in the user's favorite list
+  const checkIfFavorite = async () => {
+    try {
+      const res = await axiosInstance.post(`/products/isFavorite/${id}`, {
+        ProductId: id,
+      });
+      setIsFavorite(res.data.isFavorite);
+    } catch (error) {
+      console.error("Error checking favorite:", error);
+    }
+  };
+
+  // Add to Favorites functionality
+  const handleAddToFavorites = async () => {
+    setFavoriteLoading(true);
+    try {
+      if (isFavorite) {
+        // Remove from favorites
+        await axiosInstance.delete(`/products/favorites/${id}`, {
+          data: { ProductId: product._id },
+        });
+        setIsFavorite(false);
+        toast({
+          title: "Removed from favorites",
+        });
+      } else {
+        // Add to favorites
+        await axiosInstance.post(`/products/favorites/${id}`, {
+          ProductId: product._id,
+        });
+        setIsFavorite(true);
+        toast({
+          title: "Added to favorites",
+        });
+      }
+    } catch (error) {
+      console.error("Error updating favorite status:", error);
+    } finally {
+      setFavoriteLoading(false);
+    }
+  };
 
   // Add to Cart functionality
   const handleAddToCart = () => {
@@ -42,10 +92,8 @@ const ProductById = () => {
     const existingProduct = cart.find((item: any) => item._id === product._id);
 
     if (existingProduct) {
-      // If the product already exists in the cart, update the quantity
       existingProduct.quantity += quantity;
     } else {
-      // If it's a new product, add it to the cart
       cart.push({ ...product, quantity });
     }
 
@@ -58,28 +106,26 @@ const ProductById = () => {
         </Link>
       ),
     });
-    // alert(`${product.name} added to cart!`);
   };
 
   if (loading) {
     return (
-      <div className="w-full h-full center">
-        <Loading />
+      <div className="w-full h-full flex justify-center items-center">
+        <div className="text-center text-pretty">Loading...</div>
       </div>
-    ); // Show loading state while fetching data
+    );
   }
 
   if (!product) {
-    return <div>Product not found</div>; // Handle case where product isn't found
+    return <div>Product not found</div>;
   }
 
   return (
-    <div className="flex-col  flex  items-center  h-full mt-20 w-full text-pretty">
-      <div className="flex md:flex-row items-center justify-around w-full flex-col bg-white ">
+    <div className="flex-col flex items-center h-full mt-20 w-full text-pretty">
+      <div className="flex md:flex-row items-center justify-around w-full flex-col bg-white">
         <div className="mb-6 md:mb-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={product.img || Watch} // Use fetched image or fallback image
+            src={product.img || Watch}
             alt={product.name || "watch"}
             className="w-[250px] md:w-[350px]"
           />
@@ -109,18 +155,29 @@ const ProductById = () => {
             >
               ADD TO CART
             </button>
+            <button
+              className={`text-white px-4 py-3 w-full md:w-96 flex justify-center items-center ${
+                isFavorite ? "bg-two" : "bg-main"
+              } hover:bg-two relative`}
+              onClick={handleAddToFavorites}
+              disabled={favoriteLoading}
+            >
+              {favoriteLoading ? (
+                <FontAwesomeIcon
+                  icon={faSpinner}
+                  className="animate-spin mr-2"
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon={isFavorite ? solidHeart : regularHeart}
+                  className={`mr-2 transition-all duration-300 transform ${
+                    isFavorite ? "scale-125 text-red-500" : "text-gray-300"
+                  }`}
+                />
+              )}
+              {isFavorite ? "REMOVE FROM FAVORITES" : "ADD TO FAVORITES"}
+            </button>
           </div>
-          {/* <div className="flex flex-col gap-3 p-6">
-            <p className="text-lg font-normal text-[#2E2E2E]">ADD REVIEW</p>
-            <input
-              className="text-[#2E2E2E] px-4 py-6 border-[1px] border-[#F0F0F0] h-24 w-full"
-              type="text"
-              placeholder="Write your review here"
-            />
-            <div className="text-end">
-              <button className="bg-main text-[#FFFFFF] w-24 py-2">ADD</button>
-            </div>
-          </div> */}
         </div>
       </div>
       <Mytable product={product} />

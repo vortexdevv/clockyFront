@@ -123,7 +123,7 @@ const Featured = () => {
                   className="relative h-10 flex items-center justify-center px-4 py-2 bg-main text-white font-semibold border overflow-hidden group"
                 >
                   <div
-                    className={`absolute inset-0 group-hover:translate-x-0 bg-two w-full h-full transform translate-x-full transition-transform duration-500 ease-in-out ${
+                    className={`absolute center inset-0 group-hover:translate-x-0 bg-two w-full h-full transform translate-x-full transition-transform duration-500 ease-in-out ${
                       activeProductId === product._id ? "translate-x-0" : ""
                     }`}
                   >
