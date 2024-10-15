@@ -172,7 +172,24 @@ const Nav = () => {
             : "opacity-0 -translate-y-2"
         }`}
       >
-        {/* Other mobile links */}
+        <Link
+          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+          href="#newarraival"
+          onClick={() => setIsOpen(false)}
+        >
+          New arrival
+        </Link>
+        <Link
+          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+          href="/shop"
+          onClick={() => setIsOpen(false)}
+        >
+          shop
+        </Link>
+        <div className="block px-4 py-2 text-white hover:bg-two bg-[#0000004d]">
+          <DropdownMenu />
+        </div>
+
         <Link
           className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
           href="#contact-us"
@@ -187,76 +204,40 @@ const Nav = () => {
         >
           Policy
         </Link>
-
         <Link
-          className="flex justify-center px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
-          href="/cart"
-          onClick={() => setIsOpen(false)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="#fff"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M9 11V6a3 3 0 116 0v4.967M10.4 21h3.2c2.24 0 3.36 0 4.216-.436a4 4 0 001.748-1.748C20 17.96 20 16.84 20 14.6v-2.4c0-1.12 0-1.68-.218-2.108a2 2 0 00-.874-.874C18.48 9 17.92 9 16.8 9H7.2c-1.12 0-1.68 0-2.108.218a2 2 0 00-.874.874C4 10.52 4 11.08 4 12.2v2.4c0 2.24 0 3.36.436 4.216a4 4 0 001.748 1.748C7.04 21 8.16 21 10.4 21z"
-            ></path>
-          </svg>
-        </Link>
-        <Link
-          className={`hover:text-two bg-two py-2 ${
+          className={`block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d] ${
             storageValue ? "hidden" : ""
           }`}
           href="/login"
+          onClick={() => setIsOpen(false)}
         >
-          LOGIN
+          Login
         </Link>
         <Link
-          className={`hover:text-two bg-two py-2 ${
+          className={`block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d] ${
             storageValue ? "" : "hidden"
           }`}
-          onClick={handleClick}
           href="/"
+          onClick={() => {
+            handleClick();
+            setIsOpen(false);
+          }}
         >
-          LOGOUT
-        </Link>
-        {/* <button
-          onClick={toggleSearch}
-          className="focus:outline-none px-4 py-2 bg-[#0000004d] w-full flex justify-center"
-        >
-          <Image className="w-6 h-6" src={logo} alt="Search Icon" />
-        </button> */}
-        <Link
-          href={"/search"}
-          className="flex justify-center px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
-        >
-          <Image className="w-6 h-6" src={logo} alt="Search Icon" />
+          Logout
         </Link>
         <Link
-          className="flex justify-center px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
           href="/favorites"
+          onClick={() => setIsOpen(false)}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="#fff"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M12 21c-1.105-.008-9.303-6.918-9.303-11.252 0-2.88 2.305-5.205 5.157-5.205 1.647 0 3.26.881 4.146 2.285 0.887-1.404 2.5-2.285 4.146-2.285 2.852 0 5.157 2.324 5.157 5.205C21.303 14.082 13.105 20.992 12 21z"
-            ></path>
-          </svg>
+          Favorites
+        </Link>
+        <Link
+          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+          href="/cart"
+          onClick={() => setIsOpen(false)}
+        >
+          Cart
         </Link>
       </div>
     </div>
