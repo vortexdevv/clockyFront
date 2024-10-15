@@ -20,6 +20,7 @@ const Nav = () => {
       setStorageValue(value);
     }
   }, []);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -42,6 +43,7 @@ const Nav = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   const handleClick = () => {
     localStorage.removeItem("token");
     setStorageValue(null);
@@ -49,10 +51,11 @@ const Nav = () => {
       title: "Logged Out successfully",
     });
   };
+
   return (
     <div
       className={`mainFont top-0 shadow-lg text-white fixed w-full  mx-auto  z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
-        isScrolled ? "bg-main  w-full" : "bg-tranmainFontsparent"
+        isScrolled ? "bg-main w-full" : "bg-transparent"
       }`}
     >
       <div>
@@ -63,24 +66,19 @@ const Nav = () => {
 
       {/* Desktop Navigation */}
       <div className="md:flex md:gap-3 lg:gap-8 items-center text-[15px] hidden">
-        <Link className="hover:text-two " href="#newarraival">
+        <Link className="hover:text-two" href="#newarraival">
           NEW ARRIVAL
         </Link>
-        <Link className="hover:text-two " href="/shop">
+        <Link className="hover:text-two" href="/shop">
           SHOP
         </Link>
-        {/* <Link className="hover:text-two " href="/brands">
-          BRANDS
-        </Link> */}
-        <div className="hover:text-two ">
-          {/* <MinimalistGenderDropdown /> */}
-          {/* <GenderSelect /> */}
+        <div className="hover:text-two">
           <DropdownMenu />
         </div>
-        <Link className="hover:text-two " href="#contact-us">
+        <Link className="hover:text-two" href="#contact-us">
           CONTACT US
         </Link>
-        <Link className="hover:text-two " href="/policy">
+        <Link className="hover:text-two" href="/policy">
           POLICY
         </Link>
         <Link
@@ -96,7 +94,27 @@ const Nav = () => {
         >
           LOGOUT
         </Link>
-        <Link className="hover:text-two " href="/cart">
+
+        {/* Favorites Link with Heart Icon */}
+        <Link className="hover:text-two flex items-center" href="/favorites">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="#fff"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M12 21c-1.105-.008-9.303-6.918-9.303-11.252 0-2.88 2.305-5.205 5.157-5.205 1.647 0 3.26.881 4.146 2.285 0.887-1.404 2.5-2.285 4.146-2.285 2.852 0 5.157 2.324 5.157 5.205C21.303 14.082 13.105 20.992 12 21z"
+            ></path>
+          </svg>
+        </Link>
+
+        <Link className="hover:text-two" href="/cart">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -117,9 +135,6 @@ const Nav = () => {
 
       {/* Search Icon for Desktop */}
       <div className="md:flex items-center hidden">
-        {/* <button onClick={toggleSearch} className="focus:outline-none"> */}
-        {/* <Image className="w-6 h-6" src={logo} alt="Search Icon" /> */}
-        {/* </button> */}
         <Link href={"/search"}>
           <Image className="w-6 h-6" src={logo} alt="Search Icon" />
         </Link>
@@ -157,34 +172,7 @@ const Nav = () => {
             : "opacity-0 -translate-y-2"
         }`}
       >
-        <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
-          href="#newarraival"
-          onClick={() => setIsOpen(false)}
-        >
-          New arrival
-        </Link>
-        <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
-          href="/shop"
-          onClick={() => setIsOpen(false)}
-        >
-          shop
-        </Link>
-        {/* <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
-          href="/brands"
-          onClick={() => setIsOpen(false)}
-        >
-          Brands
-        </Link> */}
-        <div
-          className="block px-4 py-2 text-white hover:bg-two bg-[#0000004d]"
-          // onClick={() => setIsOpen(false)}
-        >
-          <DropdownMenu />
-        </div>
-
+        {/* Other mobile links */}
         <Link
           className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
           href="#contact-us"
@@ -250,29 +238,27 @@ const Nav = () => {
         >
           <Image className="w-6 h-6" src={logo} alt="Search Icon" />
         </Link>
+        <Link
+          className="flex justify-center px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+          href="/favorites"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="#fff"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M12 21c-1.105-.008-9.303-6.918-9.303-11.252 0-2.88 2.305-5.205 5.157-5.205 1.647 0 3.26.881 4.146 2.285 0.887-1.404 2.5-2.285 4.146-2.285 2.852 0 5.157 2.324 5.157 5.205C21.303 14.082 13.105 20.992 12 21z"
+            ></path>
+          </svg>
+        </Link>
       </div>
-
-      {/* Search Popup */}
-      {showSearch && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-20">
-          <div className="bg-white p-4 rounded-lg shadow-lg w-4/5 md:w-1/3">
-            <div className="flex items-center">
-              <input
-                className="w-full text-black p-2 border border-gray-300 rounded"
-                type="search"
-                placeholder="Search..."
-                autoFocus
-              />
-              <button
-                onClick={toggleSearch}
-                className="ml-3 text-gray-500 hover:text-gray-800"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
