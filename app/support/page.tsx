@@ -77,10 +77,10 @@ const page: React.FC = () => {
                   For immediate assistance, give us a call at:
                 </p>
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+201113283189"
                   className="text-indigo-600 hover:underline"
                 >
-                  +1 (234) 567-890
+                  +201113283189
                 </a>
               </div>
             </div>

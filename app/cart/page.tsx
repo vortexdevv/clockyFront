@@ -4,7 +4,7 @@ import Loading from "../components/Loading";
 
 const page = () => {
   return (
-    <div className="center bg-main min-h-full">
+    <div className="center bg-main min-h-[100dvh]">
       <Cart />
       {/* <Loading /> */}
     </div>
