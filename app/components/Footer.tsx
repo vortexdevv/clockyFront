@@ -35,6 +35,13 @@ const Footer = () => {
           <br />
           <a
             className="font-normal text-base leading-8 hover:text-two"
+            href="/copyright"
+          >
+            Copy Right
+          </a>
+          <br />
+          <a
+            className="font-normal text-base leading-8 hover:text-two"
             href="/aboutus"
           >
             About Us
@@ -42,9 +49,9 @@ const Footer = () => {
           <br />
           <a
             className="font-normal text-base leading-8 hover:text-two"
-            href="/copyright"
+            href="/policy"
           >
-            Copy Right
+            Policy
           </a>
         </div>
         {/* <div className="product">

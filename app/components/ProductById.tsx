@@ -282,9 +282,9 @@ const ProductById = () => {
               className="border-[1px] border-[#F0F0F0] text-[#2E2E2E] text-center w-full md:w-36 bg-[#F0F0F0] py-2"
               type="number"
               value={quantity}
-              onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
-              min="1"
-              placeholder="1"
+              onChange={(e) => setQuantity(parseInt(e.target.value) || 0)}
+              min="0"
+              placeholder="0"
             />
             <button
               className="text-white px-4 py-3 w-full md:w-96 bg-main hover:bg-two"

@@ -2,8 +2,8 @@ import React from "react";
 
 const page: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-7xl mx-auto bg-white rounded-lg shadow-md p-8">
+    <div className="min-h-screen bg-white p-6">
+      <div className="max-w-7xl mx-auto bg-white rounded-lg  p-8">
         <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
           Support
         </h1>
@@ -14,7 +14,7 @@ const page: React.FC = () => {
         </p>
 
         {/* FAQ Section */}
-        <div className="mb-12">
+        {/* <div className="mb-12">
           <h2 className="text-2xl font-semibold text-gray-700 mb-4">
             Frequently Asked Questions
           </h2>
@@ -47,7 +47,7 @@ const page: React.FC = () => {
               </p>
             </li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Contact Options */}
         <div>
@@ -56,7 +56,7 @@ const page: React.FC = () => {
           </h2>
           <div className="space-y-6">
             {/* Call Option */}
-            <div className="flex items-center space-x-4 bg-gray-50 p-4 rounded-lg shadow-sm">
+            <div className="flex items-center space-x-4  p-4 rounded-lg ">
               {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 text-indigo-600"
@@ -86,7 +86,7 @@ const page: React.FC = () => {
             </div>
 
             {/* Email Option */}
-            <div className="flex items-center space-x-4 bg-gray-50 p-4 rounded-lg shadow-sm">
+            <div className="flex items-center space-x-4  p-4 rounded-lg ">
               {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 text-indigo-600"

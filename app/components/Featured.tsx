@@ -5,7 +5,7 @@ import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton"; // Import Skeleton component
-
+import warch from "../components/watch.png";
 type Product = {
   _id: string;
   name: string;

@@ -177,14 +177,14 @@ const Nav = () => {
           href="#newarraival"
           onClick={() => setIsOpen(false)}
         >
-          New arrival
+          NEW ARRIVAL
         </Link>
         <Link
           className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
           href="/shop"
           onClick={() => setIsOpen(false)}
         >
-          shop
+          SHOP
         </Link>
         <div className="block px-4 py-2 text-white hover:bg-two bg-[#0000004d]">
           <DropdownMenu />
@@ -192,17 +192,17 @@ const Nav = () => {
 
         <Link
           className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
-          href="#contact-us"
+          href="/support"
           onClick={() => setIsOpen(false)}
         >
-          Contact Us
+          CONTACT US
         </Link>
         <Link
           className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
           href="/policy"
           onClick={() => setIsOpen(false)}
         >
-          Policy
+          POLICY
         </Link>
         <Link
           className={`block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d] ${
@@ -211,7 +211,7 @@ const Nav = () => {
           href="/login"
           onClick={() => setIsOpen(false)}
         >
-          Login
+          LOGIN
         </Link>
         <Link
           className={`block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d] ${
@@ -223,21 +223,21 @@ const Nav = () => {
             setIsOpen(false);
           }}
         >
-          Logout
+          LOGOUT
         </Link>
         <Link
           className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
           href="/favorites"
           onClick={() => setIsOpen(false)}
         >
-          Favorites
+          FAVORITE
         </Link>
         <Link
           className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
           href="/cart"
           onClick={() => setIsOpen(false)}
         >
-          Cart
+          CART
         </Link>
       </div>
     </div>
