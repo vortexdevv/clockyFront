@@ -27,7 +27,8 @@ const Footer = () => {
           <br /> */}
           <a
             className="font-normal text-base leading-8 hover:text-two"
-            href="tel:+201113283189"
+            href="/support"
+            // tel:+201113283189
           >
             Customer Support
           </a>

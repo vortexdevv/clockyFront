@@ -118,7 +118,7 @@ const Products = () => {
   };
 
   return (
-    <div className="h-[90%] pb-14 mt-20 text-white flex  flex-col items-center w-full bg-[#FCFCFC] pt-10 p-2 text-center mx-auto xl:w-3/4">
+    <div className="h-[90%] pb-14 mt-20 text-white flex  flex-col items-center w-full bg-white pt-10 p-2 text-center mx-auto xl:w-full">
       <div className="border-t-2 border-two w-20 p-1 font-medium"></div>
       <h2 className="text-[#2E2E2E] font-bold">ALL PRODUCTS</h2>
       <div className="grid gap-4 md:gap-16 xl:gap-20 grid-cols-[repeat(auto-fit,minmax(150px,1fr))] place-items-center w-full md:w-4/5">
