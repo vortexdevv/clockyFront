@@ -54,41 +54,41 @@ const Nav = () => {
 
   return (
     <div
-      className={`mainFont top-0 shadow-lg text-white fixed w-full  mx-auto  z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
+      className={`mainFont top-0 shadow-lg text-two fixed w-full  mx-auto  z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
         isScrolled ? "bg-main w-full" : "bg-transparent"
       }`}
     >
       <div>
         <Link href="/">
-          <h1 className="text-2xl mainFont hover:text-two">Clocky</h1>
+          <h1 className="text-2xl mainFont hover:text-white">Clocky</h1>
         </Link>
       </div>
 
       {/* Desktop Navigation */}
       <div className="md:flex md:gap-3 lg:gap-8 items-center text-[15px] hidden">
-        <Link className="hover:text-two" href="#newarraival">
+        <Link className="hover:text-white" href="#newarraival">
           NEW ARRIVAL
         </Link>
-        <Link className="hover:text-two" href="/shop">
+        <Link className="hover:text-white" href="/shop">
           SHOP
         </Link>
-        <div className="hover:text-two">
+        <div className="hover:text-white">
           <DropdownMenu />
         </div>
-        <Link className="hover:text-two" href="#contact-us">
+        <Link className="hover:text-white" href="#contactus">
           CONTACT US
         </Link>
-        <Link className="hover:text-two" href="/policy">
+        <Link className="hover:text-white" href="/policy">
           POLICY
         </Link>
         <Link
-          className={`hover:text-two ${storageValue ? "hidden" : ""}`}
+          className={`hover:text-white ${storageValue ? "hidden" : ""}`}
           href="/login"
         >
           LOGIN
         </Link>
         <Link
-          className={`hover:text-two ${storageValue ? "" : "hidden"}`}
+          className={`hover:text-white ${storageValue ? "" : "hidden"}`}
           onClick={handleClick}
           href="/"
         >
@@ -96,7 +96,7 @@ const Nav = () => {
         </Link>
 
         {/* Favorites Link with Heart Icon */}
-        <Link className="hover:text-two flex items-center" href="/favorites">
+        <Link className="hover:text-white flex items-center" href="/favorites">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -105,7 +105,7 @@ const Nav = () => {
             viewBox="0 0 24 24"
           >
             <path
-              stroke="#fff"
+              stroke="#e3c578"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2"
@@ -114,7 +114,7 @@ const Nav = () => {
           </svg>
         </Link>
 
-        <Link className="hover:text-two" href="/cart">
+        <Link className="hover:text-white" href="/cart">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -123,7 +123,7 @@ const Nav = () => {
             viewBox="0 0 24 24"
           >
             <path
-              stroke="#fff"
+              stroke="#e3c578"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2"
@@ -173,39 +173,39 @@ const Nav = () => {
         }`}
       >
         <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+          className="block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d]"
           href="#newarraival"
           onClick={() => setIsOpen(false)}
         >
           NEW ARRIVAL
         </Link>
         <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+          className="block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d]"
           href="/shop"
           onClick={() => setIsOpen(false)}
         >
           SHOP
         </Link>
-        <div className="block px-4 py-2 text-white hover:bg-two bg-[#0000004d]">
+        <div className="block px-4 py-2 text-two hover:bg-two bg-[#0000004d]">
           <DropdownMenu />
         </div>
 
         <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+          className="block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d]"
           href="/support"
           onClick={() => setIsOpen(false)}
         >
           CONTACT US
         </Link>
         <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+          className="block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d]"
           href="/policy"
           onClick={() => setIsOpen(false)}
         >
           POLICY
         </Link>
         <Link
-          className={`block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d] ${
+          className={`block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d] ${
             storageValue ? "hidden" : ""
           }`}
           href="/login"
@@ -214,7 +214,7 @@ const Nav = () => {
           LOGIN
         </Link>
         <Link
-          className={`block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d] ${
+          className={`block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d] ${
             storageValue ? "" : "hidden"
           }`}
           href="/"
@@ -226,14 +226,14 @@ const Nav = () => {
           LOGOUT
         </Link>
         <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+          className="block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d]"
           href="/favorites"
           onClick={() => setIsOpen(false)}
         >
           FAVORITE
         </Link>
         <Link
-          className="block px-4 py-2 text-white hover:bg-gray-700 bg-[#0000004d]"
+          className="block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d]"
           href="/cart"
           onClick={() => setIsOpen(false)}
         >

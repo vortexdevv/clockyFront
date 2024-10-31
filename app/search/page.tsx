@@ -4,7 +4,7 @@ import Nav from "../components/Nav";
 
 const page = () => {
   return (
-    <div>
+    <div className="bg-white min-h-[100dvh]">
       <Nav />
       <Search />
     </div>

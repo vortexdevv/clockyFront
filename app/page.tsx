@@ -8,12 +8,14 @@ import Recommended from "./components/Recomended";
 import Arrivals from "./components/Arrivals";
 import Footer from "./components/Footer";
 import Featured from "./components/Featured";
+import Brands from "./components/Brands";
 export default function Home() {
   const hosary: number = 0;
   return (
     <main className="h-auto bg-[#FCFCFC]">
       <Nav />
       <Hero />
+      <Brands />
       <Featured />
       {/* <Products /> */}
       <Recommended />

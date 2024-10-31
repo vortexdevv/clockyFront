@@ -125,15 +125,15 @@ const Products = () => {
         {products.map((product, index) => (
           <div
             key={index}
-            className="mt-4 h-full justify-between md:mt-6 border-solid md:w-[225px]  border-2 border-[#F0F0F0] flex flex-col items-center md:px-4 xl:px-4 p-4 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform md:hover:scale-105"
+            className="mt-4 h-full justify-between md:mt-6 border-solid md:w-[225px]  border-2 border-[#F0F0F0] flex flex-col items-center pb-8 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform md:hover:scale-105"
           >
             <Link
               href={`/product/${product._id}`}
-              className="flex flex-col gap-4 justify-around h-full"
+              className="flex flex-col gap-4  h-full"
             >
-              <span className="-rotate-90 bg-main py-2 px-2 absolute font-bold -left-[6px] md:top-2 top-[10px]">
+              {/* <span className="-rotate-90 bg-main py-2 px-2 absolute font-bold -left-[6px] md:top-2 top-[10px]">
                 SALE
-              </span>
+              </span> */}
               <img
                 src={product.img}
                 // width={100}

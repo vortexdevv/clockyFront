@@ -205,3 +205,6 @@ html {
     transform: rotate(1turn);
   }
 }
+li {
+  margin: 0 !important;
+}

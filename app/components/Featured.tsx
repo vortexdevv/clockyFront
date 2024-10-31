@@ -73,7 +73,7 @@ const Featured = () => {
   return (
     <div className="flex flex-col items-center w-full bg-[#FCFCFC] pt-10 p-2 mx-auto xl:w-3/4">
       <div className="border-t-2 border-two w-20 p-1 font-medium"></div>
-      <h2 className="text-[#2E2E2E] font-bold text-xl md:text-2xl">FEATURED</h2>
+      <h2 className="text-main font-bold text-xl md:text-2xl">FEATURED</h2>
       <div className="grid gap-4 md:gap-8 xl:gap-16 grid-cols-[repeat(auto-fit,minmax(150px,1fr))] place-items-center w-full md:w-4/5">
         {isLoading
           ? Array.from({ length: 4 }).map((_, index) => (
@@ -91,15 +91,15 @@ const Featured = () => {
           : products.map((product, index) => (
               <div
                 key={index}
-                className="mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center p-4 gap-2 shadow-lg transition-transform duration-300 transform md:hover:scale-105 w-full md:w-[225px]"
+                className="mt-4  md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center pb-8 gap-2 shadow-lg transition-transform duration-300 transform md:hover:scale-105 w-full md:w-[225px]"
               >
                 <Link
                   href={`/product/${product._id}`}
-                  className="flex flex-col gap-2 justify-between h-full"
+                  className="flex w-full flex-col gap-2 justify-between h-full"
                 >
-                  <span className="rotate-90 text-white bg-main py-1 px-2 absolute font-bold -left-[6px] top-4 text-xs md:text-sm">
+                  {/* <span className="rotate-90 text-white bg-main py-1 px-2 absolute font-bold -left-[6px] top-4 text-xs md:text-sm">
                     SALE
-                  </span>
+                  </span> */}
                   <img
                     src={product.img}
                     loading="lazy"
@@ -107,13 +107,13 @@ const Featured = () => {
                     className="w-full object-cover h-40 md:h-64"
                   />
                   <div className="text-center">
-                    <h1 className="text-[#2E2E2E] font-bold text-lg md:text-xl truncate w-full">
+                    <h1 className="text-main font-bold text-lg md:text-xl truncate w-full">
                       {product.name}
                     </h1>
-                    <p className="text-[#595959] font-bold text-sm line-through">
+                    <p className="text-[#595959] text-sm line-through">
                       {product.before} L.E
                     </p>
-                    <p className="text-two font-bold text-lg md:text-2xl">
+                    <p className="text-two font-bold text-xl md:text-2xl">
                       {product.price} L.E
                     </p>
                   </div>

@@ -1,87 +1,134 @@
 import Link from "next/link";
-import Icon1 from "../../public/facebook-176-svgrepo-com.svg";
-import Icon2 from "../../public/instagram-svgrepo-com.svg";
-import Icon3 from "../../public/twitter-svgrepo-com.svg";
-import Image from "next/image";
-import Watch from "../../public/home.png";
-const Footer = () => {
-  return (
-    <div
-      id="contact-us"
-      className=" bg-contain bg-no-repeat bg-center  mx-auto flex justify-center  items-center  w-full bg-main p-20 text-white"
-    >
-      <footer className="flex justify-between w-5/6 md:flex-row  flex-col gap-10">
-        {/* <div className="">
-          <h4 className="font-medium text-3xl mb-3 ">Our information</h4>
-          <p className="font-normal text-base leading-8">Cairo - Egypt</p>
-          <p className="font-normal text-base leading-8">01113283189</p>
-        </div> */}
-        <div className="about-us">
-          <h4 className="font-medium text-3xl mb-3">About Us</h4>
-          {/* <a
-            className="font-normal text-base leading-8 hover:text-two"
-            href="#"
-          >
-            Support Center
-          </a>
-          <br /> */}
-          <a
-            className="font-normal text-base leading-8 hover:text-two"
-            href="/support"
-            // tel:+201113283189
-          >
-            Customer Support
-          </a>
-          <br />
-          <a
-            className="font-normal text-base leading-8 hover:text-two"
-            href="/copyright"
-          >
-            Copy Right
-          </a>
-          <br />
-          <a
-            className="font-normal text-base leading-8 hover:text-two"
-            href="/aboutus"
-          >
-            About Us
-          </a>
-          <br />
-          <a
-            className="font-normal text-base leading-8 hover:text-two"
-            href="/policy"
-          >
-            Policy
-          </a>
-        </div>
-        {/* <div className="product">
-          <h4 className="mejor">Product</h4>
-          <a className="idara" href="#">
-            Original watches
-          </a>
-          <br />
-          <a className="idara" href="#">
-            High copy watches
-          </a>
-          <br />
-          <a className="idara" href="#">
-            Smart watches
-          </a>
-          <br />
-          <a className="idara" href="#">
-            Accessories
-          </a>
-        </div> */}
-        <div className="flex  md:items-center flex-col gap-14 text-white">
-          <div className="w-24 flex md:flex-col md:gap-5 md:justify-center -m-10 items-center gap-5 mt-1">
-            <h4 className="font-medium text-3xl md:mb-3">Social</h4>
+import React from "react";
 
+const Footer: React.FC = () => {
+  return (
+    <footer id="contactus" className="bg-main text-white py-10">
+      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Contact Information */}
+        <div>
+          <div className="border-l border-two pl-5">
+            {" "}
+            <h3 className="text-lg font-bold mb-4 text-two">CALL US NOW</h3>
+            <Link href={"tel:+201113283189"}>
+              <p className="font-bold">
+                Contact Us: <span className="font-bold">+201113283189</span>
+              </p>
+            </Link>
+          </div>
+          <div className="border-l border-two pl-5">
+            <h3 className="text-lg font-bold mt-6 mb-4 text-two">
+              COME VISIT US
+            </h3>
+            <p className="font-bold">
+              Office Address: Portsaid Meetghamer, Al Dakahlia, Egypt
+            </p>
+          </div>
+          <div className="border-l border-two pl-5">
+            <h3 className="text-lg font-bold mt-6 mb-4 text-two">
+              SEND A MESSAGE
+            </h3>
+            <Link href={"email:info@clockyeg.com"}>
+              <p className="font-bold">
+                Email: <span className="font-bold">info@clockyeg.com</span>
+              </p>
+            </Link>
+          </div>
+        </div>
+
+        {/* Other Pages */}
+        <div>
+          <h3 className="text-lg font-bold mb-4 text-two border-b border-two">
+            OTHER PAGES
+          </h3>
+          <ul className=" space-y-2 flex md:block items-center justify-between">
+            <li>
+              <a href="/" className="hover:underline font-bold">
+                Home
+              </a>
+            </li>
+            {/* <li>
+              <a href="/news" className="hover:underline font-bold">
+                News
+              </a>
+            </li> */}
+            <li>
+              <a href="/aboutus" className="hover:underline font-bold">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="/categories" className="hover:underline font-bold">
+                Categories
+              </a>
+            </li>
+            <li>
+              <a href="/support" className="hover:underline font-bold">
+                Contact Us
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Quick Links */}
+        {/* <div>
+          <h3 className="text-lg font-bold mb-4 text-two">QUICK LINKS</h3>
+          <ul className=" space-y-2">
+            <li>
+              <a href="#" className="hover:underline">
+                Chairs
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:underline">
+                Tables
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:underline">
+                Work station
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:underline">
+                Executive desks
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:underline">
+                Employee desks
+              </a>
+            </li>
+          </ul>
+        </div> */}
+
+        {/* Newsletter */}
+        <div>
+          <h3 className="text-lg font-bold mb-4 text-two">NEWS LETTER</h3>
+          <form className="flex space-x-2 mb-4">
+            <input
+              type="email"
+              placeholder="name@example.com"
+              className="p-2 w-full rounded-md text-black"
+            />
+            <button
+              type="submit"
+              className="bg-two text-white font-bold p-2 rounded-md"
+            >
+              SUBSCRIBE
+            </button>
+          </form>
+          <p className="mb-4">
+            Get the scoop & stay in the loop! Sign up for email alerts to get
+            exclusive offers and deals.
+          </p>
+          <div className="flex space-x-4 justify-center md:justify-start">
             <Link href={"https://www.facebook.com/Clocky.Eg?mibextid=kFxxJD"}>
               {/* facebook */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="30"
+                height="30"
                 viewBox="-5 0 20 20"
               >
                 <g>
@@ -100,6 +147,7 @@ const Footer = () => {
                 </g>
               </svg>
             </Link>
+
             <Link
               href={
                 "https://www.instagram.com/clocky.eg?igsh=b2R0MGhpNDFscjdq&utm_source=qr"
@@ -108,8 +156,8 @@ const Footer = () => {
               {/* instagram */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="30"
+                height="30"
                 fill="none"
                 viewBox="0 0 24 24"
               >
@@ -135,8 +183,8 @@ const Footer = () => {
               {/*  WhatsApp */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="30"
+                height="30"
                 fill="none"
                 viewBox="0 0 24 24"
               >
@@ -154,8 +202,30 @@ const Footer = () => {
             </a>
           </div>
         </div>
-      </footer>
-    </div>
+      </div>
+
+      <div className="border-t border-gray-600 mt-8 pt-4 text-center ">
+        <p className="space-x-2">
+          <a href="/policy" className="hover:underline">
+            Privacy Policy
+          </a>
+          <span>||</span>
+          <a href="/policy" className="hover:underline">
+            Term Of Service
+          </a>
+        </p>
+        <p className="mt-4">
+          &copy; 2025{" "}
+          <Link
+            href={"https://www.facebook.com/profile.php?id=61565897626564"}
+            className="text-two"
+          >
+            BW
+          </Link>
+          , Inc. All rights reserved.
+        </p>
+      </div>
+    </footer>
   );
 };
 
