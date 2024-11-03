@@ -34,7 +34,8 @@
     "react-dom": "^18",
     "react-responsive": "^10.0.0",
     "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "tailwindcss-motion": "^0.3.0-beta"
   },
   "devDependencies": {
     "@types/lodash.debounce": "^4.0.9",
