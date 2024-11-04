@@ -1,109 +1,123 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
+
 type Product = {
   _id: string;
   name: string;
-  before: number; // Original price
+  brand: string;
+  before: number;
   price: number;
   description: string;
   countInStock: number;
   img: string;
 };
+
 const Products = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const { toast } = useToast();
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [selectedBrand, setSelectedBrand] = useState<string>("All");
+  const [priceRange, setPriceRange] = useState<number[]>([0, 1000]);
+  const [category, setCategory] = useState<string>("All");
   const [activeProductId, setActiveProductId] = useState<string | null>(null);
+  const { toast } = useToast();
+
+  // Infinite Scroll & Pagination State
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+
+  const observer: any = useRef<IntersectionObserver | null>(null);
+
+  const lastProductRef: any = useCallback(
+    (node: Element) => {
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPage((prevPage) => prevPage + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [hasMore]
+  );
+
   useEffect(() => {
-    // Fetch products from the backend
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://clockyexpress.vercel.app/api/products",
+          `https://clockyexpress.vercel.app/api/products`,
           {
+            params: {
+              page,
+              limit: 2,
+              brand: selectedBrand !== "All" ? selectedBrand : undefined,
+              category: category !== "All" ? category : undefined,
+              minPrice: priceRange[0],
+              maxPrice: priceRange[1],
+            },
             withCredentials: true,
           }
         );
-        setProducts(response.data);
+        const newProducts = response.data;
+
+        // Check if there are no more products
+        if (newProducts.length === 0) setHasMore(false);
+
+        // Reset products if fetching the first page (after a filter change)
+        setProducts((prevProducts) =>
+          page === 1 ? newProducts : [...prevProducts, ...newProducts]
+        );
       } catch (error) {
         console.error("Failed to fetch products", error);
       }
     };
 
     fetchProducts();
-  }, []);
-  // const products: Product[] = [
-  //   {
-  //     _id: "6",
-  //     name: "p1",
-  //     before: 1000,
-  //     price: 2222,
-  //     description: "ddff",
-  //     countInStock: 255,
-  //     img: "fgdfgdg",
-  //   },
-  //   {
-  //     _id: "7",
-  //     name: "p1",
-  //     before: 1000,
-  //     price: 2222,
-  //     description: "ddff",
-  //     countInStock: 255,
-  //     img: "fgdfgdg",
-  //   },
-  //   {
-  //     _id: "8",
-  //     name: "p1",
-  //     before: 1000,
-  //     price: 2222,
-  //     description: "ddff",
-  //     countInStock: 255,
-  //     img: "fgdfgdg",
-  //   },
-  //   {
-  //     _id: "9",
-  //     name: "p1",
-  //     before: 1000,
-  //     price: 2222,
-  //     description: "ddff",
-  //     countInStock: 255,
-  //     img: "fgdfgdg",
-  //   },
-  //   // {
-  //   //   _id: "5",
-  //   //   name: "p1",
-  //   //   before: 1000,
-  //   //   price: 2222,
-  //   //   description: "ddff",
-  //   //   countInStock: 255,
-  //   //   img: "fgdfgdg",
-  //   // },
-  // ];
+  }, [page, selectedBrand, category, priceRange]);
+
+  // Update filtered products whenever filters change
+  useEffect(() => {
+    setPage(1); // Reset page to 1 when filters change
+    setHasMore(true); // Reset hasMore to allow loading more products
+  }, [selectedBrand, category, priceRange]);
+
+  const brands = ["All", "rolex", "casio", "Brand3"];
+  const categories = ["All", "Category1", "Category2"];
+
+  const handleBrandChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedBrand(event.target.value);
+  };
+
+  const handleCategoryChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setCategory(event.target.value);
+  };
+
+  const handlePriceRangeChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = Number(event.target.value);
+    setPriceRange([0, value]);
+  };
+
   const addToCart = (product: Product) => {
     setActiveProductId(product._id);
     setTimeout(() => {
-      setActiveProductId(null); // Clear the animation after 1 second
-    }, 1000); // Match the transition duration (1000ms)
+      setActiveProductId(null);
+    }, 1000);
 
-    // Set the active product id
-    // Get the current cart from localStorage
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-
-    // Check if the product already exists in the cart
     const existingProduct = cart.find((item: any) => item._id === product._id);
 
     if (existingProduct) {
-      // If the product exists, increment its quantity
       existingProduct.quantity += 1;
     } else {
-      // Otherwise, add the product with an initial quantity of 1
       cart.push({ ...product, quantity: 1 });
     }
 
-    // Save the updated cart back to localStorage
     localStorage.setItem("cart", JSON.stringify(cart));
 
     toast({
@@ -118,34 +132,84 @@ const Products = () => {
   };
 
   return (
-    <div className="h-[90%] pb-14 mt-20 text-white flex  flex-col items-center w-full bg-white pt-10 p-2 text-center mx-auto xl:w-full">
+    <div className="h-[90%] pb-14 mt-20 text-white flex flex-col items-center w-full bg-white pt-10 p-2 text-center mx-auto xl:w-full">
       <div className="border-t-2 border-two w-20 p-1 font-medium"></div>
       <h2 className="text-[#2E2E2E] font-bold">ALL PRODUCTS</h2>
+
+      {/* Filters */}
+      <div className="my-4 flex flex-col gap-4">
+        <div className="flex ">
+          <div>
+            <label htmlFor="brandFilter" className="mr-2 font-semibold">
+              Filter by Brand:
+            </label>
+            <select
+              id="brandFilter"
+              value={selectedBrand}
+              onChange={handleBrandChange}
+              className="px-4 py-2 border border-gray-300 rounded text-black"
+            >
+              {brands.map((brand) => (
+                <option key={brand} value={brand}>
+                  {brand}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="categoryFilter" className="mr-2 font-semibold">
+              Filter by Category:
+            </label>
+            <select
+              id="categoryFilter"
+              value={category}
+              onChange={handleCategoryChange}
+              className="px-4 py-2 border border-gray-300 rounded text-black"
+            >
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-center">
+          <label htmlFor="priceRange" className="mr-2 font-semibold text-black">
+            Price Range:
+          </label>
+          <input
+            type="range"
+            id="priceRange"
+            min="0"
+            max="100000"
+            value={priceRange[1]}
+            onChange={handlePriceRangeChange}
+            className="border border-gray-300 rounded text-black"
+          />
+          <span className="ml-2 text-black">{priceRange[1]} L.E</span>
+        </div>
+      </div>
+
       <div className="grid gap-4 md:gap-16 xl:gap-20 grid-cols-[repeat(auto-fit,minmax(150px,1fr))] place-items-center w-full md:w-4/5">
         {products.map((product, index) => (
           <div
-            key={index}
-            className="mt-4 h-full justify-between md:mt-6 border-solid md:w-[225px]  border-2 border-[#F0F0F0] flex flex-col items-center pb-8 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform md:hover:scale-105"
+            key={product._id}
+            ref={index === products.length - 1 ? lastProductRef : null}
+            className="mt-4 h-full justify-between md:mt-6 border-solid md:w-[225px] border-2 border-[#F0F0F0] flex flex-col items-center pb-8 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform md:hover:scale-105"
           >
             <Link
               href={`/product/${product._id}`}
-              className="flex flex-col gap-4  h-full"
+              className="flex flex-col gap-4 h-full"
             >
-              {/* <span className="-rotate-90 bg-main py-2 px-2 absolute font-bold -left-[6px] md:top-2 top-[10px]">
-                SALE
-              </span> */}
               <img
                 src={product.img}
-                // width={100}
                 loading="lazy"
                 alt={product.name}
                 className="w-full"
               />
-              {/* <img
-              src={Watch}
-              alt={product.name}
-              className="w-[140px] h-[215px]"
-            /> */}
               <div>
                 <h1 className="text-[#2E2E2E] font-bold text-3xl">
                   {product.name}
@@ -153,13 +217,13 @@ const Products = () => {
                 <p className="text-[#595959] font-bold text-base line-through">
                   {product.before} L.E
                 </p>
-                <p className="text-two font-bold text-2xl ">
+                <p className="text-two font-bold text-2xl">
                   {product.price} L.E
                 </p>
               </div>
             </Link>
             <button
-              onClick={() => addToCart(product)} // Pass the product's id
+              onClick={() => addToCart(product)}
               className="relative h-[10%] flex items-center justify-center whitespace-nowrap px-4 py-1 md:py-3 bg-main text-white font-semibold border overflow-hidden group"
             >
               <div
