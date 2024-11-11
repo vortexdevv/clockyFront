@@ -240,8 +240,8 @@ const Footer: React.FC = () => {
             Privacy Policy
           </a>
           <span>||</span>
-          <a href="/policy" className="hover:underline">
-            Term Of Service
+          <a href="/returnpolicy" className="hover:underline">
+            Return Policy
           </a>
         </p>
         <p className="mt-4">
