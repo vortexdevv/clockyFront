@@ -46,13 +46,13 @@ const Brands: React.FC = () => {
         <h2 className="text-2xl text-main font-bold text-center mb-8">
           OUR WATCH BRANDS
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {brands.map((brand) => (
             <Link key={brand.name} href={brand.route} passHref>
               <div
                 className={`cursor-pointer hover:shadow-lg transition transform hover:scale-105 flex justify-center items-center bg-white p-4 rounded-lg ${
                   isInView
-                    ? "motion-scale-in-[0.5] motion-translate-x-in-[-25%] motion-translate-y-in-[25%] motion-opacity-in-[0%] motion-rotate-in-[-10deg] motion-blur-in-[5px] motion-duration-[0.45s] motion-duration-[0.68s]/scale motion-duration-[0.68s]/translate motion-duration-[0.81s]/rotate motion-ease-spring-bouncier"
+                    ? "motion-scale-in-[0.5] motion-translate-x-in-[-199%] motion-translate-y-in-[-17%] motion-opacity-in-[0%] motion-rotate-in-[-10deg] motion-blur-in-[5px] motion-duration-[0.00s] motion-duration-[0.70s]/translate"
                     : ""
                 }`}
               >

@@ -1,10 +1,10 @@
+import OrderConfirmation from "@/components/OrderConfirmation";
 import React from "react";
-import Checkout from "../components/checkout";
 
 const page = () => {
   return (
     <div>
-      <Checkout />
+      <OrderConfirmation />
     </div>
   );
 };

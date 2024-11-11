@@ -92,11 +92,11 @@ const Featured = () => {
   return (
     <div
       ref={sectionRef}
-      className="flex flex-col items-center w-full bg-[#FCFCFC] pt-10 p-2 mx-auto xl:w-3/4"
+      className="flex flex-col items-center w-full bg-[#FCFCFC] p-6 px-6 md:px-14 mx-auto "
     >
       <div className="border-t-2 border-two w-20 p-1 font-medium"></div>
       <h2 className="text-main font-bold text-xl md:text-2xl">FEATURED</h2>
-      <div className="grid gap-4 md:gap-8 xl:gap-16 grid-cols-[repeat(auto-fit,minmax(150px,1fr))] place-items-center w-full md:w-4/5">
+      <div className="grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center w-full ">
         {isLoading
           ? Array.from({ length: 4 }).map((_, index) => (
               <div
@@ -115,7 +115,7 @@ const Featured = () => {
                 key={index}
                 className={`${
                   isInView
-                    ? "motion-scale-in-[0.5] motion-translate-x-in-[-25%] motion-translate-y-in-[25%] motion-opacity-in-[0%] motion-rotate-in-[-10deg] motion-blur-in-[5px] motion-duration-[0.45s] motion-duration-[0.68s]/scale motion-duration-[0.68s]/translate motion-duration-[0.81s]/rotate motion-ease-spring-bouncier"
+                    ? "motion-scale-in-[0.5] motion-translate-x-in-[-199%] motion-translate-y-in-[-17%] motion-opacity-in-[0%] motion-rotate-in-[-10deg] motion-blur-in-[5px] motion-duration-[0.00s] motion-duration-[0.70s]/translate"
                     : ""
                 } mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center pb-8 gap-2 shadow-lg transition-transform duration-300 transform md:hover:scale-105 w-full md:w-[225px]`}
               >

@@ -9,8 +9,9 @@ import Arrivals from "./components/Arrivals";
 import Footer from "./components/Footer";
 import Featured from "./components/Featured";
 import Brands from "./components/Brands";
+import { AppSidebar } from "@/components/app-sidebar";
 export default function Home() {
-  const hosary: number = 0;
+  // const hosary: number = 0;
   return (
     <main className="h-auto bg-[#FCFCFC]">
       <Nav />
@@ -23,6 +24,7 @@ export default function Home() {
       {/* <One /> */}
       <Arrivals />
       <Footer />
+      {/* <AppSidebar /> */}
       {/* <Payment /> */}
     </main>
   );

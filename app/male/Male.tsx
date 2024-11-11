@@ -72,7 +72,7 @@ const Male = () => {
   };
 
   return (
-    <div className="h-[90%] overflow-scroll mt-20 text-white center flex-col  w-full bg-[#FCFCFC] pt-10 text-center">
+    <div className="h-full mt-20 text-white center flex-col  w-full bg-[#FCFCFC] pt-10 text-center pb-10">
       <div className="border-t-2 border-two w-20 p-1 font-medium"></div>
       <h2 className="text-[#2E2E2E] font-bold">MALE</h2>
       <div className="grid sm:grid-cols-3 grid-cols-2 md:grid-cols-4 xl:grid-cols-4 md:gap-6 gap-2 media">

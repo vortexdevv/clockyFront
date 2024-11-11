@@ -3,7 +3,7 @@ import Unisex from "./Uniswx";
 import Nav from "../components/Nav";
 const page = () => {
   return (
-    <div className="h-[100dvh] bg-white">
+    <div className="min-h-[100dvh] bg-white">
       <Nav />
       <Unisex />
     </div>

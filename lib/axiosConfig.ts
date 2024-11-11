@@ -1,5 +1,5 @@
 import axios from "axios";
-
+// http://localhost:5000/api
 // Create an instance of axios
 const axiosInstance = axios.create({
   baseURL:

@@ -5,6 +5,7 @@ import "../public/fonts/style.css";
 import { Toaster } from "@/components/ui/toaster";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -34,10 +35,13 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className}  bg-main`}>
         {/* <Nav /> */}
+        {/* <SidebarProvider> */}
+        {/* <SidebarTrigger /> */}
         {children}
         <Toaster />
         <Analytics />
         <SpeedInsights />
+        {/* </SidebarProvider> */}
       </body>
     </html>
   );
