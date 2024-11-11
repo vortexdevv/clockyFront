@@ -143,14 +143,16 @@ const Featured = () => {
                 </Link>
                 <button
                   onClick={() => addToCart(product)}
-                  className="relative h-10 flex items-center justify-center px-4 py-2 bg-main text-white font-semibold border overflow-hidden group"
+                  className="relative h-10 flex items-center justify-center px-4 py-2 bg-main text-two font-semibold border overflow-hidden group"
                 >
                   <div
                     className={`absolute center inset-0 group-hover:translate-x-0 bg-two w-full h-full transform translate-x-full transition-transform duration-500 ease-in-out ${
                       activeProductId === product._id ? "translate-x-0" : ""
                     }`}
                   >
-                    <span className="truncate center">ADD TO CART</span>
+                    <span className="truncate center text-main">
+                      ADD TO CART
+                    </span>
                   </div>
                   <span className="truncate">ADD TO CART</span>
                 </button>

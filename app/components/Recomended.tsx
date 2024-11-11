@@ -75,11 +75,11 @@ export const Recommended = () => {
           </p>
           <button
             onClick={() => addToCart(recommendedProduct)}
-            className="py-4 w-40 px-6 shadow-xl relative md:py-3 bg-main text-white font-semibold border overflow-hidden group"
+            className="py-4 w-40 px-6 shadow-xl relative md:py-3 bg-main text-two font-semibold border overflow-hidden group"
           >
             Order now
             <div
-              className={`group-hover:translate-x-0 absolute inset-0 md:group-hover:translate-x-0 bg-two w-full h-full transform translate-x-full transition-transform md:!duration-500 !duration-1000 ease-in-out center ${
+              className={`group-hover:translate-x-0 absolute inset-0 text-main md:group-hover:translate-x-0 bg-two w-full h-full transform translate-x-full transition-transform md:!duration-500 !duration-1000 ease-in-out center ${
                 activeProductId === recommendedProduct._id
                   ? "group-hover:translate-x-0"
                   : ""

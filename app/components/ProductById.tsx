@@ -207,11 +207,11 @@ const ProductById = () => {
               >
                 <Link
                   href={`/product/${product._id}`}
-                  className="flex flex-col gap-4 justify-around h-full"
+                  className="flex flex-col gap-4 justify-around items-center h-full"
                 >
-                  <span className="-rotate-90 bg-main text-white py-2 px-2 absolute font-bold -left-[6px] md:top-2 top-[10px]">
+                  {/* <span className="-rotate-90 bg-main text-white py-2 px-2 absolute font-bold -left-[6px] md:top-2 top-[10px]">
                     SALE
-                  </span>
+                  </span> */}
                   <img
                     src={product.img}
                     loading="lazy"
@@ -232,10 +232,10 @@ const ProductById = () => {
                 </Link>
                 <button
                   onClick={() => addToCart(product)}
-                  className="relative h-[10%] flex items-center justify-center whitespace-nowrap px-4 py-1 md:py-3 bg-main text-white font-semibold border overflow-hidden group"
+                  className="relative h-[10%] flex items-center justify-center whitespace-nowrap px-4 py-1 md:py-3 bg-main text-two font-semibold border overflow-hidden group"
                 >
                   <div
-                    className={`absolute inset-0 md:group-hover:translate-x-0 bg-two w-full h-full transform translate-x-full transition-transform md:!duration-500 !duration-1000 ease-in-out center ${
+                    className={`absolute inset-0 md:group-hover:translate-x-0 bg-two text-main w-full h-full transform translate-x-full transition-transform md:!duration-500 !duration-1000 ease-in-out center ${
                       activeProductId === product._id
                         ? "group-hover:translate-x-0"
                         : ""
@@ -287,27 +287,27 @@ const ProductById = () => {
               placeholder="0"
             />
             <button
-              className="text-white px-4 py-3 w-full md:w-96 bg-main hover:bg-two"
+              className="text-two px-4 py-3 w-full md:w-96 bg-main hover:bg-two hover:text-main"
               onClick={handleAddToCart}
             >
               ADD TO CART
             </button>
             <button
-              className={`text-white px-4 py-3 w-full md:w-96 flex justify-center items-center ${
-                isFavorite ? "bg-two" : "bg-main"
-              } hover:bg-two relative`}
+              className={`text-two px-4 py-3 w-full md:w-96 flex justify-center items-center ${
+                isFavorite ? "bg-two " : "bg-main"
+              } hover:bg-two hover:text-main relative`}
               onClick={handleAddToFavorites}
               disabled={favoriteLoading}
             >
               {favoriteLoading ? (
                 <FontAwesomeIcon
                   icon={faSpinner}
-                  className="animate-spin mr-2"
+                  className="animate-spin mr-2 hover:text-main"
                 />
               ) : (
                 <FontAwesomeIcon
                   icon={isFavorite ? solidHeart : regularHeart}
-                  className={`mr-2 transition-all duration-300 transform ${
+                  className={`mr-2 transition-all duration-300 transform hover:text-main ${
                     isFavorite ? "scale-125 text-red-500" : "text-gray-300"
                   }`}
                 />

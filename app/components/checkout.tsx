@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/navigation";
 import axiosInstance from "@/lib/axiosConfig";
+import { useRouter } from "next/navigation";
 
 type Product = {
   _id: string;
@@ -53,12 +52,15 @@ const Checkout = () => {
     setUserInfo({ ...userInfo, [name]: value });
   };
 
-  const handleCheckout = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
 
     if (!token || !userId) {
       alert("Please log in to proceed with checkout.");
+      router.push("/login");
       return;
     }
 
@@ -94,15 +96,8 @@ const Checkout = () => {
         setCartItems([]);
         saveCartToLocalStorage([]);
 
-        // Save order details in localStorage for order confirmation page
         localStorage.setItem("orderDetails", JSON.stringify(checkoutPayload));
-
-        // Redirect to order-confirmation page
-        if (router) {
-          router.push("/order-confirmation");
-        } else {
-          window.location.href = "/order-confirmation";
-        }
+        router.push("/order-confirmation");
       }
     } catch (error) {
       console.error("Checkout failed:", error);
@@ -110,112 +105,119 @@ const Checkout = () => {
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto bg-white shadow-lg rounded-lg text-main">
+    <div className="p-4 w-full max-w-md mx-auto bg-white shadow-lg rounded-lg text-main">
       <h2 className="text-2xl font-bold mb-4">Checkout</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label className="block text-sm font-semibold mb-1">Full Name</label>
+          <input
+            type="text"
+            name="fullName"
+            value={userInfo.fullName}
+            onChange={handleInputChange}
+            className="w-full p-2 border rounded"
+            required
+          />
+        </div>
 
-      <div className="mb-4">
-        <label className="block text-sm font-semibold mb-1">Full Name</label>
-        <input
-          type="text"
-          name="fullName"
-          value={userInfo.fullName}
-          onChange={handleInputChange}
-          className="w-full p-2 border rounded"
-          required
-        />
-      </div>
+        <div className="mb-4">
+          <label className="block text-sm font-semibold mb-1">
+            Governorate
+          </label>
+          <select
+            name="governorate"
+            value={userInfo.governorate}
+            onChange={handleInputChange}
+            className="w-full p-2 border rounded"
+            required
+          >
+            <option value="">Select Governorate</option>
+            <option value="Cairo">Cairo</option>
+            <option value="Alexandria">Alexandria</option>
+            {/* Add other Egyptian governorates as options here */}
+          </select>
+        </div>
 
-      <div className="mb-4">
-        <label className="block text-sm font-semibold mb-1">Governorate</label>
-        <select
-          name="governorate"
-          value={userInfo.governorate}
-          onChange={handleInputChange}
-          className="w-full p-2 border rounded"
-          required
+        <div className="mb-4">
+          <label className="block text-sm font-semibold mb-1">Address</label>
+          <input
+            type="text"
+            name="address"
+            value={userInfo.address}
+            onChange={handleInputChange}
+            className="w-full p-2 border rounded"
+            required
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm font-semibold mb-1">City</label>
+          <input
+            type="text"
+            name="city"
+            value={userInfo.city}
+            onChange={handleInputChange}
+            className="w-full p-2 border rounded"
+            required
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm font-semibold mb-1">Country</label>
+          <input
+            type="text"
+            name="country"
+            value={userInfo.country}
+            readOnly
+            className="w-full p-2 border rounded bg-gray-100"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm font-semibold mb-1">
+            Phone Number
+          </label>
+          <input
+            type="tel"
+            name="phoneNumber"
+            value={userInfo.phoneNumber}
+            onChange={handleInputChange}
+            className="w-full p-2 border rounded"
+            required
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm font-semibold mb-1">
+            Payment Method
+          </label>
+          <select
+            name="paymentMethod"
+            value={userInfo.paymentMethod}
+            onChange={handleInputChange}
+            className="w-full p-2 border rounded"
+            required
+          >
+            <option value="">Select Payment Method</option>
+            <option value="Pay with Card">Credit Card</option>
+            <option value="Cash on Delivery">Cash on Delivery</option>
+            {/* Add other payment methods as needed */}
+          </select>
+        </div>
+
+        <div className="mb-4">
+          <h3 className="text-lg font-semibold">
+            Total Price: ${totalPrice.toFixed(2)}
+          </h3>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full py-2 bg-main text-two font-semibold rounded hover:bg-two hover:text-main"
         >
-          <option value="">Select Governorate</option>
-          <option value="Cairo">Cairo</option>
-          <option value="Alexandria">Alexandria</option>
-          {/* Add other Egyptian governorates as options here */}
-        </select>
-      </div>
-
-      <div className="mb-4">
-        <label className="block text-sm font-semibold mb-1">Address</label>
-        <input
-          type="text"
-          name="address"
-          value={userInfo.address}
-          onChange={handleInputChange}
-          className="w-full p-2 border rounded"
-          required
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block text-sm font-semibold mb-1">City</label>
-        <input
-          type="text"
-          name="city"
-          value={userInfo.city}
-          onChange={handleInputChange}
-          className="w-full p-2 border rounded"
-          required
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block text-sm font-semibold mb-1">Country</label>
-        <input
-          type="text"
-          name="country"
-          value={userInfo.country}
-          readOnly
-          className="w-full p-2 border rounded bg-gray-100"
-        />
-      </div>
-
-      <div className="mb-4">
-        <label className="block text-sm font-semibold mb-1">Phone Number</label>
-        <input
-          type="tel"
-          name="phoneNumber"
-          value={userInfo.phoneNumber}
-          onChange={handleInputChange}
-          className="w-full p-2 border rounded"
-          required
-        />
-      </div>
-
-      <div className="mb-4">
-        <label className="block text-sm font-semibold mb-1">
-          Payment Method
-        </label>
-        <select
-          name="paymentMethod"
-          value={userInfo.paymentMethod}
-          onChange={handleInputChange}
-          className="w-full p-2 border rounded"
-          required
-        >
-          <option value="">Select Payment Method</option>
-          <option value="Pay with Card">Credit Card</option>
-          <option value="Cash on Delivery">Cash on Delivery</option>
-          {/* Add other payment methods as needed */}
-        </select>
-      </div>
-
-      <div className="mb-4">
-        <h3 className="text-lg font-semibold">
-          Total Price: ${totalPrice.toFixed(2)}
-        </h3>
-      </div>
-
-      <button
-        onClick={handleCheckout}
-        className="w-full py-2 bg-main text-two font-semibold rounded hover:bg-two hover:text-main"
-      >
-        Proceed to Checkout
-      </button>
+          Proceed to Checkout
+        </button>
+      </form>
     </div>
   );
 };
