@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useState } from "react";
 
 const PrivacyPolicy: React.FC = () => {
@@ -83,7 +84,11 @@ const PrivacyPolicy: React.FC = () => {
             concerns about the privacy policy, please contact us at:
           </p>
           <p>Email: email@example.com</p>
-          <p>Phone: [Phone Number]</p>
+          <Link href={"tel:+201113283189"}>
+            <p className="font-bold">
+              Contact Us: <span className="font-bold">+201113283189</span>
+            </p>
+          </Link>
         </div>
       ) : (
         <div className="space-y-4 text-right leading-relaxed" dir="rtl">
@@ -142,7 +147,11 @@ const PrivacyPolicy: React.FC = () => {
             حول سياسة الخصوصية، يرجى الاتصال بنا على:
           </p>
           <p>البريد الإلكتروني: email@example.com</p>
-          <p>الهاتف: [رقم الهاتف]</p>
+          <Link href={"tel:+201113283189"}>
+            <p className="font-bold">
+              تواصل معنا <span className="font-bold">+201113283189</span>
+            </p>
+          </Link>
         </div>
       )}
     </div>
