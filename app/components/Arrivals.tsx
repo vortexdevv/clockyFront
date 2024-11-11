@@ -106,7 +106,7 @@ const Arrivals = () => {
                     className="w-full object-cover h-40 md:h-64"
                   />
                   <div className="text-center">
-                    <h1 className="text-main font-bold text-lg md:text-xl truncate w-full">
+                    <h1 className="text-main font-bold text-lg md:text-xl truncate w-full ">
                       {product.name}
                     </h1>
                     <p className="text-[#595959] text-sm line-through">

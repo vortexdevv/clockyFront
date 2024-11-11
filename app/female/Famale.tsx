@@ -87,9 +87,9 @@ const Famale = () => {
               href={`/product/${product._id}`}
               className="flex flex-col gap-4 justify-around h-full"
             >
-              <span className="-rotate-90 bg-main py-2 px-2 absolute font-bold -left-[6px] md:top-2 top-[10px]">
+              {/* <span className="-rotate-90 bg-main py-2 px-2 absolute font-bold -left-[6px] md:top-2 top-[10px]">
                 SALE
-              </span>
+              </span> */}
               <img
                 src={product.img}
                 // width={100}
@@ -103,7 +103,7 @@ const Famale = () => {
             className="w-[140px] h-[215px]"
           /> */}
               <div>
-                <h1 className="text-[#2E2E2E] font-bold text-3xl">
+                <h1 className="text-[#2E2E2E] font-bold text-3xl truncate">
                   {product.name}
                 </h1>
                 <p className="text-[#595959] font-bold text-base line-through">
