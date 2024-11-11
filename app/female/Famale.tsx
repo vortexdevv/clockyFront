@@ -95,7 +95,7 @@ const Famale = () => {
                 // width={100}
                 loading="lazy"
                 alt={product.name}
-                className="w-full"
+                className="max-w-full"
               />
               {/* <img
             src={Watch}
@@ -103,7 +103,7 @@ const Famale = () => {
             className="w-[140px] h-[215px]"
           /> */}
               <div>
-                <h1 className="text-[#2E2E2E] font-bold text-3xl truncate">
+                <h1 className="text-[#2E2E2E] font-bold text-3xl ">
                   {product.name}
                 </h1>
                 <p className="text-[#595959] font-bold text-base line-through">
