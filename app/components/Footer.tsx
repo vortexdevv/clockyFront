@@ -1,7 +1,33 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 const Footer: React.FC = () => {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setMessage("Subscription successful! Check your email.");
+      } else {
+        const errorData = await response.json();
+        setMessage(errorData.message || "Subscription failed.");
+      }
+    } catch (error) {
+      setMessage("An error occurred. Please try again.");
+    }
+  };
+
   return (
     <footer id="contactus" className="bg-main text-white py-10">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -104,12 +130,15 @@ const Footer: React.FC = () => {
 
         {/* Newsletter */}
         <div>
-          <h3 className="text-lg font-bold mb-4 text-two">NEWS LETTER</h3>
-          <form className="flex space-x-2 mb-4">
+          <h3 className="text-lg font-bold mb-4 text-two">NEWSLETTER</h3>
+          <form onSubmit={handleSubscribe} className="flex space-x-2 mb-4">
             <input
               type="email"
               placeholder="name@example.com"
               className="p-2 w-full rounded-md text-black"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
             <button
               type="submit"
@@ -118,6 +147,7 @@ const Footer: React.FC = () => {
               SUBSCRIBE
             </button>
           </form>
+          {message && <p>{message}</p>}
           <p className="mb-4">
             Get the scoop & stay in the loop! Sign up for email alerts to get
             exclusive offers and deals.
