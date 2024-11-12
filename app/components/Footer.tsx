@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
               </a>
             </li>
             <li>
-              <a href="/categories" className="hover:underline font-bold">
+              <a href="#brands" className="hover:underline font-bold">
                 Categories
               </a>
             </li>

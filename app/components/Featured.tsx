@@ -6,7 +6,6 @@ import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
-// import warch from "../components/watch.png";
 
 type Product = {
   _id: string;
@@ -123,12 +122,14 @@ const Featured = () => {
                   href={`/product/${product._id}`}
                   className="flex w-full flex-col gap-2 justify-between h-full"
                 >
-                  <img
-                    src={product.img}
-                    loading="lazy"
-                    alt={product.name}
-                    className="w-full object-cover h-40 md:h-64"
-                  />
+                  <div className="overflow-hidden">
+                    <img
+                      src={product.img}
+                      loading="lazy"
+                      alt={product.name}
+                      className="w-full object-cover h-40 md:h-64 transform transition-transform duration-300 hover:scale-110"
+                    />
+                  </div>
                   <div className="text-center">
                     <h1 className="text-main font-bold text-lg md:text-xl truncate w-full">
                       {product.name}

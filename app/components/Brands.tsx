@@ -41,7 +41,7 @@ const Brands: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-gray-100 py-10 mt-8">
+    <section id="brands" ref={sectionRef} className="bg-gray-100 py-10 mt-8">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl text-main font-bold text-center mb-8">
           OUR WATCH BRANDS

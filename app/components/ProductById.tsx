@@ -293,8 +293,8 @@ const ProductById = () => {
               ADD TO CART
             </button>
             <button
-              className={`text-two px-4 py-3 w-full md:w-96 flex justify-center items-center ${
-                isFavorite ? "bg-two " : "bg-main"
+              className={`text-white px-4 py-3 w-full md:w-96 flex justify-center items-center ${
+                isFavorite ? "bg-two text-main " : "bg-main"
               } hover:bg-two hover:text-main relative`}
               onClick={handleAddToFavorites}
               disabled={favoriteLoading}
