@@ -51,18 +51,18 @@ const Checkout = () => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
   };
+  const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const token = localStorage.getItem("token");
-    const userId = localStorage.getItem("userId");
-
+  useEffect(() => {
     if (!token || !userId) {
       alert("Please log in to proceed with checkout.");
       router.push("/login");
       return;
     }
+  }, [token, userId]);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
     try {
       const checkoutPayload = {
