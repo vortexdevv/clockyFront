@@ -12,10 +12,15 @@ type Product = {
 };
 
 const getCartFromLocalStorage = (): Product[] =>
-  JSON.parse(localStorage.getItem("cart") || "[]");
+  typeof window !== "undefined"
+    ? JSON.parse(localStorage.getItem("cart") || "[]")
+    : [];
 
-const saveCartToLocalStorage = (cart: Product[]) =>
-  localStorage.setItem("cart", JSON.stringify(cart));
+const saveCartToLocalStorage = (cart: Product[]) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+};
 
 const Checkout = () => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
@@ -37,6 +42,19 @@ const Checkout = () => {
     updateTotalPrice(cartFromLocalStorage);
   }, []);
 
+  useEffect(() => {
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    const userId =
+      typeof window !== "undefined" ? localStorage.getItem("userId") : null;
+
+    if (!token || !userId) {
+      alert("Please log in to proceed with checkout.");
+      router.push("/login");
+      return;
+    }
+  }, [router]);
+
   const updateTotalPrice = (cart: Product[]) => {
     const total = cart.reduce(
       (sum, item) => sum + item.price * (item.quantity || 1),
@@ -51,23 +69,13 @@ const Checkout = () => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
   };
-  const token = localStorage.getItem("token");
-  const userId = localStorage.getItem("userId");
 
-  useEffect(() => {
-    if (!token || !userId) {
-      alert("Please log in to proceed with checkout.");
-      router.push("/login");
-      return;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token, userId]);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
       const checkoutPayload = {
-        userId,
+        userId: localStorage.getItem("userId"),
         products: cartItems.map((item) => ({
           productId: item._id,
           quantity: item.quantity || 1,
@@ -89,14 +97,15 @@ const Checkout = () => {
       const response = await axiosInstance.post(
         `/products/checkout`,
         checkoutPayload,
-        { headers: { Authorization: `Bearer ${token}` } }
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
       );
 
       if (response.status === 201) {
         alert("Checkout completed successfully!");
         setCartItems([]);
         saveCartToLocalStorage([]);
-
         localStorage.setItem("orderDetails", JSON.stringify(checkoutPayload));
         router.push("/order-confirmation");
       }
