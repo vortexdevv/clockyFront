@@ -31,6 +31,7 @@ const Search = () => {
   // Trigger search when query changes
   useEffect(() => {
     handleSearch(query);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]); // Re-run the search whenever the query changes
 
   const addToCart = (product: any) => {
@@ -62,8 +63,8 @@ const Search = () => {
   };
 
   return (
-    <div className="w-[80%] mx-auto mt-20 py-10 text-base">
-      <div className="mb-6">
+    <div className="w-[80%] center flex-col mx-auto mt-20 py-10 text-base">
+      <div className="mb-6 w-full">
         <input
           type="text"
           className="border border-gray-300 p-2 rounded-md w-full text-black"
@@ -78,7 +79,7 @@ const Search = () => {
           {results.map((product, index) => (
             <div
               key={index}
-              className="mt-4  md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center pb-8 gap-2 shadow-lg transition-transform duration-300 transform md:hover:scale-105 w-full md:w-[225px]"
+              className="mt-4 mx-auto md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center pb-8 gap-2 shadow-lg transition-transform duration-300 transform md:hover:scale-105 w-full md:w-[225px]"
             >
               <Link
                 href={`/product/${product._id}`}

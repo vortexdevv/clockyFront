@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useToast } from "@/hooks/use-toast";
 import logo from "../../public/search-alt-1-svgrepo-com.svg";
 import DropdownMenu from "./DropdownMenu";
+import { AccessibleDropdown } from "@/components/accessible-dropdown";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -73,7 +74,7 @@ const Nav = () => {
           SHOP
         </Link>
         <div className="hover:text-white">
-          <DropdownMenu />
+          <AccessibleDropdown />
         </div>
         <Link className="hover:text-white" href="#contactus">
           CONTACT US
@@ -186,8 +187,8 @@ const Nav = () => {
         >
           SHOP
         </Link>
-        <div className="block px-4 py-2 text-two hover:bg-two bg-[#0000004d]">
-          <DropdownMenu />
+        <div className="block px-4 py-2 text-two hover:bg-two  bg-[#0000004d]">
+          <AccessibleDropdown />
         </div>
 
         <Link

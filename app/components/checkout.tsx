@@ -60,6 +60,7 @@ const Checkout = () => {
       router.push("/login");
       return;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, userId]);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

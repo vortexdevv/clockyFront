@@ -5,6 +5,7 @@ import React, { useState } from "react";
 const Footer: React.FC = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState<string>("");
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -15,16 +16,22 @@ const Footer: React.FC = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email }),
+      }).then((response) => {
+        setIsLoading("Loading");
+        return response;
       });
 
       if (response.ok) {
         setMessage("Subscription successful! Check your email.");
+        setIsLoading("Done");
       } else {
         const errorData = await response.json();
         setMessage(errorData.message || "Subscription failed.");
+        setIsLoading("Error");
       }
     } catch (error) {
       setMessage("An error occurred. Please try again.");
+      setIsLoading("Error");
     }
   };
 
@@ -67,7 +74,7 @@ const Footer: React.FC = () => {
           <h3 className="text-lg font-bold mb-4 text-two border-b border-two">
             OTHER PAGES
           </h3>
-          <ul className=" space-y-2 flex md:block items-center justify-between">
+          <ul className=" space-y-2 flex md:flex-col md:items-start md:gap-5 items-center justify-between">
             <li>
               <a href="/" className="hover:underline font-bold">
                 Home
@@ -142,9 +149,10 @@ const Footer: React.FC = () => {
             />
             <button
               type="submit"
-              className="bg-two text-white font-bold p-2 rounded-md"
+              className="bg-two text-main font-bold p-2 rounded-md disabled:bg-black disabled:text-white"
+              disabled={isLoading === "Loading" || isLoading === "Done"}
             >
-              SUBSCRIBE
+              {isLoading === "Loading" ? "Loading" : "SUBSCRIBE"}
             </button>
           </form>
           {message && <p>{message}</p>}

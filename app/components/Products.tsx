@@ -4,6 +4,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
+import { WatchFiltersComponent } from "@/components/watch-filters";
 // import { FiFilter } from "react-icons/fi"; // Import an icon for the toggle button
 
 type Product = {
@@ -16,13 +17,21 @@ type Product = {
   countInStock: number;
   img: string;
 };
+type Filters = {
+  selectedBrand: string;
+  minPrice: number; // Ensure minPrice is a number here, as required.
+  maxPrice: number;
+  category: string;
+  caseColor: string;
+  dialColor: string;
+};
 
 const Products = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [brands, setBrands] = useState<string[]>(["All"]);
-  const [categories, setCategories] = useState<string[]>(["All"]);
-  const [caseColors, setCaseColors] = useState<string[]>(["All"]);
-  const [dialColors, setDialColors] = useState<string[]>(["All"]);
+  // const [brands, setBrands] = useState<string[]>(["All"]);
+  // const [categories, setCategories] = useState<string[]>(["All"]);
+  // const [caseColors, setCaseColors] = useState<string[]>(["All"]);
+  // const [dialColors, setDialColors] = useState<string[]>(["All"]);
   const [activeProductId, setActiveProductId] = useState<string | null>(null);
   const [filters, setFilters] = useState({
     selectedBrand: "All",
@@ -54,31 +63,6 @@ const Products = () => {
   useEffect(() => {
     setPage(1);
   }, [filters]);
-
-  useEffect(() => {
-    const fetchFilters = async () => {
-      try {
-        const response = await axios.get(
-          "https://clockyexpress.vercel.app/api/products/unique-filters"
-        );
-        const {
-          brands: fetchedBrands,
-          categories: fetchedCategories,
-          caseColors: fetchedCaseColors,
-          dialColors: fetchedDialColors,
-        } = response.data;
-
-        setBrands(["All", ...fetchedBrands]);
-        setCategories(["All", ...fetchedCategories]);
-        setCaseColors(["All", ...fetchedCaseColors]);
-        setDialColors(["All", ...fetchedDialColors]);
-      } catch (error) {
-        console.error("Failed to fetch filters", error);
-      }
-    };
-
-    fetchFilters();
-  }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -164,21 +148,24 @@ const Products = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+  const onApplyFilters = (newFilters: Filters) => {
+    setFilters(newFilters);
+  };
 
   return (
-    <div className="h-[90%] pb-14 mt-20 text-white flex flex-col xl:flex-row items-start w-full bg-white pt-10 p-2 text-center mx-auto xl:w-full">
+    <div className="min-h-screen pb-14 text-white flex flex-col  items-start w-full bg-white  text-center mx-auto xl:w-full">
       {/* Sidebar Toggle Button */}
-      <button
+      <div className="text-white backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex flex-col items-center md:justify-center justify-evenly md:gap-12 h-[300px] md:h-[400px]"></div>
+      {/* <button
         onClick={toggleSidebar}
         className="mb-4 p-2 text-gray-800 xl:hidden flex items-center"
       >
-        {/* <FiFilter className="mr-2" />{" "} */}
         <span>X</span>
         {isSidebarOpen ? "Hide Filters" : "Show Filters"}
-      </button>
+      </button> */}
 
       {/* Collapsible Sidebar */}
-      <aside
+      {/* <aside
         className={`${
           isSidebarOpen ? "block" : "hidden"
         } xl:block w-full xl:w-1/4 bg-gray-100 p-4 text-left`}
@@ -296,8 +283,10 @@ const Products = () => {
             />
           </div>
         </div>
-      </aside>
-
+      </aside> */}
+      <div className="w-full">
+        <WatchFiltersComponent onApplyFilters={onApplyFilters} />
+      </div>
       {/* Product List */}
       <div
         className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:w-3/4 gap-4 mx-auto${
