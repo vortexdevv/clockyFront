@@ -38,9 +38,9 @@ export function AccessibleDropdown() {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center w-full">
       <div
-        className="relative"
+        className="relative w-full center"
         ref={dropdownRef}
         onMouseEnter={() => {
           if (window.innerWidth >= 1024) setIsOpen(true);
@@ -51,7 +51,7 @@ export function AccessibleDropdown() {
       >
         <button
           ref={buttonRef}
-          className="flex items-center space-x-2 px-4 py-1 text-sm font-medium text-two rounded-md hover:bg-two hover:text-main focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          className=" w-full  center space-x-2 px-4 py-1 text-sm font-medium text-two rounded-md hover:bg-two hover:text-main focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
           onClick={() => setIsOpen(!isOpen)}
           aria-haspopup="true"
           aria-expanded={isOpen}
@@ -66,7 +66,7 @@ export function AccessibleDropdown() {
 
         {isOpen && (
           <div
-            className="absolute -left-[83%] md:left-0 md:w-56 w-80 origin-top-left bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+            className="absolute top-10 md:top-7 md:left-0 md:w-56 w-80 origin-top-left bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"
