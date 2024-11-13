@@ -18,13 +18,13 @@ import Loading from "./Loading";
 import debounce from "lodash.debounce";
 
 const ProductById = () => {
-  const { id } = useParams(); // Get the product id from the URL
-  const [product, setProduct] = useState<any>(null); // Store fetched product data
-  const [loading, setLoading] = useState(true); // Manage loading state for product fetch
-  const [quantity, setQuantity] = useState(1); // Manage product quantity
-  const [isFavorite, setIsFavorite] = useState(false); // Track if the product is a favorite
-  const [favoriteLoading, setFavoriteLoading] = useState(false); // Manage loading state for add to favorite
-  const [userId, setUserId] = useState<string | null>(null); // Get the user
+  const { id } = useParams();
+  const [product, setProduct] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [quantity, setQuantity] = useState(1);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [favoriteLoading, setFavoriteLoading] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
   const { toast } = useToast();
 
   // Get the userId from localStorage
@@ -259,7 +259,7 @@ const ProductById = () => {
   // .............
   return (
     <div className="flex-col flex items-center h-full mt-20 w-full text-pretty">
-      <div className="flex md:flex-row items-center justify-around w-full flex-col bg-white">
+      <div className="flex md:flex-row items-center justify-between w-[90%]  flex-col bg-white">
         <div className="mb-6 md:mb-0">
           <img
             src={product.img || Watch}
@@ -277,7 +277,7 @@ const ProductById = () => {
             </p>
             <p>Description: {product.description}</p>
           </div>
-          <div className="flex flex-col p-6 gap-3">
+          <div className="flex flex-col py-6 gap-3">
             <input
               className="border-[1px] border-[#F0F0F0] text-[#2E2E2E] text-center w-full md:w-36 bg-[#F0F0F0] py-2"
               type="number"
@@ -317,7 +317,9 @@ const ProductById = () => {
           </div>
         </div>
       </div>
-      <Mytable product={product} />
+      <div className="w-[90%]">
+        <Mytable product={product} />
+      </div>
       <Search />
     </div>
   );
