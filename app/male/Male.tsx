@@ -72,10 +72,11 @@ const Male = () => {
   };
 
   return (
-    <div className="h-full mt-20 text-white center flex-col  w-full bg-[#FCFCFC] pt-10 text-center pb-10">
-      <div className="border-t-2 border-two w-20 p-1 font-medium"></div>
+    <div className="h-full text-white center flex-col  w-full bg-[#FCFCFC] text-center ">
+      <div className="text-white backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex flex-col items-center md:justify-center justify-evenly md:gap-12 h-[300px] md:h-[400px]"></div>
+      <div className="border-t-2 border-two w-20 mt-5 p-1 font-medium"></div>
       <h2 className="text-[#2E2E2E] font-bold">MALE</h2>
-      <div className="grid sm:grid-cols-3 grid-cols-2 md:grid-cols-4 xl:grid-cols-4 md:gap-6 gap-2 media">
+      <div className="grid px-5 sm:grid-cols-3 mb-12 grid-cols-2 md:grid-cols-4 xl:grid-cols-4 md:gap-6 gap-2 media">
         {products.map((product, index) => (
           <div
             key={index}

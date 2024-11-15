@@ -70,7 +70,7 @@ const Nav = () => {
         <Link className="hover:text-white" href="#newarraival">
           NEW ARRIVAL
         </Link>
-        <Link className="hover:text-white" href="/shop">
+        <Link prefetch={true} className="hover:text-white" href="/shop">
           SHOP
         </Link>
         <div className="hover:text-white">
@@ -181,6 +181,7 @@ const Nav = () => {
           NEW ARRIVAL
         </Link>
         <Link
+          prefetch={true}
           className="block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d]"
           href="/shop"
           onClick={() => setIsOpen(false)}

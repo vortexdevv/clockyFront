@@ -6,6 +6,9 @@ import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import Card from "./Card";
+// import { useRouter } from "next/router";
 
 type Product = {
   _id: string;
@@ -18,6 +21,7 @@ type Product = {
 };
 
 const Featured = () => {
+  // const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
@@ -87,78 +91,37 @@ const Featured = () => {
       ),
     });
   };
-
+  {
+    /* ${
+                     isInView
+                       ? "motion-scale-in-[0.5] motion-translate-x-in-[-199%] motion-translate-y-in-[-17%] motion-opacity-in-[0%] motion-rotate-in-[-10deg] motion-blur-in-[5px] motion-duration-[0.00s] motion-duration-[0.70s]/translate"
+                       : ""
+                   } */
+  }
+  const toLink = (id: string) => {};
   return (
-    <div
-      ref={sectionRef}
-      className="flex flex-col items-center w-full bg-[#FCFCFC] p-6 px-6 md:px-14 mx-auto "
-    >
-      <div className="border-t-2 border-two w-20 p-1 font-medium"></div>
-      <h2 className="text-main font-bold text-xl md:text-2xl">FEATURED</h2>
-      <div className="grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center w-full ">
-        {isLoading
-          ? Array.from({ length: 4 }).map((_, index) => (
-              <div
-                key={index}
-                className="mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center p-4 gap-2 shadow-lg w-full md:w-[225px]"
-              >
-                <Skeleton className="w-full h-40 md:h-64" />
-                <Skeleton className="w-full h-6" />
-                <Skeleton className="w-1/2 h-5" />
-                <Skeleton className="w-1/3 h-7" />
-                <Skeleton className="w-full h-10" />
-              </div>
-            ))
-          : products.map((product, index) => (
-              <div
-                key={index}
-                className={`${
-                  isInView
-                    ? "motion-scale-in-[0.5] motion-translate-x-in-[-199%] motion-translate-y-in-[-17%] motion-opacity-in-[0%] motion-rotate-in-[-10deg] motion-blur-in-[5px] motion-duration-[0.00s] motion-duration-[0.70s]/translate"
-                    : ""
-                } mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center pb-8 gap-2 shadow-lg transition-transform duration-300 transform md:hover:scale-105 w-full md:w-[225px]`}
-              >
-                <Link
-                  href={`/product/${product._id}`}
-                  className="flex w-full flex-col gap-2 justify-between h-full"
+    <div ref={sectionRef} className="container mx-auto pt-5">
+      <div className="flex flex-col items-center w-full bg-[#FCFCFC]">
+        <div className="border-t-2 border-two w-20 p-1 font-medium"></div>
+        <h2 className="text-main font-bold text-xl md:text-2xl ">FEATURED</h2>
+        <div className="grid lg:grid-cols-5 grid-cols-2 md:grid-cols-3  gap-2 w-full px-5">
+          {isLoading
+            ? Array.from({ length: 4 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center p-4 gap-2 shadow-lg w-full md:w-[225px]"
                 >
-                  <div className="overflow-hidden">
-                    <img
-                      src={product.img}
-                      loading="lazy"
-                      alt={product.name}
-                      className="w-full object-cover h-40 md:h-64 transform transition-transform duration-300 hover:scale-110"
-                    />
-                  </div>
-                  <div className="text-center">
-                    <h1 className="text-main font-bold text-lg md:text-xl truncate w-full">
-                      {product.name}
-                    </h1>
-                    <p className="text-[#595959] text-sm line-through">
-                      {product.before} L.E
-                    </p>
-                    <p className="text-two font-bold text-xl md:text-2xl">
-                      {product.price} L.E
-                    </p>
-                  </div>
-                </Link>
-                <button
-                  onClick={() => addToCart(product)}
-                  className="relative h-10 flex items-center justify-center px-4 py-2 bg-main text-two font-semibold border overflow-hidden group"
-                >
-                  <div
-                    className={`absolute center inset-0 group-hover:translate-x-0 bg-two w-full h-full transform translate-x-full transition-transform duration-500 ease-in-out ${
-                      activeProductId === product._id ? "translate-x-0" : ""
-                    }`}
-                  >
-                    <span className="truncate center text-main">
-                      ADD TO CART
-                    </span>
-                  </div>
-                  <span className="truncate">ADD TO CART</span>
-                </button>
-              </div>
-            ))}
+                  <Skeleton className="w-full h-40 md:h-64" />
+                  <Skeleton className="w-full h-6" />
+                  <Skeleton className="w-1/2 h-5" />
+                  <Skeleton className="w-1/3 h-7" />
+                  <Skeleton className="w-full h-10" />
+                </div>
+              ))
+            : products.map((product) => (
+                <Card product={product} key={product._id} />
+              ))}
+        </div>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { WatchFiltersComponent } from "@/components/watch-filters";
+import { Button } from "@/components/ui/button";
 // import { FiFilter } from "react-icons/fi"; // Import an icon for the toggle button
 
 type Product = {
@@ -297,43 +298,48 @@ const Products = () => {
           <div
             ref={products.length === index + 1 ? lastProductRef : null}
             key={index}
-            className={` mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col items-center pb-8 gap-2 shadow-lg transition-transform duration-300 transform md:hover:scale-105 w-full md:w-[225px]`}
+            className={` rounded-md overflow-hidden mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col shadow transition-transform duration-300 transform w-full flex-grow`}
           >
-            <Link
-              href={`/product/${product._id}`}
-              className="flex w-full flex-col gap-2 justify-between h-full"
-            >
-              <img
-                src={product.img}
-                loading="lazy"
-                alt={product.name}
-                className="w-full object-cover h-40 md:h-64"
-              />
-              <div className="text-center">
-                <h1 className="text-main font-bold text-lg md:text-xl truncate w-full">
-                  {product.name}
-                </h1>
-                <p className="text-[#595959] text-sm line-through">
-                  {product.before} L.E
-                </p>
-                <p className="text-two font-bold text-xl md:text-2xl">
-                  {product.price} L.E
-                </p>
+            <div className="flex w-full flex-col h-full">
+              <div className="relative overflow-hidden border-b-2 drop-shadow flex-grow-[1]">
+                <img
+                  src={product.img}
+                  loading="lazy"
+                  alt={product.name}
+                  className="w-full object-cover transform transition-transform duration-300 hover:scale-110"
+                />
+                {/* <div className="card-img-background bg-cover bg-main"></div> */}
               </div>
-            </Link>
-            <button
-              onClick={() => addToCart(product)}
-              className="relative h-10 flex items-center justify-center px-4 py-2 bg-main text-white font-semibold border overflow-hidden group"
-            >
-              <div
-                className={`absolute center inset-0 group-hover:translate-x-0 bg-two w-full h-full transform translate-x-full transition-transform duration-500 ease-in-out ${
-                  activeProductId === product._id ? "translate-x-0" : ""
-                }`}
+              <div className="flex flex-col justify-between flex-grow-[2] px-2 pt-2">
+                <div className="pb-2">
+                  <h2 className="text-main text-[20px] font-bold truncate w-full text-lines-1">
+                    {product.name}
+                  </h2>
+                  <p className="text-main text-lines-2">
+                    {product.description}
+                  </p>
+                </div>
+                <div className="flex pb-3">
+                  <p className="text-two text-[20px] font-bold">
+                    {product.price} L.E
+                    {/* <span className="text-[#595959] inline-flex text-[16px] ps-1 font-light line-through align-bottom">
+                            {product.before} L.E
+                          </span> */}
+                  </p>
+                  <p className="text-[#595959] ps-1 line-through self-end">
+                    {product.before} L.E
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="pb-2 px-2">
+              <Button
+                onClick={() => addToCart(product)}
+                className="rounded-sm w-full bg-transparent text-main py-5 text-[16px] border border-main hover:font-bold hover:text-two hover:bg-main"
               >
-                <span className="truncate center">ADD TO CART</span>
-              </div>
-              <span className="truncate">ADD TO CART</span>
-            </button>
+                ADD TO CARD
+              </Button>
+            </div>
           </div>
         ))}
       </div>
