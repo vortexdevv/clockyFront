@@ -215,6 +215,11 @@ const Products = () => {
                       {product.before} L.E
                     </p>
                   </div>
+                  <div
+                    className={`absolute top-[8.5rem] left-[0.25rem] text-main px-2 py-1 rounded-md text-xs`}
+                  >
+                    Stock: {product.countInStock}
+                  </div>
                 </div>
               </div>
               <div className="pb-2 px-2">

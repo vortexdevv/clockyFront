@@ -1,9 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import { Button } from "@/components/ui/button";
 import { toast, useToast } from "@/hooks/use-toast";
+import axiosInstance from "@/lib/axiosConfig";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons"; // Solid heart for favorite
+import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons"; // Outline heart for not favorite
 
 type Product = {
   _id: string;
@@ -15,6 +21,10 @@ type Product = {
   img: string;
 };
 const Card = ({ product }: any) => {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [favoriteLoading, setFavoriteLoading] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
+  const { toast } = useToast();
   const [activeProductId, setActiveProductId] = useState<string | null>(null);
   const router = useRouter();
   const addToCart = (product: Product) => {
@@ -36,11 +46,94 @@ const Card = ({ product }: any) => {
       action: <Link href="/cart">Go to cart</Link>,
     });
   };
+  // add to favorite
+  // Get the userId from localStorage
+  useEffect(() => {
+    const userID = localStorage.getItem("userId");
+    setUserId(userID);
+
+    if (userID && product._id) {
+      checkIfFavorite(userID); // Pass userId to checkIfFavorite function
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product._id]);
+  // Check if the product is in the user's favorite list
+  const checkIfFavorite = async (userId: string) => {
+    try {
+      const res = await axios.post(
+        `https://clockyexpress.vercel.app/api/products/isFavorite/${userId}`,
+        {
+          ProductId: product._id,
+        }
+      );
+      setIsFavorite(res.data.isFavorite);
+    } catch (error: any) {
+      console.error("Error checking favorite:", error);
+    }
+  };
+  // Add to Favorites functionality
+  const handleAddToFavorites = async () => {
+    setFavoriteLoading(true);
+    try {
+      if (isFavorite) {
+        // Remove from favorites
+        await axiosInstance.delete(`/products/favorites/${userId}`, {
+          data: { ProductId: product._id },
+        });
+        setIsFavorite(false);
+        toast({
+          title: "Removed from favorites",
+        });
+      } else {
+        // Add to favorites
+        await axiosInstance.post(`/products/favorites/${userId}`, {
+          ProductId: product._id,
+        });
+        setIsFavorite(true);
+        toast({
+          title: "Added to favorites",
+        });
+      }
+    } catch (error: any) {
+      console.error("Error updating favorite status:", error);
+      toast({
+        title: "error",
+        description: "You are not logged in please login and try again",
+        variant: "destructive",
+        action: <Link href="/login">Go to login page</Link>,
+      });
+      setFavoriteLoading(false);
+    } finally {
+      setFavoriteLoading(false);
+    }
+  };
+
   return (
     <div
       className={`
                   rounded-md z-0 relative overflow-hidden mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col shadow transition-transform duration-300 transform w-full flex-grow`}
     >
+      <button
+        className={`text-white p-2 rounded-md absolute z-20   center ${
+          isFavorite ? "bg-main text-main " : "bg-main"
+        } hover:bg-two hover:text-main `}
+        onClick={handleAddToFavorites}
+        disabled={favoriteLoading}
+      >
+        {favoriteLoading ? (
+          <FontAwesomeIcon
+            icon={faSpinner}
+            className="animate-spin  hover:text-main"
+          />
+        ) : (
+          <FontAwesomeIcon
+            icon={isFavorite ? solidHeart : regularHeart}
+            className={` transition-all duration-300 transform hover:text-main ${
+              isFavorite ? "scale-125 text-two" : "text-gray-300"
+            }`}
+          />
+        )}
+      </button>
       <div
         onClick={() => {
           router.push(`product/${product._id}`);
