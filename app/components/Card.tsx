@@ -115,21 +115,18 @@ const Card = ({ product }: any) => {
     >
       <button
         className={`text-white p-2 rounded-md absolute z-20   center ${
-          isFavorite ? "bg-main text-main " : "bg-main"
-        } hover:bg-two hover:text-main `}
+          isFavorite ? " text-main " : ""
+        }  hover:text-main `}
         onClick={handleAddToFavorites}
         disabled={favoriteLoading}
       >
         {favoriteLoading ? (
-          <FontAwesomeIcon
-            icon={faSpinner}
-            className="animate-spin  hover:text-main"
-          />
+          <FontAwesomeIcon icon={faSpinner} className="animate-spin  " />
         ) : (
           <FontAwesomeIcon
             icon={isFavorite ? solidHeart : regularHeart}
-            className={` transition-all duration-300 transform hover:text-main ${
-              isFavorite ? "scale-125 text-two" : "text-gray-300"
+            className={` transition-all duration-300 transform  ${
+              isFavorite ? "scale-125 text-two" : "text-main"
             }`}
           />
         )}
