@@ -5,7 +5,7 @@ import Nav from "../components/Nav";
 const page = () => {
   return (
     <div className="min-h-[100dvh] center">
-      <Nav />
+      {/* <Nav /> */}
       <FavoritesPage />
     </div>
   );

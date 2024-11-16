@@ -68,12 +68,18 @@ const Arrivals = () => {
   };
 
   return (
-    <div
+    <section
       id="newarraival"
-      className={products.length > 0 ? "container mx-auto pt-5 mb-5" : "hidden"}
+      className={
+        products.length > 0
+          ? "container mx-auto py-10 mt-8 border-b-4 border-two w-full shadow"
+          : "hidden"
+      }
     >
-      <div className="border-t-2 mx-auto border-two w-20 p-1 font-medium"></div>
-      <h2 className="text-[#2E2E2E] text-center font-bold">NEW ARRIVALS</h2>
+      {/* <div className="border-t-2 mx-auto border-two w-20 p-1 font-medium"></div> */}
+      <h2 className="text-[#2E2E2E] text-center font-bold text-xl md:text-3xl">
+        NEW ARRIVALS
+      </h2>
       <div className="grid lg:grid-cols-5 grid-cols-2 md:grid-cols-3  gap-2 w-full px-5 ">
         {loading
           ? // Display skeletons when loading
@@ -87,7 +93,7 @@ const Arrivals = () => {
               <Card product={product} key={product._id} />
             ))}
       </div>
-    </div>
+    </section>
   );
 };
 

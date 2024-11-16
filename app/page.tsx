@@ -14,7 +14,7 @@ export default function Home() {
   // const hosary: number = 0;
   return (
     <main className="h-auto bg-[#FCFCFC]">
-      <Nav />
+      {/* <Nav /> */}
       <Hero />
       <Brands />
       <Featured />
@@ -23,7 +23,7 @@ export default function Home() {
       {/* <Products2 /> */}
       {/* <One /> */}
       <Arrivals />
-      <Footer />
+      {/* <Footer /> */}
       {/* <AppSidebar /> */}
       {/* <Payment /> */}
     </main>

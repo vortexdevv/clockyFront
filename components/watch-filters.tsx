@@ -23,12 +23,6 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-// Mock data for filters
-// const caseColors = ["Silver", "Gold", "Black", "Rose Gold"];
-// const dialColors = ["White", "Black", "Blue", "Green"];
-// const brands = ["Rolex", "Omega", "Seiko", "Casio"];
-// const categories = ["Luxury", "Sport", "Dress", "Casual"];
-
 type Filters = {
   caseColor: string;
   dialColor: string;
@@ -39,7 +33,7 @@ type Filters = {
 };
 
 interface WatchFiltersComponentProps {
-  onApplyFilters: (filters: Filters) => void; // Using Filters type here
+  onApplyFilters: (filters: Filters) => void;
 }
 
 export function WatchFiltersComponent({
@@ -57,6 +51,7 @@ export function WatchFiltersComponent({
   const [caseColors, setCaseColors] = useState<string[]>(["All"]);
   const [brands, setBrands] = useState<string[]>(["All"]);
   const [dialColors, setDialColors] = useState<string[]>(["All"]);
+
   const handleFilterChange = (name: string, value: string) => {
     setFilters((prev) => ({ ...prev, [name]: value }));
   };
@@ -77,6 +72,7 @@ export function WatchFiltersComponent({
     setFilters(resetValues);
     onApplyFilters(resetValues);
   };
+
   useEffect(() => {
     const fetchFilters = async () => {
       try {
@@ -107,7 +103,7 @@ export function WatchFiltersComponent({
       <div>
         <label
           htmlFor="caseColorFilter"
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className="text-sm font-medium leading-none"
         >
           Case Color:
         </label>
@@ -131,7 +127,7 @@ export function WatchFiltersComponent({
       <div>
         <label
           htmlFor="dialColorFilter"
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className="text-sm font-medium leading-none"
         >
           Dial Color:
         </label>
@@ -155,7 +151,7 @@ export function WatchFiltersComponent({
       <div>
         <label
           htmlFor="brandFilter"
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className="text-sm font-medium leading-none"
         >
           Brand:
         </label>
@@ -179,7 +175,7 @@ export function WatchFiltersComponent({
       <div>
         <label
           htmlFor="categoryFilter"
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className="text-sm font-medium leading-none"
         >
           Category:
         </label>
@@ -201,10 +197,7 @@ export function WatchFiltersComponent({
       </div>
 
       <div>
-        <label
-          htmlFor="minPrice"
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-        >
+        <label htmlFor="minPrice" className="text-sm font-medium leading-none">
           Min Price:
         </label>
         <Input
@@ -217,10 +210,7 @@ export function WatchFiltersComponent({
       </div>
 
       <div>
-        <label
-          htmlFor="maxPrice"
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-        >
+        <label htmlFor="maxPrice" className="text-sm font-medium leading-none">
           Max Price:
         </label>
         <Input
@@ -235,31 +225,53 @@ export function WatchFiltersComponent({
   );
 
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button variant="outline" className="mb-4 text-black mt-5">
-          <Filter className="mr-2 h-4 w-4 text-black" /> Filters
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-        <SheetHeader>
-          <SheetTitle>Filters</SheetTitle>
-          <SheetDescription>
-            Apply filters to refine your watch search.
-          </SheetDescription>
-        </SheetHeader>
-        <div className="mt-4">
+    <>
+      <div className="hidden lg:block">
+        <div className="p-4 border border-gray-200 rounded-lg">
           <FiltersContent />
+          <div className="mt-4 flex justify-between">
+            <Button onClick={applyFilters} className="mr-2">
+              Apply Filters
+            </Button>
+            <Button
+              variant="outline"
+              className="text-black"
+              onClick={resetFilters}
+            >
+              Reset
+            </Button>
+          </div>
         </div>
-        <div className="mt-4 flex justify-between">
-          <Button onClick={applyFilters} className="mr-2">
-            Apply Filters
-          </Button>
-          <Button variant="outline" onClick={resetFilters}>
-            Reset
-          </Button>
-        </div>
-      </SheetContent>
-    </Sheet>
+      </div>
+
+      <div className="block lg:hidden">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline" className="mb-4 text-black mt-5">
+              <Filter className="mr-2 h-4 w-4 text-black" /> Filters
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+            <SheetHeader>
+              <SheetTitle>Filters</SheetTitle>
+              <SheetDescription>
+                Apply filters to refine your watch search.
+              </SheetDescription>
+            </SheetHeader>
+            <div className="mt-4">
+              <FiltersContent />
+            </div>
+            <div className="mt-4 flex justify-between">
+              <Button onClick={applyFilters} className="mr-2">
+                Apply Filters
+              </Button>
+              <Button variant="outline" onClick={resetFilters}>
+                Reset
+              </Button>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
+    </>
   );
 }

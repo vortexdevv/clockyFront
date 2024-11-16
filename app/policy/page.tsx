@@ -5,7 +5,7 @@ import PrivacyPolicy from "./PrivacyPolicy";
 const page = () => {
   return (
     <div className="min-h-screen bg-main md:p-8 flex flex-col items-center text-pretty">
-      <Nav />
+      {/* <Nav /> */}
       <PrivacyPolicy />
     </div>
   );

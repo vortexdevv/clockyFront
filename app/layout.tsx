@@ -6,6 +6,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -37,10 +39,12 @@ export default function RootLayout({
         {/* <Nav /> */}
         {/* <SidebarProvider> */}
         {/* <SidebarTrigger /> */}
+        <Nav />
         {children}
         <Toaster />
         <Analytics />
         <SpeedInsights />
+        <Footer />
         {/* </SidebarProvider> */}
       </body>
     </html>

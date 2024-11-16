@@ -4,7 +4,7 @@ import Nav from "../components/Nav";
 const page = () => {
   return (
     <div className="min-h-screen bg-main md:p-8 flex flex-col items-center text-pretty">
-      <Nav />
+      {/* <Nav /> */}
       <div className="max-w-4xl w-full bg-white shadow-md rounded-lg md:p-8 mt-20">
         {/* English Section */}
         <div className="max-w-4xl mx-auto p-6 bg-gray-100 text-gray-900">

@@ -69,7 +69,7 @@ const Login = () => {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white text-white p-4">
+    <div className="min-h-screen flex items-center justify-center mt-20 bg-white text-white p-4">
       <div className="bg-main shadow-lg rounded-lg p-6 w-full max-w-md">
         <h2 className="text-center text-2xl font-semibold mb-6">
           {isLogin ? "Login" : "Sign Up"}

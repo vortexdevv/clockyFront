@@ -4,7 +4,7 @@ import Nav from "@/app/components/Nav";
 const Page = () => {
   return (
     <div className="h-full w-full justify-evenly bg-white">
-      <Nav />
+      {/* <Nav /> */}
       <ProductById />
     </div>
   );

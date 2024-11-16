@@ -5,7 +5,7 @@ import Nav from "../components/Nav";
 const page = () => {
   return (
     <div className="bg-main">
-      <Nav />
+      {/* <Nav /> */}
       <Login />
     </div>
   );

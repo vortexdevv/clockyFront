@@ -156,192 +156,72 @@ const Products = () => {
   return (
     <div className="min-h-screen pb-14 text-white flex flex-col  items-start w-full bg-white  text-center mx-auto xl:w-full">
       {/* Sidebar Toggle Button */}
-      <div className="text-white backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex flex-col items-center md:justify-center justify-evenly md:gap-12 h-[300px] md:h-[400px]"></div>
-      {/* <button
-        onClick={toggleSidebar}
-        className="mb-4 p-2 text-gray-800 xl:hidden flex items-center"
-      >
-        <span>X</span>
-        {isSidebarOpen ? "Hide Filters" : "Show Filters"}
-      </button> */}
 
-      {/* Collapsible Sidebar */}
-      {/* <aside
-        className={`${
-          isSidebarOpen ? "block" : "hidden"
-        } xl:block w-full xl:w-1/4 bg-gray-100 p-4 text-left`}
-      >
-        <h2 className="text-[#2E2E2E] font-bold mb-4">Filters</h2>
-
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col">
-            <label
-              htmlFor="caseColorFilter"
-              className="font-semibold text-black"
-            >
-              Case Color:
-            </label>
-            <select
-              id="caseColorFilter"
-              name="caseColor"
-              value={filters.caseColor}
-              onChange={handleFilterChange}
-              className="border border-gray-300 rounded text-black"
-            >
-              {caseColors.map((color) => (
-                <option key={color} value={color}>
-                  {color}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="flex flex-col">
-            <label
-              htmlFor="dialColorFilter"
-              className="font-semibold text-black"
-            >
-              Dial Color:
-            </label>
-            <select
-              id="dialColorFilter"
-              name="dialColor"
-              value={filters.dialColor}
-              onChange={handleFilterChange}
-              className="border border-gray-300 rounded text-black"
-            >
-              {dialColors.map((color) => (
-                <option key={color} value={color}>
-                  {color}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="flex flex-col">
-            <label htmlFor="brandFilter" className="font-semibold text-black">
-              Brand:
-            </label>
-            <select
-              id="brandFilter"
-              name="selectedBrand"
-              value={filters.selectedBrand}
-              onChange={handleFilterChange}
-              className="border border-gray-300 rounded text-black"
-            >
-              {brands.map((brand) => (
-                <option key={brand} value={brand}>
-                  {brand}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="flex flex-col">
-            <label
-              htmlFor="categoryFilter"
-              className="font-semibold text-black"
-            >
-              Category:
-            </label>
-            <select
-              id="categoryFilter"
-              name="category"
-              value={filters.category}
-              onChange={handleFilterChange}
-              className="border border-gray-300 rounded text-black"
-            >
-              {categories.map((category) => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="flex flex-col">
-            <label htmlFor="minPrice" className="font-semibold text-black">
-              Min Price:
-            </label>
-            <input
-              type="number"
-              id="minPrice"
-              name="minPrice"
-              value={filters.minPrice}
-              onChange={handleFilterChange}
-              className="border border-gray-300 rounded text-black"
-            />
-            <label htmlFor="maxPrice" className="font-semibold text-black mt-2">
-              Max Price:
-            </label>
-            <input
-              type="number"
-              id="maxPrice"
-              name="maxPrice"
-              value={filters.maxPrice}
-              onChange={handleFilterChange}
-              className="border border-gray-300 rounded text-black"
-            />
-          </div>
-        </div>
-      </aside> */}
-      <div className="w-full">
-        <WatchFiltersComponent onApplyFilters={onApplyFilters} />
+      <div className="text-white pl-5 text-left backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex flex-col justify-end md:gap-12 h-[300px] ">
+        <span className="mainFont text-two text-9xl shadow-lg w-full">
+          Shop
+        </span>
       </div>
-      {/* Product List */}
-      <div
-        className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:w-3/4 gap-4 mx-auto${
-          isSidebarOpen ? "mt-4" : ""
-        }`}
-      >
-        {products.map((product, index) => (
-          <div
-            ref={products.length === index + 1 ? lastProductRef : null}
-            key={index}
-            className={` rounded-md overflow-hidden mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col shadow transition-transform duration-300 transform w-full flex-grow`}
-          >
-            <div className="flex w-full flex-col h-full">
-              <div className="relative overflow-hidden border-b-2 drop-shadow flex-grow-[1]">
-                <img
-                  src={product.img}
-                  loading="lazy"
-                  alt={product.name}
-                  className="w-full object-cover transform transition-transform duration-300 hover:scale-110"
-                />
-                {/* <div className="card-img-background bg-cover bg-main"></div> */}
-              </div>
-              <div className="flex flex-col justify-between flex-grow-[2] px-2 pt-2">
-                <div className="pb-2">
-                  <h2 className="text-main text-[20px] font-bold truncate w-full text-lines-1">
-                    {product.name}
-                  </h2>
-                  <p className="text-main text-lines-2">
-                    {product.description}
-                  </p>
+
+      <div className="flex flex-col md:flex-row md:items-start items-center w-full px-5">
+        <div className="w-1/5 mt-6">
+          <WatchFiltersComponent onApplyFilters={onApplyFilters} />
+        </div>
+        {/* Product List */}
+        <div
+          className={`grid grid-cols-2 w-4/5 sm:grid-cols-3 lg:grid-cols-4 xl:w-3/4 gap-4 mx-auto${
+            isSidebarOpen ? "mt-4" : ""
+          }`}
+        >
+          {products.map((product, index) => (
+            <div
+              ref={products.length === index + 1 ? lastProductRef : null}
+              key={index}
+              className={` rounded-md overflow-hidden mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col shadow transition-transform duration-300 transform w-full flex-grow`}
+            >
+              <div className="flex w-full flex-col h-full">
+                <div className="relative overflow-hidden border-b-2 drop-shadow flex-grow-[1]">
+                  <img
+                    src={product.img}
+                    loading="lazy"
+                    alt={product.name}
+                    className="w-full object-cover transform transition-transform duration-300 hover:scale-110"
+                  />
+                  {/* <div className="card-img-background bg-cover bg-main"></div> */}
                 </div>
-                <div className="flex pb-3">
-                  <p className="text-two text-[20px] font-bold">
-                    {product.price} L.E
-                    {/* <span className="text-[#595959] inline-flex text-[16px] ps-1 font-light line-through align-bottom">
+                <div className="flex flex-col justify-between flex-grow-[2] px-2 pt-2">
+                  <div className="pb-2">
+                    <h2 className="text-main text-[20px] font-bold truncate w-full text-lines-1">
+                      {product.name}
+                    </h2>
+                    <p className="text-main text-lines-2">
+                      {product.description}
+                    </p>
+                  </div>
+                  <div className="flex pb-3">
+                    <p className="text-two text-[20px] font-bold">
+                      {product.price} L.E
+                      {/* <span className="text-[#595959] inline-flex text-[16px] ps-1 font-light line-through align-bottom">
                             {product.before} L.E
                           </span> */}
-                  </p>
-                  <p className="text-[#595959] ps-1 line-through self-end">
-                    {product.before} L.E
-                  </p>
+                    </p>
+                    <p className="text-[#595959] ps-1 line-through self-end">
+                      {product.before} L.E
+                    </p>
+                  </div>
                 </div>
               </div>
+              <div className="pb-2 px-2">
+                <Button
+                  onClick={() => addToCart(product)}
+                  className="rounded-sm w-full bg-transparent text-main py-5 text-[16px] border border-main hover:font-bold hover:text-two hover:bg-main"
+                >
+                  ADD TO CARD
+                </Button>
+              </div>
             </div>
-            <div className="pb-2 px-2">
-              <Button
-                onClick={() => addToCart(product)}
-                className="rounded-sm w-full bg-transparent text-main py-5 text-[16px] border border-main hover:font-bold hover:text-two hover:bg-main"
-              >
-                ADD TO CARD
-              </Button>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

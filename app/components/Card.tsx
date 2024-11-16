@@ -2,7 +2,9 @@
 import { Button } from "@/components/ui/button";
 import { toast, useToast } from "@/hooks/use-toast";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+
 type Product = {
   _id: string;
   name: string;
@@ -14,7 +16,7 @@ type Product = {
 };
 const Card = ({ product }: any) => {
   const [activeProductId, setActiveProductId] = useState<string | null>(null);
-
+  const router = useRouter();
   const addToCart = (product: Product) => {
     setActiveProductId(product._id);
     setTimeout(() => {
@@ -36,11 +38,15 @@ const Card = ({ product }: any) => {
   };
   return (
     <div
-      // onClick={()}
       className={`
-                  rounded-md overflow-hidden mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col shadow transition-transform duration-300 transform w-full flex-grow`}
+                  rounded-md z-0 relative overflow-hidden mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col shadow transition-transform duration-300 transform w-full flex-grow`}
     >
-      <div className="flex w-full flex-col h-full">
+      <div
+        onClick={() => {
+          router.push(`product/${product._id}`);
+        }}
+        className="flex w-full flex-col h-full cursor-pointer"
+      >
         <div className="relative overflow-hidden border-b-2 drop-shadow flex-grow-[1]">
           <img
             src={product.img}
@@ -58,13 +64,13 @@ const Card = ({ product }: any) => {
             <p className="text-main text-lines-2">{product.description}</p>
           </div>
           <div className="flex pb-3">
-            <p className="text-two text-[20px] font-bold">
+            <p className="text-two text-[16px] md:text-[20px] font-bold">
               {product.price} L.E
               {/* <span className="text-[#595959] inline-flex text-[16px] ps-1 font-light line-through align-bottom">
                             {product.before} L.E
                           </span> */}
             </p>
-            <p className="text-[#595959] ps-1 line-through self-end">
+            <p className="text-[#595959] text-[14px] md:text-[16px] ps-1 line-through self-end">
               {product.before} L.E
             </p>
           </div>
@@ -73,7 +79,7 @@ const Card = ({ product }: any) => {
       <div className="pb-2 px-2">
         <Button
           onClick={() => addToCart(product)}
-          className="rounded-sm w-full bg-transparent text-main py-5 text-[16px] border border-main hover:font-bold hover:text-two hover:bg-main"
+          className="rounded-sm relative z-50 w-full bg-transparent text-main py-5 text-[16px] border border-main hover:font-bold hover:text-two hover:bg-main"
         >
           ADD TO CARD
         </Button>

@@ -5,9 +5,9 @@ import Footer from "../components/Footer";
 const page = () => {
   return (
     <div className="min-h-[100dvh] bg-white">
-      <Nav />
+      {/* <Nav /> */}
       <Male />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
