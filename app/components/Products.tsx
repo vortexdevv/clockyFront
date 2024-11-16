@@ -6,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { WatchFiltersComponent } from "@/components/watch-filters";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 // import { FiFilter } from "react-icons/fi"; // Import an icon for the toggle button
 
 type Product = {
@@ -46,7 +47,7 @@ const Products = () => {
   const [hasMore, setHasMore] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar toggle state
   const { toast } = useToast();
-
+  const router = useRouter();
   const observer = useRef<IntersectionObserver | null>(null);
   const lastProductRef: any = useCallback(
     (node: Element) => {
@@ -157,7 +158,7 @@ const Products = () => {
     <div className="min-h-screen pb-14 text-white flex flex-col  items-start w-full bg-white  text-center mx-auto xl:w-full">
       {/* Sidebar Toggle Button */}
 
-      <div className="text-white pl-5 text-left backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex flex-col justify-end md:gap-12 h-[300px] ">
+      <div className="text-white md:pl-5 md:text-left backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex flex-col justify-end md:gap-12 h-[300px] ">
         <span className="mainFont text-two text-9xl shadow-lg w-full">
           Shop
         </span>
@@ -169,7 +170,7 @@ const Products = () => {
         </div>
         {/* Product List */}
         <div
-          className={`grid grid-cols-2 w-4/5 sm:grid-cols-3 lg:grid-cols-4 xl:w-3/4 gap-4 mx-auto${
+          className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:w-3/4 gap-4 mx-auto${
             isSidebarOpen ? "mt-4" : ""
           }`}
         >
@@ -177,9 +178,14 @@ const Products = () => {
             <div
               ref={products.length === index + 1 ? lastProductRef : null}
               key={index}
-              className={` rounded-md overflow-hidden mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col shadow transition-transform duration-300 transform w-full flex-grow`}
+              className={`rounded-md z-0 relative overflow-hidden mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col shadow transition-transform duration-300 transform w-full flex-grow`}
             >
-              <div className="flex w-full flex-col h-full">
+              <div
+                onClick={() => {
+                  router.push(`product/${product._id}`);
+                }}
+                className="flex w-full flex-col h-full cursor-pointer"
+              >
                 <div className="relative overflow-hidden border-b-2 drop-shadow flex-grow-[1]">
                   <img
                     src={product.img}
@@ -199,13 +205,13 @@ const Products = () => {
                     </p>
                   </div>
                   <div className="flex pb-3">
-                    <p className="text-two text-[20px] font-bold">
+                    <p className="text-two text-[16px] md:text-[20px] font-bold">
                       {product.price} L.E
                       {/* <span className="text-[#595959] inline-flex text-[16px] ps-1 font-light line-through align-bottom">
                             {product.before} L.E
                           </span> */}
                     </p>
-                    <p className="text-[#595959] ps-1 line-through self-end">
+                    <p className="text-[#595959] text-[14px] md:text-[16px] ps-1 line-through self-end">
                       {product.before} L.E
                     </p>
                   </div>
@@ -214,7 +220,7 @@ const Products = () => {
               <div className="pb-2 px-2">
                 <Button
                   onClick={() => addToCart(product)}
-                  className="rounded-sm w-full bg-transparent text-main py-5 text-[16px] border border-main hover:font-bold hover:text-two hover:bg-main"
+                  className="rounded-sm relative z-50 w-full bg-transparent text-main py-5 text-[16px] border border-main hover:font-bold hover:text-two hover:bg-main"
                 >
                   ADD TO CARD
                 </Button>
