@@ -1,4 +1,6 @@
 "use client";
+import { Button } from "@/components/ui/button";
+import { LoaderCircle } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -8,7 +10,9 @@ const Footer: React.FC = () => {
   const [isLoading, setIsLoading] = useState<string>("");
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    setIsLoading("Loading"); // Set loading state immediately
+    setMessage(""); // Clear previous messages
+    setEmail(""); // Clear
     try {
       const response = await fetch("/api/newsletter", {
         method: "POST",
@@ -16,9 +20,6 @@ const Footer: React.FC = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email }),
-      }).then((response) => {
-        setIsLoading("Loading");
-        return response;
       });
 
       if (response.ok) {
@@ -138,7 +139,10 @@ const Footer: React.FC = () => {
         {/* Newsletter */}
         <div>
           <h3 className="text-lg font-bold mb-4 text-two">NEWSLETTER</h3>
-          <form onSubmit={handleSubscribe} className="flex space-x-2 mb-4">
+          <form
+            onSubmit={handleSubscribe}
+            className="flex items-center space-x-2 mb-4"
+          >
             <input
               type="email"
               placeholder="name@example.com"
@@ -147,13 +151,25 @@ const Footer: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <button
-              type="submit"
-              className="bg-two text-main font-bold p-2 rounded-md disabled:bg-black disabled:text-white"
-              disabled={isLoading === "Loading" || isLoading === "Done"}
-            >
-              {isLoading === "Loading" ? "Loading" : "SUBSCRIBE"}
-            </button>
+            {isLoading !== "Loading" ? (
+              <Button
+                type="submit"
+                className="bg-two text-main hover:bg-white hover:text-main font-bold p-2 rounded-md disabled:bg-black disabled:text-white"
+                // disabled={isLoading === "Loading" || isLoading === "Done"}
+              >
+                {/* {isLoading === "Loading" ? "Loading" : ""} */}SUBSCRIBE
+              </Button>
+            ) : (
+              <Button disabled={isLoading === "Loading"} className="text-two">
+                <LoaderCircle
+                  className="-ms-1 me-2 animate-spin text-two"
+                  size={16}
+                  strokeWidth={2}
+                  aria-hidden="true"
+                />
+                Loading
+              </Button>
+            )}
           </form>
           {message && <p>{message}</p>}
           <p className="mb-4">

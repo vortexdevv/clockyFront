@@ -160,7 +160,13 @@ const Card = ({ product }: any) => {
                             {product.before} L.E
                           </span> */}
             </p>
-            <p className="text-[#595959] text-[14px] md:text-[16px] ps-1 line-through self-end">
+            <p
+              className={`text-[#595959] text-[14px] md:text-[16px] ps-1 line-through self-end ${
+                product.before === null || product.before === undefined
+                  ? "hidden"
+                  : ""
+              }`}
+            >
               {product.before} L.E
             </p>
           </div>

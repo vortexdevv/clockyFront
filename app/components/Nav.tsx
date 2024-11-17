@@ -67,29 +67,29 @@ const Nav = () => {
 
       {/* Desktop Navigation */}
       <div className="md:flex md:gap-3 lg:gap-8 items-center text-[15px] hidden">
-        <Link className="hover:text-white" href="#newarraival">
+        <Link className="hover:text-white px-2" href="#newarraival">
           NEW ARRIVAL
         </Link>
-        <Link prefetch={true} className="hover:text-white" href="/shop">
+        <Link prefetch={true} className="hover:text-white px-2" href="/shop">
           SHOP
         </Link>
         <div className="hover:text-white">
           <AccessibleDropdown />
         </div>
-        <Link className="hover:text-white" href="#contactus">
+        <Link className="hover:text-white px-2" href="#contactus">
           CONTACT US
         </Link>
-        <Link className="hover:text-white" href="/policy">
+        <Link className="hover:text-white px-2" href="/policy">
           POLICY
         </Link>
         <Link
-          className={`hover:text-white ${storageValue ? "hidden" : ""}`}
+          className={`hover:text-white px-2 ${storageValue ? "hidden" : ""}`}
           href="/login"
         >
           LOGIN
         </Link>
         <Link
-          className={`hover:text-white ${storageValue ? "" : "hidden"}`}
+          className={`hover:text-white px-2 ${storageValue ? "" : "hidden"}`}
           onClick={handleClick}
           href="/"
         >

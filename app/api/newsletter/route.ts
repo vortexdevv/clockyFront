@@ -18,7 +18,6 @@ async function connectDB() {
   if (!mongoose.connection.readyState) {
     await mongoose.connect(process.env.MONGODB_URI as string);
   }
-  //   console.log(process.env.MONGODB_URI);
 }
 
 export async function POST(request: Request) {
@@ -30,8 +29,6 @@ export async function POST(request: Request) {
   }
 
   try {
-    // console.log(process.env.EMAIL_USER, process.env.EMAIL_PASS);
-
     // Configure your email transport
     const transporter = nodemailer.createTransport({
       service: "gmail",

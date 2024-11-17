@@ -51,7 +51,7 @@ export function AccessibleDropdown() {
       >
         <button
           ref={buttonRef}
-          className=" w-full  center space-x-2 px-4 py-1 text-sm font-medium text-two rounded-md hover:bg-two hover:text-main focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          className=" w-full  center space-x-2 px-2 py-1 text-sm font-medium text-two rounded-md hover:bg-two hover:text-main focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
           onClick={() => setIsOpen(!isOpen)}
           aria-haspopup="true"
           aria-expanded={isOpen}

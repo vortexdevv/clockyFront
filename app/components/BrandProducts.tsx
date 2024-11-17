@@ -35,7 +35,6 @@ const BrandProducts: React.FC = () => {
           }
         );
         setProducts(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error("Failed to fetch products", error);
       } finally {

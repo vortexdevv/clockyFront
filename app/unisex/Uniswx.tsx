@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
+import Card from "../components/Card";
 
 type Product = {
   _id: string;
@@ -74,62 +75,17 @@ const Unisex = () => {
   };
 
   return (
-    <div className="h-full mt-20 text-white center flex-col  w-full bg-[#FCFCFC] pt-10 text-center pb-10">
+    <div className="h-full text-white center flex-col  w-full bg-[#FCFCFC] overflow-hidden text-center pb-10">
+      <div className="text-white md:pl-5 md:text-left backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex flex-col justify-end md:gap-12 h-[300px] ">
+        <span className="mainFont text-two text-8xl shadow-lg w-full">
+          Unisex
+        </span>
+      </div>
       <div className="border-t-2 border-two w-20 p-1 font-medium"></div>
       <h2 className="text-[#2E2E2E] font-bold">UNISEX</h2>
-      <div className="grid sm:grid-cols-3 grid-cols-2 md:grid-cols-4 xl:grid-cols-4 md:gap-6 gap-2 media">
+      <div className="grid px-5 md:px-20 sm:grid-cols-3 mb-12 grid-cols-2 md:grid-cols-4 xl:grid-cols-5 md:gap-6 gap-2 media">
         {products.map((product, index) => (
-          <div
-            key={index}
-            className="mt-4 h-full justify-between md:mt-6 border-solid md:w-[225px]  border-2 border-[#F0F0F0] flex flex-col items-center md:px-4 xl:px-4 p-4 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform md:hover:scale-105"
-          >
-            <Link
-              href={`/product/${product._id}`}
-              className="flex flex-col gap-4 justify-around h-full"
-            >
-              {/* <span className="-rotate-90 bg-main py-2 px-2 absolute font-bold -left-[6px] md:top-2 top-[10px]">
-                SALE
-              </span> */}
-              <img
-                src={product.img}
-                // width={100}
-                loading="lazy"
-                alt={product.name}
-                className="w-full"
-              />
-              {/* <img
-            src={Watch}
-            alt={product.name}
-            className="w-[140px] h-[215px]"
-          /> */}
-              <div>
-                <h1 className="text-[#2E2E2E] font-bold text-3xl truncate">
-                  {product.name}
-                </h1>
-                <p className="text-[#595959] font-bold text-base line-through">
-                  {product.before} L.E
-                </p>
-                <p className="text-two font-bold text-2xl ">
-                  {product.price} L.E
-                </p>
-              </div>
-            </Link>
-            <button
-              onClick={() => addToCart(product)} // Pass the product's id
-              className="relative h-[10%] flex items-center justify-center whitespace-nowrap px-4 py-1 md:py-3 bg-main text-white font-semibold border overflow-hidden group"
-            >
-              <div
-                className={`absolute inset-0 md:group-hover:translate-x-0 bg-two w-full h-full transform translate-x-full transition-transform md:!duration-500 !duration-1000 ease-in-out center ${
-                  activeProductId === product._id
-                    ? "group-hover:translate-x-0"
-                    : ""
-                }`}
-              >
-                ADD TO CART
-              </div>
-              ADD TO CART
-            </button>
-          </div>
+          <Card product={product} key={product._id} />
         ))}
       </div>
     </div>
