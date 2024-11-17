@@ -99,7 +99,7 @@ export function WatchFiltersComponent({
   }, []);
 
   const FiltersContent = () => (
-    <div className="space-y-4 text-black">
+    <div className="space-y-4 text-main">
       <div>
         <label
           htmlFor="caseColorFilter"
@@ -230,12 +230,12 @@ export function WatchFiltersComponent({
         <div className="p-4 border border-gray-200 rounded-lg">
           <FiltersContent />
           <div className="mt-4 flex justify-between">
-            <Button onClick={applyFilters} className="mr-2">
+            <Button onClick={applyFilters} className="mr-2 bg-main text-two">
               Apply Filters
             </Button>
             <Button
               variant="outline"
-              className="text-black"
+              className="text-main"
               onClick={resetFilters}
             >
               Reset
@@ -244,11 +244,11 @@ export function WatchFiltersComponent({
         </div>
       </div>
 
-      <div className="block lg:hidden">
+      <div className="block lg:hidden text-main">
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="outline" className="mb-4 text-black mt-5">
-              <Filter className="mr-2 h-4 w-4 text-black" /> Filters
+            <Button variant="outline" className="mb-4 text-two bg-main mt-5">
+              <Filter className="mr-2 h-4 w-4 text-two" /> Filters
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-[300px] sm:w-[400px]">
@@ -262,7 +262,7 @@ export function WatchFiltersComponent({
               <FiltersContent />
             </div>
             <div className="mt-4 flex justify-between">
-              <Button onClick={applyFilters} className="mr-2">
+              <Button onClick={applyFilters} className="mr-2 bg-main text-two">
                 Apply Filters
               </Button>
               <Button variant="outline" onClick={resetFilters}>

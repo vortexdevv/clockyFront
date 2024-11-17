@@ -65,8 +65,8 @@ const Search = () => {
 
   return (
     <div className="center flex-col mx-auto text-base">
-      <div className="text-white md:pl-5 md:text-left backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex flex-col justify-end md:gap-12 h-[300px] ">
-        <span className="mainFont text-two text-8xl shadow-lg w-full">
+      <div className="text-white md:pl-20 md:text-left backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex flex-col justify-end md:gap-12 h-[300px] ">
+        <span className="mainFont text-two text-8xl shadow-lg w-full text-center md:text-left">
           Search
         </span>
       </div>
