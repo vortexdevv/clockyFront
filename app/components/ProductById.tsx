@@ -16,6 +16,7 @@ import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons"; /
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"; // Spinner for loading
 import Loading from "./Loading";
 import debounce from "lodash.debounce";
+import Card from "./Card";
 
 const ProductById = () => {
   const { id } = useParams();
@@ -196,56 +197,12 @@ const ProductById = () => {
     };
 
     return (
-      <div className="w-[80%] mx-auto mt-5 py-10 text-base center flex-col">
+      <div className=" mx-auto mt-5  text-base center flex-col">
         <h1 className="text-2xl font-bold text-center p-5">More Like this </h1>
         {results.length > 0 && (
-          <div className="grid gap-4 md:gap-16 xl:gap-20 grid-cols-[repeat(auto-fit,minmax(150px,1fr))] place-items-center w-full md:w-4/5">
-            {results.map((product, index) => (
-              <div
-                key={index}
-                className="mt-4 h-full justify-between md:mt-6 border-solid md:w-[225px]  border-2 bg-white flex flex-col items-center md:px-4 xl:px-4 p-4 gap-2 relative shadow-xl transition-transform duration-300 ease-in-out transform md:hover:scale-105"
-              >
-                <Link
-                  href={`/product/${product._id}`}
-                  className="flex flex-col gap-4 justify-around items-center h-full"
-                >
-                  {/* <span className="-rotate-90 bg-main text-white py-2 px-2 absolute font-bold -left-[6px] md:top-2 top-[10px]">
-                    SALE
-                  </span> */}
-                  <img
-                    src={product.img}
-                    loading="lazy"
-                    alt={product.name}
-                    className="w-full"
-                  />
-                  <div>
-                    <h1 className="text-[#2E2E2E] font-bold text-3xl">
-                      {product.name}
-                    </h1>
-                    <p className="text-[#595959] font-bold text-base line-through">
-                      {product.before} L.E
-                    </p>
-                    <p className="text-two font-bold text-2xl ">
-                      {product.price} L.E
-                    </p>
-                  </div>
-                </Link>
-                <button
-                  onClick={() => addToCart(product)}
-                  className="relative h-[10%] flex items-center justify-center whitespace-nowrap px-4 py-1 md:py-3 bg-main text-two font-semibold border overflow-hidden group"
-                >
-                  <div
-                    className={`absolute inset-0 md:group-hover:translate-x-0 bg-two text-main w-full h-full transform translate-x-full transition-transform md:!duration-500 !duration-1000 ease-in-out center ${
-                      activeProductId === product._id
-                        ? "group-hover:translate-x-0"
-                        : ""
-                    }`}
-                  >
-                    ADD TO CART
-                  </div>
-                  ADD TO CART
-                </button>
-              </div>
+          <div className="grid px-5 md:px-20 sm:grid-cols-3 mb-12 grid-cols-2 md:grid-cols-4 xl:grid-cols-5 md:gap-6 gap-2 media">
+            {results.map((product) => (
+              <Card product={product} key={product._id} />
             ))}
           </div>
         )}
@@ -293,7 +250,7 @@ const ProductById = () => {
               ADD TO CART
             </button>
             <button
-              className={`text-white px-4 py-3 w-full md:w-96 flex justify-center items-center ${
+              className={`text-white px-4 py-3 w-full md:w-96 center ${
                 isFavorite ? "bg-two text-main " : "bg-main"
               } hover:bg-two hover:text-main relative`}
               onClick={handleAddToFavorites}
@@ -308,11 +265,13 @@ const ProductById = () => {
                 <FontAwesomeIcon
                   icon={isFavorite ? solidHeart : regularHeart}
                   className={`mr-2 transition-all duration-300 transform hover:text-main ${
-                    isFavorite ? "scale-125 text-red-500" : "text-gray-300"
+                    isFavorite ? "scale-125 text-main" : "text-gray-300"
                   }`}
                 />
               )}
-              {isFavorite ? "REMOVE FROM FAVORITES" : "ADD TO FAVORITES"}
+              <span>
+                {isFavorite ? "REMOVE FROM FAVORITES" : "ADD TO FAVORITES"}
+              </span>
             </button>
           </div>
         </div>

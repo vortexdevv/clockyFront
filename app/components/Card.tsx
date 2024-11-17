@@ -175,7 +175,7 @@ const Card = ({ product }: any) => {
       <div className="pb-2 px-2">
         <Button
           onClick={() => addToCart(product)}
-          className="rounded-sm relative z-50 w-full bg-transparent text-main py-5 text-[16px] border border-main hover:font-bold hover:text-two hover:bg-main"
+          className="rounded-sm relative z-50 w-full bg-transparent text-main py-4 md:py-5 md:text-[14px] border border-main hover:font-bold hover:text-two hover:bg-main"
         >
           ADD TO CARD
         </Button>
