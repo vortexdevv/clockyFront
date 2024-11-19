@@ -15,16 +15,19 @@ const Login = () => {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [url, setUrl] = useState("");
 
   const router = useRouter();
 
   // Check if a token exists on page load and redirect to home
   useEffect(() => {
+    setUrl(window.location.pathname);
     const token = localStorage.getItem("token");
-    if (token) {
+    if (token && url === "/login") {
       router.push("/"); // Redirect to home if token is found
     }
   }, [router]);
+  // console.log(url);
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,7 +64,11 @@ const Login = () => {
       localStorage.setItem("userId", userData._id); // Save user data in local storage
 
       // Navigate to home page after login/signup
-      router.push("/");
+      if (url === "/login") {
+        router.push("/");
+      } else {
+        router.refresh();
+      }
     } catch (error: any) {
       setError(error.response?.data?.message || "An error occurred");
     } finally {
@@ -69,7 +76,11 @@ const Login = () => {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center mt-20 bg-white text-white p-4">
+    <div
+      className={`${
+        url === "/login" ? "min-h-screen bg-white" : ""
+      } flex items-center justify-center mt-20  text-white p-4`}
+    >
       <div className="bg-main shadow-lg rounded-lg p-6 w-full max-w-md">
         <h2 className="text-center text-2xl font-semibold mb-6">
           {isLogin ? "Login" : "Sign Up"}

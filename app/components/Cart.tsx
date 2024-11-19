@@ -70,7 +70,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="flex flex-col-reverse md:flex-row justify-center w-full h-full gap-8">
+    <div className="flex flex-col-reverse md:flex-row justify-center w-full h-full gap-8 mt-20 md:mt-0">
       {/* Product List Section */}
       <div className="w-full md:w-2/3 p-4">
         <div className="grid gap-4 grid-cols-[repeat(auto-fit,minmax(120px,1fr))]">
@@ -109,9 +109,9 @@ const Cart = () => {
               </div>
             ))
           ) : (
-            <div className="text-center text-main w-full">
+            <div className="text-center text-two w-full">
               <p>Your cart is empty. Add some products to continue.</p>
-              <Link href="/" className="text-main underline">
+              <Link href="/" className="text-two underline">
                 Go to Shop
               </Link>
             </div>
