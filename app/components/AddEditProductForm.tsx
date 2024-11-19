@@ -16,12 +16,16 @@ type ProductFormData = {
 type ProductFormProps = {
   onSave: (productData: ProductFormData) => void;
   editingProduct?: ProductFormData;
+  uploadImageToAppwrite: any;
 };
 
 const AddEditProductForm: React.FC<ProductFormProps> = ({
   onSave,
   editingProduct,
+  uploadImageToAppwrite,
 }) => {
+  const [formData, setFormData] = useState(editingProduct || {});
+  const [imageFile, setImageFile] = useState(null);
   const [form, setForm] = useState<ProductFormData>({
     name: "",
     price: "",
@@ -50,9 +54,13 @@ const AddEditProductForm: React.FC<ProductFormProps> = ({
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSave(form);
+    let imageUrl = formData.img;
+    if (imageFile) {
+      imageUrl = await uploadImageToAppwrite(imageFile);
+    }
+    onSave({ ...form, img: imageUrl }); // Update form with imageUrl
     setForm({
       name: "",
       price: "",
@@ -73,6 +81,11 @@ const AddEditProductForm: React.FC<ProductFormProps> = ({
         {editingProduct ? "Edit Product" : "Add Product"}
       </h2>
       <form onSubmit={handleSubmit}>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e: any) => setImageFile(e.target.files[0])}
+        />
         <div className="mb-3">
           <label className="block text-gray-700">Product Name</label>
           <input
