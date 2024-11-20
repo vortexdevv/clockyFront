@@ -6,7 +6,7 @@ const PrivacyPolicy: React.FC = () => {
   const [language, setLanguage] = useState<"en" | "ar">("en");
 
   return (
-    <div className="p-6 mt-20 md:mt-12 max-w-3xl mx-auto bg-white shadow-md rounded-lg text-main">
+    <div className="p-6 w-full mt-20 md:mt-12     bg-white shadow-md rounded-lg text-main">
       <div
         className={`flex items-center mb-4 ${
           language === "en" ? "justify-between" : "justify-end gap-5"
@@ -83,10 +83,16 @@ const PrivacyPolicy: React.FC = () => {
             <strong>Contact Information:</strong> If you have any questions or
             concerns about the privacy policy, please contact us at:
           </p>
-          <p>Email: email@example.com</p>
+          <p>
+            Email:{" "}
+            <Link href={"mailto:info@clocky.com"} className="text-two">
+              info@clocky.com
+            </Link>
+          </p>
           <Link href={"tel:+201113283189"}>
             <p className="font-bold">
-              Contact Us: <span className="font-bold">+201113283189</span>
+              Contact Us:{" "}
+              <span className="font-bold text-two">+201113283189</span>
             </p>
           </Link>
         </div>
