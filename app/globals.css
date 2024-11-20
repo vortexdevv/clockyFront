@@ -4,6 +4,29 @@
 html {
   scroll-behavior: smooth;
 }
+/* Style the entire scrollbar track */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+/* Style the scrollbar track (background area) */
+::-webkit-scrollbar-track {
+  background: #414b43; /* Light gray background for the track */
+  /* border-radius: 10px; Rounded corners */
+}
+
+/* Style the scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background: #e3c578; /* Green color for the thumb */
+  border-radius: 7px; /* Rounded corners */
+  /* border: 2px solid #f0f0f0; Adds space around the thumb */
+}
+
+/* Hover effect for the scrollbar thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: #e3c578; /* Darker green when hovered */
+}
+
 @font-face {
   font-family: "Kenjo";
   src: local("Kenjo II"), local("Kenjo-II"),
@@ -144,10 +167,10 @@ html {
     @apply bg-background text-foreground;
   }
 }
-/* Hide scrollbar for Chrome, Safari, and Edge */
+/* Hide scrollbar for Chrome, Safari, and Edge
 ::-webkit-scrollbar {
   display: none;
-}
+} */
 
 /* General styling for the element */
 .your-element {

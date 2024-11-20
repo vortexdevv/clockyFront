@@ -26,7 +26,7 @@ const Login = () => {
     if (token && url === "/login") {
       router.push("/"); // Redirect to home if token is found
     }
-  }, [router]);
+  }, [router, url]);
   // console.log(url);
 
   const handleAuth = async (e: React.FormEvent) => {
