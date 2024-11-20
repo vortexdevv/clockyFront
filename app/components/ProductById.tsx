@@ -17,6 +17,7 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons"; // Spinner for lo
 import Loading from "./Loading";
 import debounce from "lodash.debounce";
 import Card from "./Card";
+import { CarouselDApiDemo } from "@/components/imagesSlider";
 
 const ProductById = () => {
   const { id } = useParams();
@@ -197,7 +198,7 @@ const ProductById = () => {
     };
 
     return (
-      <div className=" mx-auto mt-5  text-base center flex-col">
+      <div className="container mx-auto mt-5  text-base center flex-col">
         <h1 className="text-2xl font-bold text-center p-5">More Like this </h1>
         {results.length > 0 && (
           <div className="grid px-5 md:px-20 sm:grid-cols-3 mb-12 grid-cols-2 md:grid-cols-4 xl:grid-cols-5 md:gap-6 gap-2 media">
@@ -214,15 +215,18 @@ const ProductById = () => {
     );
   };
   // .............
+  const images = [product.img, ...(product.otherImages || [])]; // Fallback if `otherImages` is undefined or empty
+
   return (
-    <div className="flex-col flex items-center h-full mt-20 w-full text-pretty">
+    <div className="container mx-auto flex-col flex items-center h-full mt-20 w-full text-pretty">
       <div className="flex md:flex-row items-center justify-between w-[90%]  flex-col bg-white">
-        <div className="mb-6 md:mb-0">
-          <img
+        <div className="mb-6 md:mb-0 md:w-1/3">
+          <CarouselDApiDemo images={images} />
+          {/* <img
             src={product.img || Watch}
             alt={product.name || "watch"}
             className="w-[250px] md:w-[350px]"
-          />
+          /> */}
         </div>
         <div>
           <div className="flex flex-col justify-center items-center p-6 gap-3 text-center">
@@ -234,7 +238,7 @@ const ProductById = () => {
             </p>
             <p>Description: {product.description}</p>
           </div>
-          <div className="flex flex-col py-6 gap-3">
+          <div className="center flex-col py-6 gap-3">
             <input
               className="border-[1px] border-[#F0F0F0] text-[#2E2E2E] text-center w-full md:w-36 bg-[#F0F0F0] py-2"
               type="number"

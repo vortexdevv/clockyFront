@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Button } from "@/components/ui/button";
+import { Carousel } from "@/components/ui/carousel"; // Import shadcn/ui Carousel
 import { toast, useToast } from "@/hooks/use-toast";
 import axiosInstance from "@/lib/axiosConfig";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -10,6 +11,7 @@ import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons"; // Solid heart for favorite
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons"; // Outline heart for not favorite
+import { CarouselDApiDemo } from "@/components/imagesSlider";
 
 type Product = {
   _id: string;
@@ -19,8 +21,9 @@ type Product = {
   description: string;
   countInStock: number;
   img: string;
+  otherImages?: string[];
 };
-const Card = ({ product }: any) => {
+const Card = ({ product }: { product: Product }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteLoading, setFavoriteLoading] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
@@ -107,7 +110,7 @@ const Card = ({ product }: any) => {
       setFavoriteLoading(false);
     }
   };
-
+  const images = [product.img, ...(product.otherImages || [])]; // Fallback if `otherImages` is undefined or empty
   return (
     <div
       className={`
@@ -138,12 +141,8 @@ const Card = ({ product }: any) => {
         className="flex w-full flex-col h-full cursor-pointer"
       >
         <div className="relative overflow-hidden border-b-2 drop-shadow flex-grow-[1]">
-          <img
-            src={product.img}
-            loading="lazy"
-            alt={product.name}
-            className="w-full object-cover transform transition-transform duration-300 hover:scale-110"
-          />
+          {/* Carousel Component */}
+          <CarouselDApiDemo images={images} />
           {/* <div className="card-img-background bg-cover bg-main"></div> */}
         </div>
         <div className="flex flex-col justify-between flex-grow-[2] px-2 pt-2">

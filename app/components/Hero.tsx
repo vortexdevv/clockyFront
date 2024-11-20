@@ -1,7 +1,6 @@
 "use client";
 import { ResponsiveSliderComponent } from "@/components/responsive-slider";
-// import Image from "next/image";
-// import Watch from "./watch.png";
+
 import Link from "next/link";
 import { useState, useEffect } from "react";
 // import { CarouselApi } from "@/components/carousel-api";
