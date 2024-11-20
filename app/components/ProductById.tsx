@@ -233,9 +233,7 @@ const ProductById = () => {
             <h1 className="text-[#2E2E2E] text-2xl md:text-3xl font-medium">
               {product.name}
             </h1>
-            <p className="text-[#D4AF37B2] text-lg md:text-xl">
-              EGP {product.price}
-            </p>
+            <p className="text-[#D4AF37B2] text-xl">EGP {product.price}</p>
             <p>Description: {product.description}</p>
           </div>
           <div className="center flex-col py-6 gap-3">

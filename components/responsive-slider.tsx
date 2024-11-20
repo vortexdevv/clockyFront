@@ -95,7 +95,7 @@ export function ResponsiveSliderComponent() {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full text-center">
       <Slider {...settings} arrows={false}>
         {slides.map((slide) => (
           <div key={slide.id} className="relative w-full h-[50vh] md:h-[50vh]">
@@ -106,8 +106,8 @@ export function ResponsiveSliderComponent() {
               objectFit="contain"
               priority
             />
-            <div className="absolute inset-0 flex flex-col md:justify-center justify-end items-start px-8 md:py-8 pt-8 bg-black bg-opacity-30">
-              <h2 className="text-3xl md:text-4xl font-bold text-two mb-4 ">
+            <div className="absolute inset-0 flex flex-col md:justify-center justify-end md:items-start items-center md:px-8  md:py-8 pt-8 bg-black bg-opacity-30">
+              <h2 className="text-3xl md:text-4xl font-bold text-two  ">
                 {slide.title}
               </h2>
               <p className="text-lg md:text-xl text-two ">
