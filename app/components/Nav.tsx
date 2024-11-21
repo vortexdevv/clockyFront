@@ -35,6 +35,7 @@ const Nav = () => {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsOpen(false);
     if (searchValue.trim() === "") {
       toast({ title: "Please enter a search term." });
       return;
@@ -256,22 +257,21 @@ const Nav = () => {
         </Link>
         {/* Search Icon and Input */}
         <div
-          className={`flex  items-center px-4 py-2 text-two  bg-[#0000004d] ${
+          className={`flex w-full items-center px-4 py-2 text-two  bg-[#0000004d] ${
             showSearch ? "justify-between" : "justify-center"
           }`}
-          onClick={toggleSearch}
         >
-          {showSearch && (
+          <div className="w-full">
             <form
               onSubmit={handleSearch}
-              className="bg-transparent p-1 rounded shadow-md"
+              className="bg-transparent w-full p-1 rounded shadow-md"
             >
               <input
                 type="text"
                 placeholder="Search..."
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
-                className="border text-main rounded px-1 focus:outline-none"
+                className="border w-4/5 text-main rounded px-1 focus:outline-none"
               />
               <button
                 type="submit"
@@ -280,12 +280,7 @@ const Nav = () => {
                 Go
               </button>
             </form>
-          )}
-          <Image
-            className="w-6 h-6 cursor-pointer"
-            src={logo}
-            alt="Search Icon"
-          />
+          </div>
         </div>
       </div>
     </div>
