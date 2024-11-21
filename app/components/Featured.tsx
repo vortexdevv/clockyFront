@@ -100,7 +100,7 @@ const Featured = () => {
   }
   const toLink = (id: string) => {};
   return (
-    <div ref={sectionRef} className="container mx-auto my-8 py-10">
+    <div ref={sectionRef} className="md:px-32 xl:px-40 mx-auto my-8 py-10">
       <div className="flex flex-col items-center w-full bg-[#FCFCFC] ">
         {/* <div className=""></div> */}
         <h2 className="text-main font-bold text-xl md:text-3xl ">FEATURED</h2>

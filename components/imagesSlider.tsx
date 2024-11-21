@@ -58,9 +58,9 @@ export function CarouselDApiDemo(images: any) {
           <CarouselNext className="bg-main text-two" />
         </div> */}
       </Carousel>
-      <div className="text-center text-sm text-muted-foreground">
+      {/* <div className="text-center text-sm text-muted-foreground">
         Slide {current} of {count}
-      </div>
+      </div> */}
     </div>
   );
 }

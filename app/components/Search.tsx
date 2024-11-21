@@ -6,12 +6,17 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import debounce from "lodash.debounce"; // Optional: Install lodash for debouncing
 import Card from "./Card";
+import { useSearchParams } from "next/navigation";
 
 const Search = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const { toast } = useToast();
   const [activeProductId, setActiveProductId] = useState<string | null>(null);
+  const searchParams = useSearchParams();
+  const search = searchParams.get("value");
+
+  console.log(search);
 
   // Debounced search function
   const handleSearch = debounce(async (searchTerm: string) => {
@@ -31,9 +36,11 @@ const Search = () => {
 
   // Trigger search when query changes
   useEffect(() => {
-    handleSearch(query);
+    const activeSearchTerm = query || search || ""; // Prioritize user input
+    handleSearch(activeSearchTerm);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query]); // Re-run the search whenever the query changes
+  }, [query, search]);
 
   const addToCart = (product: any) => {
     setActiveProductId(product._id);

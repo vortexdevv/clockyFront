@@ -71,7 +71,7 @@ const Arrivals = () => {
       id="newarraival"
       className={
         products.length > 0
-          ? "container mx-auto py-10 mt-8 border-b-4 border-two w-full shadow"
+          ? "md:px-32 xl:px-40 mx-auto py-10 mt-8 border-b-4 border-two w-full shadow"
           : "hidden"
       }
     >

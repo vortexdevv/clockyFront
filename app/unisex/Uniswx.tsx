@@ -83,7 +83,7 @@ const Unisex = () => {
       </div>
       <div className="border-t-2 border-two w-20 p-1 font-medium"></div>
       <h2 className="text-[#2E2E2E] font-bold">UNISEX</h2>
-      <div className="grid px-5 md:px-20 sm:grid-cols-3 mb-12 grid-cols-2 md:grid-cols-4 xl:grid-cols-5 md:gap-6 gap-2 media">
+      <div className="grid px-5 sm:px-20 md:px-32 xl:px-40 sm:grid-cols-2 mb-12 grid-cols-2 md:grid-cols-3 xl:grid-cols-5 md:gap-6 gap-2 media">
         {products.map((product) => (
           <Card product={product} key={product._id} />
         ))}

@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,40 +7,51 @@ import { useToast } from "@/hooks/use-toast";
 import logo from "../../public/search-alt-1-svgrepo-com.svg";
 import DropdownMenu from "./DropdownMenu";
 import { AccessibleDropdown } from "@/components/accessible-dropdown";
+import { useRouter } from "next/navigation";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const [storageValue, setStorageValue] = useState<string | null>(null);
   const { toast } = useToast();
+  const router = useRouter();
 
   useEffect(() => {
-    // This will run only on the client-side
+    // Check local storage for token on mount
     if (typeof window !== "undefined") {
       const value = localStorage.getItem("token");
       setStorageValue(value);
     }
   }, []);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const toggleSearch = () => {
-    setShowSearch(!showSearch);
-  };
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleSearch = () => setShowSearch(!showSearch);
 
   const handleScroll = () => {
-    if (window.scrollY > 50) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
+    setIsScrolled(window.scrollY > 50);
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchValue.trim() === "") {
+      toast({ title: "Please enter a search term." });
+      return;
     }
+    // Navigate to the search route with the search query
+    router.push(`/search?value=${encodeURIComponent(searchValue)}`);
+    setShowSearch(false);
   };
 
   useEffect(() => {
+    // Initialize isScrolled state based on the current scroll position
+    setIsScrolled(window.scrollY > 50);
+
+    // Add scroll event listener
     window.addEventListener("scroll", handleScroll);
+
+    // Cleanup on unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -48,14 +60,12 @@ const Nav = () => {
   const handleClick = () => {
     localStorage.removeItem("token");
     setStorageValue(null);
-    toast({
-      title: "Logged Out successfully",
-    });
+    toast({ title: "Logged Out successfully" });
   };
 
   return (
     <div
-      className={`mainFont top-0 shadow-lg text-two fixed w-full  mx-auto  z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
+      className={`mainFont top-0 shadow-lg text-two fixed w-full mx-auto z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
         isScrolled ? "bg-main w-full" : "bg-transparent"
       }`}
     >
@@ -66,7 +76,7 @@ const Nav = () => {
       </div>
 
       {/* Desktop Navigation */}
-      <div className="md:flex md:gap-3 lg:gap-8 items-center text-[15px] hidden">
+      <div className="md:flex md:gap-3 lg:gap-8 items-center p-1 text-[15px] hidden">
         <Link className="hover:text-white px-2" href="#newarraival">
           NEW ARRIVAL
         </Link>
@@ -103,7 +113,7 @@ const Nav = () => {
             width="20"
             height="20"
             fill="none"
-            viewBox="0 0 24 24"
+            viewBox="0casio 0 24 24"
           >
             <path
               stroke="#e3c578"
@@ -134,11 +144,34 @@ const Nav = () => {
         </Link>
       </div>
 
-      {/* Search Icon for Desktop */}
-      <div className="md:flex items-center hidden">
-        <Link href={"/search"}>
-          <Image className="w-6 h-6" src={logo} alt="Search Icon" />
-        </Link>
+      {/* Search Icon and Input */}
+      <div className="hidden relative md:flex justify-center items-center gap-5">
+        {showSearch && (
+          <form
+            onSubmit={handleSearch}
+            className="absolute flex bg-white -left-[300px] bg-transparent p-1 rounded shadow-md"
+          >
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              className="border text-main bg-transparent rounded px-1 focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="ml-2 bg-main text-white px-3 rounded hover:bg-two"
+            >
+              Go
+            </button>
+          </form>
+        )}
+        <Image
+          className="w-6 h-6 cursor-pointer"
+          src={logo}
+          alt="Search Icon"
+          onClick={toggleSearch}
+        />
       </div>
 
       {/* Burger Menu for Mobile */}
@@ -188,13 +221,13 @@ const Nav = () => {
         >
           SHOP
         </Link>
-        <div className="block px-4 py-2 text-two hover:bg-two  bg-[#0000004d]">
+        <div className="block px-4 py-2 text-two hover:bg-two bg-[#0000004d]">
           <AccessibleDropdown />
         </div>
 
         <Link
           className="block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d]"
-          href="/support"
+          href="#contactus"
           onClick={() => setIsOpen(false)}
         >
           CONTACT US
@@ -207,11 +240,8 @@ const Nav = () => {
           POLICY
         </Link>
         <Link
-          className={`block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d] ${
-            storageValue ? "hidden" : ""
-          }`}
+          className={`hover:text-white block ${storageValue ? "hidden" : ""}`}
           href="/login"
-          onClick={() => setIsOpen(false)}
         >
           LOGIN
         </Link>
@@ -219,28 +249,44 @@ const Nav = () => {
           className={`block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d] ${
             storageValue ? "" : "hidden"
           }`}
+          onClick={handleClick}
           href="/"
-          onClick={() => {
-            handleClick();
-            setIsOpen(false);
-          }}
         >
           LOGOUT
         </Link>
-        <Link
-          className="block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d]"
-          href="/favorites"
-          onClick={() => setIsOpen(false)}
+        {/* Search Icon and Input */}
+        <div
+          className={`flex  items-center px-4 py-2 text-two  bg-[#0000004d] ${
+            showSearch ? "justify-between" : "justify-center"
+          }`}
+          onClick={toggleSearch}
         >
-          FAVORITE
-        </Link>
-        <Link
-          className="block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d]"
-          href="/cart"
-          onClick={() => setIsOpen(false)}
-        >
-          CART
-        </Link>
+          {showSearch && (
+            <form
+              onSubmit={handleSearch}
+              className="bg-transparent p-1 rounded shadow-md"
+            >
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                className="border text-main rounded px-1 focus:outline-none"
+              />
+              <button
+                type="submit"
+                className="ml-2 bg-main text-white px-3 rounded hover:bg-two"
+              >
+                Go
+              </button>
+            </form>
+          )}
+          <Image
+            className="w-6 h-6 cursor-pointer"
+            src={logo}
+            alt="Search Icon"
+          />
+        </div>
       </div>
     </div>
   );

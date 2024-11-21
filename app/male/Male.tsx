@@ -73,15 +73,15 @@ const Male = () => {
   };
 
   return (
-    <div className="h-full text-white center flex-col  w-full bg-[#FCFCFC] text-center ">
+    <div className="h-full  text-white center flex-col  w-full bg-[#FCFCFC] text-center ">
       <div className="text-white md:pl-5 md:text-left backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex flex-col justify-end md:gap-12 h-[300px] ">
         <span className="mainFont text-two text-9xl shadow-lg w-full">
           Male
         </span>
       </div>
-      <div className="border-t-2 border-two w-20 mt-5 p-1 font-medium"></div>
+      <div className="border-t-2  border-two w-20 mt-5 p-1 font-medium"></div>
       <h2 className="text-[#2E2E2E] font-bold">MALE</h2>
-      <div className="grid px-5 md:px-20 sm:grid-cols-3 mb-12 grid-cols-2 md:grid-cols-4 xl:grid-cols-5 md:gap-6 gap-2 media">
+      <div className="grid px-5 sm:px-20 md:px-32 xl:px-40 sm:grid-cols-2 mb-12 grid-cols-2 md:grid-cols-3 xl:grid-cols-5 md:gap-6 gap-2 media">
         {products.map((product, index) => (
           <Card product={product} key={product._id} />
         ))}

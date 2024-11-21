@@ -45,13 +45,13 @@ const Brands: React.FC = () => {
     <section
       id="brands"
       ref={sectionRef}
-      className="container mx-auto bg-gray-100 py-10 my-8  w-full  shadow"
+      className="md:px-32 xl:px-40 mx-auto bg-gray-100 py-10 my-8  w-full  shadow"
     >
       <div className="container mx-auto">
         <h2 className="md:text-3xl text-xl text-main font-bold text-center mb-8">
           OUR WATCH BRANDS
         </h2>
-        <div className="px-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {brands.map((brand) => (
             <Link key={brand.name} href={brand.route} passHref>
               <div

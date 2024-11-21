@@ -59,7 +59,7 @@ export const Recommended = () => {
   };
 
   return (
-    <section className="container mx-auto md:flex md:flex-row-reverse md:justify-evenly md:items-center  bg-[#FCFCFC] px-5 py-10 md:pb-24  gap-5 md:gap-20 flex flex-col sm:justify-center items-center pb-12  w-full  shadow">
+    <section className="md:px-32 xl:px-40 mx-auto md:flex md:flex-row-reverse md:justify-evenly md:items-center  bg-[#FCFCFC] px-5 py-10 md:pb-24  gap-5 md:gap-20 flex flex-col sm:justify-center items-center pb-12  w-full  shadow">
       <div className="flex flex-col gap-6 text-left md:items-start items-center">
         {/* <span className="border-t-2 border-two w-20 px-1 font-medium"></span> */}
         <h3 className="text-[#2E2E2E] font-bold text-xl md:text-3xl">
