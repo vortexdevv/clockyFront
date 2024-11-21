@@ -66,10 +66,6 @@ html {
 .home {
   background-image: url("../public/home.png");
 }
-* {
-  /* font-family: "Roboto", sans-serif; */
-  transition: 0.3s !important;
-}
 
 @layer utilities {
   .text-balance {
