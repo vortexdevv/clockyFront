@@ -130,7 +130,7 @@ const NavbarSide = () => {
             <Link
               href="/"
               onClick={handleClick}
-              className={`block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d] ${
+              className={`text-center block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d] ${
                 storageValue ? "" : "hidden"
               }`}
             >
