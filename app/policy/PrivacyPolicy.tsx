@@ -6,27 +6,30 @@ const PrivacyPolicy: React.FC = () => {
   const [language, setLanguage] = useState<"en" | "ar">("en");
 
   return (
-    <div className="p-6 w-full mt-20 md:mt-12     bg-white shadow-md rounded-lg text-main">
-      <div
-        className={`flex items-center mb-4 ${
-          language === "en" ? "justify-between" : "justify-end gap-5"
-        }`}
+    <div className="p-6  w-full mt-20 md:mt-12 flex flex-col items-end bg-white shadow-md rounded-lg text-main">
+      <button
+        onClick={() => setLanguage(language === "en" ? "ar" : "en")}
+        className="px-4 py-2 bg-main text-two rounded hover:bg-two hover:text-main"
+        aria-label={`Switch to ${
+          language === "en" ? "Arabic" : "English"
+        } language`}
       >
-        <h1 className="text-2xl font-bold">
-          {language === "en"
-            ? "Clocky Watches Privacy Policy"
-            : "سياسة الخصوصية لشركة كلوكي للساعات"}
-        </h1>
-        <button
-          onClick={() => setLanguage(language === "en" ? "ar" : "en")}
-          className="px-4 py-2 bg-main text-two rounded hover:bg-two hover:text-main"
-        >
-          {language === "en" ? "Arabic" : "English"}
-        </button>
-      </div>
+        {language === "en" ? "التبديل إلى الإنجليزية" : "Switch to Arabic"}
+      </button>
 
       {language === "en" ? (
         <div className="space-y-4">
+          <div
+            className={`flex items-center mb-4 ${
+              language === "en" ? "justify-center" : "justify-end gap-5"
+            }`}
+          >
+            <h1 className="text-2xl font-bold">
+              {language === "en"
+                ? "Clocky Watches Privacy Policy"
+                : "سياسة الخصوصية لشركة كلوكي للساعات"}
+            </h1>
+          </div>
           <p>
             At Clocky Watches, we are committed to protecting the privacy of our
             customers and visitors. This policy explains how we collect, use,
@@ -98,6 +101,17 @@ const PrivacyPolicy: React.FC = () => {
         </div>
       ) : (
         <div className="space-y-4 text-right leading-relaxed" dir="rtl">
+          <div
+            className={`flex items-center mb-4 justify-center  ${
+              language !== "ar" ? "" : "gap-5"
+            }`}
+          >
+            <h1 className="text-2xl font-bold">
+              {language !== "ar"
+                ? "Clocky Watches Privacy Policy"
+                : "سياسة الخصوصية لشركة كلوكي للساعات"}
+            </h1>
+          </div>
           <p>
             نحن في شركة كلوكي للساعات نلتزم بحماية خصوصية عملائنا وزوار موقعنا.
             توضح هذه السياسة كيفية جمع واستخدام وحماية المعلومات الشخصية التي

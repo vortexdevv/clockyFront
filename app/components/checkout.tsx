@@ -12,21 +12,10 @@ type Product = {
   quantity: number;
 };
 
-const getCartFromLocalStorage = (): Product[] =>
-  typeof window !== "undefined"
-    ? JSON.parse(localStorage.getItem("cart") || "[]")
-    : [];
-
-const saveCartToLocalStorage = (cart: Product[]) => {
-  if (typeof window !== "undefined") {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
-};
-
 const Checkout = () => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [token, setToken] = useState<any>();
+  const [token, setToken] = useState<string | null>(null);
   const [userInfo, setUserInfo] = useState({
     fullName: "",
     governorate: "",
@@ -37,30 +26,50 @@ const Checkout = () => {
     paymentMethod: "",
   });
   const router = useRouter();
-
+  // Fetch cart from backend using user ID
   useEffect(() => {
-    setToken(localStorage.getItem("token"));
-    const cartFromLocalStorage = getCartFromLocalStorage();
-    setCartItems(cartFromLocalStorage);
-    updateTotalPrice(cartFromLocalStorage);
-  }, []);
+    const userToken =
+      typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-  // useEffect(() => {
-  //   const token =
-  //     typeof window !== "undefined" ? localStorage.getItem("token") : null;
-  //   const userId =
-  //     typeof window !== "undefined" ? localStorage.getItem("userId") : null;
+    if (userToken) {
+      setToken(userToken);
 
-  //   if (!token || !userId) {
-  //     alert("Please log in to proceed with checkout.");
-  //     router.push("/login");
-  //     return;
-  //   }
-  // }, [router]);
+      // Assuming the user ID is encoded in the token or stored separately
+      const userId =
+        typeof window !== "undefined" ? localStorage.getItem("userId") : null;
 
-  const updateTotalPrice = (cart: Product[]) => {
+      if (!userId) {
+        alert("User ID not found. Please log in.");
+        // router.push("/login");
+        return;
+      }
+
+      axiosInstance
+        .get(`/products/cart/${userId}`, {
+          headers: { Authorization: `Bearer ${userToken}` },
+        })
+        .then((response) => {
+          const cart = response.data || [];
+          setCartItems(cart);
+          updateTotalPrice(cart);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch cart:", error);
+          if (error.response?.status === 401) {
+            alert("Session expired. Please log in again.");
+            // router.push("/login");
+          }
+        });
+    } else {
+      alert("Please log in to view your cart.");
+      // router.push("/login");
+    }
+  }, [router]);
+
+  const updateTotalPrice = (cart: any[]) => {
     const total = cart.reduce(
-      (sum, item) => sum + item.price * (item.quantity || 1),
+      (sum, item) =>
+        sum + item?.product?.price * (item?.product?.quantity || 1),
       0
     );
     setTotalPrice(total);
@@ -79,12 +88,12 @@ const Checkout = () => {
     try {
       const checkoutPayload = {
         userId: localStorage.getItem("userId"),
-        products: cartItems.map((item) => ({
-          productId: item._id,
-          quantity: item.quantity || 1,
-          price: item.price * (item.quantity || 1),
-          name: item.name,
-        })),
+        // products: cartItems.map((item) => ({
+        //   productId: item._id,
+        //   quantity: item.quantity || 1,
+        //   price: item.price * (item.quantity || 1),
+        //   name: item.name,
+        // })),
         totalPrice,
         paymentMethod: userInfo.paymentMethod,
         shippingAddress: {
@@ -101,30 +110,27 @@ const Checkout = () => {
         `/products/checkout`,
         checkoutPayload,
         {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
 
       if (response.status === 201) {
         alert("Checkout completed successfully!");
         setCartItems([]);
-        saveCartToLocalStorage([]);
-        localStorage.setItem("orderDetails", JSON.stringify(checkoutPayload));
-        router.push("/order-confirmation");
+        router.push("/");
       }
     } catch (error) {
       console.error("Checkout failed:", error);
     }
   };
-  console.log(token);
 
   return (
-    <div className="p-4 w-full max-w-md mx-auto bg-white  shadow-lg rounded-lg text-main mt-12 md:mt-0">
+    <div className="p-4 w-full max-w-md mx-auto bg-white shadow-lg rounded-lg text-main mt-12 md:mt-0">
       {token ? (
-        <div className="">
-          {" "}
+        <div>
           <h2 className="text-2xl font-bold mb-4">Checkout</h2>
           <form onSubmit={handleSubmit}>
+            {/* Full Name */}
             <div className="mb-4">
               <label className="block text-sm font-semibold mb-1">
                 Full Name
@@ -139,6 +145,7 @@ const Checkout = () => {
               />
             </div>
 
+            {/* Governorate */}
             <div className="mb-4">
               <label className="block text-sm font-semibold mb-1">
                 Governorate
@@ -153,10 +160,11 @@ const Checkout = () => {
                 <option value="">Select Governorate</option>
                 <option value="Cairo">Cairo</option>
                 <option value="Alexandria">Alexandria</option>
-                {/* Add other Egyptian governorates as options here */}
+                {/* Add other governorates */}
               </select>
             </div>
 
+            {/* Address */}
             <div className="mb-4">
               <label className="block text-sm font-semibold mb-1">
                 Address
@@ -171,6 +179,7 @@ const Checkout = () => {
               />
             </div>
 
+            {/* City */}
             <div className="mb-4">
               <label className="block text-sm font-semibold mb-1">City</label>
               <input
@@ -183,6 +192,7 @@ const Checkout = () => {
               />
             </div>
 
+            {/* Country */}
             <div className="mb-4">
               <label className="block text-sm font-semibold mb-1">
                 Country
@@ -196,6 +206,7 @@ const Checkout = () => {
               />
             </div>
 
+            {/* Phone Number */}
             <div className="mb-4">
               <label className="block text-sm font-semibold mb-1">
                 Phone Number
@@ -210,6 +221,7 @@ const Checkout = () => {
               />
             </div>
 
+            {/* Payment Method */}
             <div className="mb-4">
               <label className="block text-sm font-semibold mb-1">
                 Payment Method
@@ -224,16 +236,17 @@ const Checkout = () => {
                 <option value="">Select Payment Method</option>
                 <option value="Pay with Card">Credit Card</option>
                 <option value="Cash on Delivery">Cash on Delivery</option>
-                {/* Add other payment methods as needed */}
               </select>
             </div>
 
+            {/* Total Price */}
             <div className="mb-4">
               <h3 className="text-lg font-semibold">
                 Total Price: ${totalPrice.toFixed(2)}
               </h3>
             </div>
 
+            {/* Submit Button */}
             <button
               type="submit"
               className="w-full py-2 bg-main text-two font-semibold rounded hover:bg-two hover:text-main"

@@ -76,8 +76,8 @@ const Unisex = () => {
 
   return (
     <div className="h-full text-white center flex-col  w-full bg-[#FCFCFC] overflow-hidden text-center pb-10">
-      <div className="text-white md:pl-5 md:text-left backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex flex-col justify-end md:gap-12 h-[300px] ">
-        <span className="mainFont text-two text-8xl shadow-lg w-full">
+      <div className="text-white md:text-left backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex flex-col justify-end md:gap-12 h-[300px] ">
+        <span className="mainFont paddingX text-two text-8xl shadow-lg w-full">
           Unisex
         </span>
       </div>

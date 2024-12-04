@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -19,7 +20,7 @@ const mockSlides: SlideData[] = [
   {
     id: 1,
     image:
-      "https://cloud.appwrite.io/v1/storage/buckets/67130d23001000917f00/files/673d5edb001a2b24bb10/view?project=67130d070031ae19004c&project=67130d070031ae19004c&mode=admin",
+      "https://cloud.appwrite.io/v1/storage/buckets/67130d23001000917f00/files/673d5ee60028e63eec16/view?project=67130d070031ae19004c&project=67130d070031ae19004c&mode=admin",
     title: "Welcome to Our Platform",
     description: "Discover amazing features and services.",
   },
@@ -33,7 +34,7 @@ const mockSlides: SlideData[] = [
   {
     id: 3,
     image:
-      "https://cloud.appwrite.io/v1/storage/buckets/67130d23001000917f00/files/673d5f37003a35f9d8d0/view?project=67130d070031ae19004c&project=67130d070031ae19004c&mode=admin",
+      "https://cloud.appwrite.io/v1/storage/buckets/67130d23001000917f00/files/673d5ee60028e63eec16/view?project=67130d070031ae19004c&project=67130d070031ae19004c&mode=admin",
     title: "Customer Satisfaction",
     description: "Our top priority is your happiness and success.",
   },
@@ -106,7 +107,8 @@ export function ResponsiveSliderComponent() {
               objectFit="contain"
               priority
             />
-            <div className="absolute inset-0 flex flex-col md:justify-center justify-end md:items-start items-center md:px-8  md:py-8 pt-8 bg-black bg-opacity-30">
+
+            <div className="absolute inset-0 flex flex-col md:justify-center justify-end md:items-start items-center md:px-8  md:py-8 pt-8 ">
               <h2 className="text-3xl md:text-4xl font-bold text-two  ">
                 {slide.title}
               </h2>

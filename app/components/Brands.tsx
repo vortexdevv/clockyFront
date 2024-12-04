@@ -45,9 +45,9 @@ const Brands: React.FC = () => {
     <section
       id="brands"
       ref={sectionRef}
-      className="md:px-32 xl:px-40 mx-auto bg-gray-100 py-10 my-8  w-full  shadow"
+      className="paddingX mx-auto bg-gray-100 py-10 my-8  w-full  shadow"
     >
-      <div className="container mx-auto">
+      <div className=" mx-auto">
         <h2 className="md:text-3xl text-xl text-main font-bold text-center mb-8">
           OUR WATCH BRANDS
         </h2>

@@ -20,10 +20,10 @@ type Product = {
 const Arrivals = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true); // Loading state
-  const { toast } = useToast();
-  const [isInView, setIsInView] = useState(false);
+  // const { toast } = useToast();
+  // const [isInView, setIsInView] = useState(false);
 
-  const [activeProductId, setActiveProductId] = useState<string | null>(null);
+  // const [activeProductId, setActiveProductId] = useState<string | null>(null);
 
   useEffect(() => {
     // Fetch products from the backend
@@ -46,32 +46,12 @@ const Arrivals = () => {
     fetchProducts();
   }, []);
 
-  const addToCart = (product: Product) => {
-    setActiveProductId(product._id);
-    setTimeout(() => {
-      setActiveProductId(null); // Clear the animation after 1 second
-    }, 1000); // Match the transition duration (1000ms)
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const existingProduct = cart.find((item: any) => item._id === product._id);
-    if (existingProduct) {
-      existingProduct.quantity += 1;
-    } else {
-      cart.push({ ...product, quantity: 1 });
-    }
-    localStorage.setItem("cart", JSON.stringify(cart));
-    toast({
-      title: product.name,
-      description: "added to cart",
-      action: <Link href="/cart">Go to cart</Link>,
-    });
-  };
-
   return (
     <section
       id="newarraival"
       className={
         products.length > 0
-          ? "md:px-32 xl:px-40 mx-auto py-10 mt-8 border-b-4 border-two w-full shadow"
+          ? "paddingX mx-auto py-10 mt-8 border-b-4 border-two w-full "
           : "hidden"
       }
     >
@@ -79,7 +59,7 @@ const Arrivals = () => {
       <h2 className="text-[#2E2E2E] text-center font-bold text-xl md:text-3xl">
         NEW ARRIVALS
       </h2>
-      <div className="grid lg:grid-cols-5 grid-cols-2 md:grid-cols-3  gap-2 w-full px-5 ">
+      <div className="grid lg:grid-cols-4 xl:grid-cols-5 grid-cols-2 md:grid-cols-3  gap-2 w-full pb-5 ">
         {loading
           ? // Display skeletons when loading
             Array.from({ length: 4 }).map((_, index) => (

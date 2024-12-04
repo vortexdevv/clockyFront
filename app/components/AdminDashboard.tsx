@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { useState, useEffect } from "react";
 import axiosInstance from "@/lib/axiosConfig";
 import Orders from "./Orders";
 import AddEditProductForm from "./AddEditProductForm";
 import { Client, ID, Storage } from "node-appwrite";
+
 type Product = {
   _id: string;
   name?: string;
@@ -25,10 +27,13 @@ type ProductFormData = Omit<Product, "_id">;
 const AdminDashboard = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [images, setImages] = useState<string[]>([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [activeSection, setActiveSection] = useState<"products" | "orders">(
     "products"
   );
+  const [loading, setLoading] = useState(false); // Loading state
+
   const client = new Client();
   const storage = new Storage(client);
 
@@ -39,26 +44,47 @@ const AdminDashboard = () => {
     client.setKey(
       "standard_de2f7c0b928559ad83209ee3d68098bc8ec5554199d3cfc09957cb45b9f007c907be76035b8f43ec7e8e4c0f724f291daff49744d6c6fdbdd8ee535de2c737702058844f1b1c25a95da777429539a8b98096420a1de785c6635fa177ca96849747ae7f93c652a6711b4e112257e19dc249da70a0b0d51777a88e3991d273c70b"
     ); // Replace with your API key
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) setIsAuthenticated(true);
   }, []);
 
   const fetchProducts = async () => {
+    setLoading(true); // Set loading to true
+
     try {
       const response = await axiosInstance.get("products/dashboard");
       setProducts(response.data);
     } catch (error) {
       console.error("Failed to fetch products", error);
+    } finally {
+      setLoading(false); // Set loading to false
+    }
+  };
+
+  const fetchImages = async () => {
+    try {
+      const response = await storage.listFiles("67130d23001000917f00"); // Replace with your Appwrite bucket ID
+      const imageUrls = response.files.map(
+        (file) =>
+          `https://cloud.appwrite.io/v1/storage/buckets/67130d23001000917f00/files/${file.$id}/view?project=67130d070031ae19004c&mode=admin`
+      );
+      setImages(imageUrls);
+    } catch (error) {
+      console.error("Failed to fetch images from Appwrite", error);
     }
   };
 
   useEffect(() => {
-    if (activeSection === "products") fetchProducts();
+    if (activeSection === "products") {
+      fetchProducts();
+      fetchImages();
+    }
   }, [activeSection]);
 
   const handleSaveProduct = async (productData: ProductFormData) => {
+    setLoading(true);
+
     try {
       if (editingProduct) {
         // Update product
@@ -80,6 +106,8 @@ const AdminDashboard = () => {
       fetchProducts();
     } catch (error) {
       console.error("Failed to save product", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -95,7 +123,10 @@ const AdminDashboard = () => {
       console.error("Failed to delete product", error);
     }
   };
+
   const uploadImageToAppwrite = async (file: any) => {
+    setLoading(true);
+
     try {
       const response = await storage.createFile(
         "67130d23001000917f00", // Replace with your Appwrite bucket ID
@@ -104,25 +135,26 @@ const AdminDashboard = () => {
       );
 
       // Generate the file's URL
-      const fileUrl = `https://cloud.appwrite.io/v1/storage/buckets/67130d23001000917f00/files/${response.$id}/view?project=67130d070031ae19004c&project=67130d070031ae19004c&mode=admin`;
-      console.log(fileUrl);
-
+      const fileUrl = `https://cloud.appwrite.io/v1/storage/buckets/67130d23001000917f00/files/${response.$id}/view?project=67130d070031ae19004c&mode=admin`;
       return fileUrl;
     } catch (error) {
+      setLoading(false); // Set loading to false
+
       console.error("Error uploading image to Appwrite", error);
       throw error;
+    } finally {
+      setLoading(false); // Set loading to false
     }
   };
 
   return (
     <>
       {isAuthenticated ? (
-        <div className="p-4 sm:p-6 bg-black min-h-screen w-full text-black">
+        <div className="p-4 sm:p-6 bg-black min-h-dvh w-full text-black">
           <h1 className="text-xl sm:text-2xl font-bold mb-4">
             Admin Dashboard
           </h1>
 
-          {/* Navigation */}
           <div className="mb-4 flex flex-col sm:flex-row gap-2">
             <button
               onClick={() => setActiveSection("products")}
@@ -142,17 +174,16 @@ const AdminDashboard = () => {
             </button>
           </div>
 
-          {/* Conditional Rendering */}
-          {activeSection === "products" ? (
+          {loading ? (
+            <div className="text-center text-white">Loading...</div>
+          ) : activeSection === "products" ? (
             <div>
-              {/* Add/Edit Product Form */}
               <AddEditProductForm
                 onSave={handleSaveProduct}
                 editingProduct={editingProduct || undefined}
                 uploadImageToAppwrite={uploadImageToAppwrite}
+                availableImages={images} // Pass fetched images
               />
-
-              {/* Product List */}
               <div className="bg-white p-4 rounded shadow-md mt-4 overflow-x-auto">
                 <h2 className="text-lg sm:text-xl font-semibold mb-3">
                   Product List
@@ -207,7 +238,7 @@ const AdminDashboard = () => {
               </div>
             </div>
           ) : (
-            <Orders /> // Render Orders component when "Orders" is selected
+            <Orders />
           )}
         </div>
       ) : (

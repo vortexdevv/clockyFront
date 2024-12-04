@@ -72,12 +72,12 @@ const Search = () => {
 
   return (
     <div className="center flex-col mx-auto text-base">
-      <div className="text-white md:pl-20 md:text-left backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex flex-col justify-end md:gap-12 h-[300px] ">
-        <span className="mainFont text-two text-8xl shadow-lg w-full text-center md:text-left">
+      <div className="text-white  md:text-left backgroundd md:bg-right bg-main bg-contain bg-no-repeat bg-center w-full flex flex-col justify-end md:gap-12 h-[300px] ">
+        <span className="mainFont paddingX text-two text-8xl shadow-lg w-full text-center md:text-left">
           Search
         </span>
       </div>
-      <div className="mb-6 px-5 md:px-20 w-full mt-5">
+      <div className="mb-6 paddingX  w-full  mt-5">
         <input
           type="text"
           className="border border-gray-300 p-2 rounded-md w-full text-two bg-main"
@@ -87,7 +87,7 @@ const Search = () => {
         />
       </div>
       {results.length > 0 && (
-        <div className="grid px-5 md:px-20 sm:grid-cols-3 mb-12 grid-cols-2 md:grid-cols-4 xl:grid-cols-5 md:gap-6 gap-2 media">
+        <div className="grid paddingX sm:grid-cols-3 mb-12 grid-cols-2 md:grid-cols-4 xl:grid-cols-5 md:gap-6 gap-2 media">
           {results.map((product, index) => (
             <Card product={product} key={product._id} />
           ))}

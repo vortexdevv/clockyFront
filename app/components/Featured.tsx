@@ -100,11 +100,11 @@ const Featured = () => {
   }
   const toLink = (id: string) => {};
   return (
-    <div ref={sectionRef} className="md:px-32 xl:px-40 mx-auto my-8 py-10">
+    <div ref={sectionRef} className="paddingX mx-auto my-8 py-10 px-5">
       <div className="flex flex-col items-center w-full bg-[#FCFCFC] ">
         {/* <div className=""></div> */}
         <h2 className="text-main font-bold text-xl md:text-3xl ">FEATURED</h2>
-        <div className="grid lg:grid-cols-5 grid-cols-2 md:grid-cols-3  gap-2 w-full px-5 pb-5 shadow">
+        <div className="grid lg:grid-cols-4 xl:grid-cols-5 grid-cols-2 md:grid-cols-3  gap-2 w-full pb-5 ">
           {isLoading
             ? Array.from({ length: 5 }).map((_, index) => (
                 <div

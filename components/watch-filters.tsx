@@ -6,13 +6,6 @@ import { Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
   Sheet,
   SheetContent,
   SheetDescription,
@@ -22,12 +15,11 @@ import {
 } from "@/components/ui/sheet";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
 type Filters = {
-  caseColor: string;
-  dialColor: string;
-  selectedBrand: string;
-  category: string;
+  caseColor: string[];
+  dialColor: string[];
+  selectedBrand: string[];
+  category: string[];
   minPrice: number;
   maxPrice: number;
 };
@@ -40,20 +32,30 @@ export function WatchFiltersComponent({
   onApplyFilters,
 }: WatchFiltersComponentProps) {
   const [filters, setFilters] = React.useState<Filters>({
-    caseColor: "All",
-    dialColor: "All",
-    selectedBrand: "All",
-    category: "All",
+    caseColor: [],
+    dialColor: [],
+    selectedBrand: [],
+    category: [],
     minPrice: 0,
     maxPrice: 100000,
   });
-  const [categories, setCategories] = useState<string[]>(["All"]);
-  const [caseColors, setCaseColors] = useState<string[]>(["All"]);
-  const [brands, setBrands] = useState<string[]>(["All"]);
-  const [dialColors, setDialColors] = useState<string[]>(["All"]);
 
-  const handleFilterChange = (name: string, value: string) => {
-    setFilters((prev) => ({ ...prev, [name]: value }));
+  const [categories, setCategories] = React.useState<string[]>([]);
+  const [caseColors, setCaseColors] = React.useState<string[]>([]);
+  const [brands, setBrands] = React.useState<string[]>([]);
+  const [dialColors, setDialColors] = React.useState<string[]>([]);
+
+  const handleCheckboxChange = (
+    name: keyof Filters,
+    value: string,
+    checked: boolean
+  ) => {
+    setFilters((prev) => ({
+      ...prev,
+      [name]: checked
+        ? [...(prev[name] as string[]), value]
+        : (prev[name] as string[]).filter((v) => v !== value),
+    }));
   };
 
   const applyFilters = () => {
@@ -61,19 +63,25 @@ export function WatchFiltersComponent({
   };
 
   const resetFilters = () => {
-    const resetValues: Filters = {
-      caseColor: "All",
-      dialColor: "All",
-      selectedBrand: "All",
-      category: "All",
+    setFilters({
+      caseColor: [],
+      dialColor: [],
+      selectedBrand: [],
+      category: [],
       minPrice: 0,
       maxPrice: 100000,
-    };
-    setFilters(resetValues);
-    onApplyFilters(resetValues);
+    });
+    onApplyFilters({
+      caseColor: [],
+      dialColor: [],
+      selectedBrand: [],
+      category: [],
+      minPrice: 0,
+      maxPrice: 100000,
+    });
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchFilters = async () => {
       try {
         const response = await axios.get(
@@ -86,10 +94,10 @@ export function WatchFiltersComponent({
           dialColors: fetchedDialColors,
         } = response.data;
 
-        setBrands(["All", ...fetchedBrands]);
-        setCategories(["All", ...fetchedCategories]);
-        setCaseColors(["All", ...fetchedCaseColors]);
-        setDialColors(["All", ...fetchedDialColors]);
+        setBrands(fetchedBrands);
+        setCategories(fetchedCategories);
+        setCaseColors(fetchedCaseColors);
+        setDialColors(fetchedDialColors);
       } catch (error) {
         console.error("Failed to fetch filters", error);
       }
@@ -99,126 +107,115 @@ export function WatchFiltersComponent({
   }, []);
 
   const FiltersContent = () => (
-    <div className="space-y-4 text-main">
-      <div>
-        <label
-          htmlFor="caseColorFilter"
-          className="text-sm font-medium leading-none"
-        >
-          Case Color:
-        </label>
-        <Select
-          onValueChange={(value) => handleFilterChange("caseColor", value)}
-          value={filters.caseColor}
-        >
-          <SelectTrigger id="caseColorFilter">
-            <SelectValue placeholder="Select case color" />
-          </SelectTrigger>
-          <SelectContent>
-            {caseColors.map((color) => (
-              <SelectItem key={color} value={color}>
-                {color}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+    <div
+      className="space-y-4 text-two overflow-y-auto"
+      style={{ maxHeight: "600px" }} // Limit height and make scrollable
+    >
+      <div className="px-2">
+        <label className="text-sm font-medium leading-none">Case Color:</label>
+        {caseColors.map((color) => (
+          <div key={color} className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              id={`caseColor-${color}`}
+              className="h-4 w-4"
+              checked={(filters.caseColor || []).includes(color)}
+              onChange={(e) =>
+                handleCheckboxChange("caseColor", color, e.target.checked)
+              }
+            />
+            <label htmlFor={`caseColor-${color}`}>{color}</label>
+          </div>
+        ))}
       </div>
 
-      <div>
-        <label
-          htmlFor="dialColorFilter"
-          className="text-sm font-medium leading-none"
-        >
-          Dial Color:
-        </label>
-        <Select
-          onValueChange={(value) => handleFilterChange("dialColor", value)}
-          value={filters.dialColor}
-        >
-          <SelectTrigger id="dialColorFilter">
-            <SelectValue placeholder="Select dial color" />
-          </SelectTrigger>
-          <SelectContent>
-            {dialColors.map((color) => (
-              <SelectItem key={color} value={color}>
-                {color}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+      <div className="px-2">
+        <label className="text-sm font-medium leading-none">Dial Color:</label>
+        {dialColors.map((color) => (
+          <div key={color} className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              id={`dialColor-${color}`}
+              className="h-4 w-4"
+              checked={(filters.dialColor || []).includes(color)}
+              onChange={(e) =>
+                handleCheckboxChange("dialColor", color, e.target.checked)
+              }
+            />
+            <label htmlFor={`dialColor-${color}`}>{color}</label>
+          </div>
+        ))}
       </div>
 
-      <div>
-        <label
-          htmlFor="brandFilter"
-          className="text-sm font-medium leading-none"
-        >
-          Brand:
-        </label>
-        <Select
-          onValueChange={(value) => handleFilterChange("selectedBrand", value)}
-          value={filters.selectedBrand}
-        >
-          <SelectTrigger id="brandFilter">
-            <SelectValue placeholder="Select brand" />
-          </SelectTrigger>
-          <SelectContent>
-            {brands.map((brand) => (
-              <SelectItem key={brand} value={brand}>
-                {brand}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+      <div className="px-2">
+        <label className="text-sm font-medium leading-none">Brand:</label>
+        {brands.map((brand) => (
+          <div key={brand} className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              id={`selectedBrand-${brand}`}
+              className="h-4 w-4"
+              checked={(filters.selectedBrand || []).includes(brand)}
+              onChange={(e) =>
+                handleCheckboxChange("selectedBrand", brand, e.target.checked)
+              }
+            />
+            <label htmlFor={`selectedBrand-${brand}`}>{brand}</label>
+          </div>
+        ))}
       </div>
 
-      <div>
-        <label
-          htmlFor="categoryFilter"
-          className="text-sm font-medium leading-none"
-        >
-          Category:
-        </label>
-        <Select
-          onValueChange={(value) => handleFilterChange("category", value)}
-          value={filters.category}
-        >
-          <SelectTrigger id="categoryFilter">
-            <SelectValue placeholder="Select category" />
-          </SelectTrigger>
-          <SelectContent>
-            {categories.map((category) => (
-              <SelectItem key={category} value={category}>
-                {category}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+      <div className="px-2">
+        <label className="text-sm font-medium leading-none">Category:</label>
+        {categories.map((category) => (
+          <div key={category} className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              id={`category-${category}`}
+              className="h-4 w-4"
+              checked={(filters.category || []).includes(category)}
+              onChange={(e) =>
+                handleCheckboxChange("category", category, e.target.checked)
+              }
+            />
+            <label htmlFor={`category-${category}`}>{category}</label>
+          </div>
+        ))}
       </div>
 
-      <div>
+      <div className="px-2">
         <label htmlFor="minPrice" className="text-sm font-medium leading-none">
           Min Price:
         </label>
-        <Input
+        <input
           type="number"
           id="minPrice"
           value={filters.minPrice}
-          onChange={(e) => handleFilterChange("minPrice", e.target.value)}
-          className="mt-1"
+          onChange={(e) =>
+            setFilters((prev) => ({
+              ...prev,
+              minPrice: Number(e.target.value),
+            }))
+          }
+          className="mt-1 px-2 rounded"
         />
       </div>
 
-      <div>
+      <div className="px-2">
         <label htmlFor="maxPrice" className="text-sm font-medium leading-none">
           Max Price:
         </label>
-        <Input
+        <input
           type="number"
           id="maxPrice"
           value={filters.maxPrice}
-          onChange={(e) => handleFilterChange("maxPrice", e.target.value)}
-          className="mt-1"
+          onChange={(e) =>
+            setFilters((prev) => ({
+              ...prev,
+              maxPrice: Number(e.target.value),
+            }))
+          }
+          className="mt-1 px-2 rounded"
         />
       </div>
     </div>
@@ -244,16 +241,19 @@ export function WatchFiltersComponent({
         </div>
       </div>
 
-      <div className="block lg:hidden text-main">
+      <div className="block lg:hidden text-main ">
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" className="mb-4 text-two bg-main mt-5">
               <Filter className="mr-2 h-4 w-4 text-two" /> Filters
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+          <SheetContent
+            side="left"
+            className="w-[300px] sm:w-[400px] p-4 bg-main text-two border-none"
+          >
             <SheetHeader>
-              <SheetTitle>Filters</SheetTitle>
+              <SheetTitle className="text-two">Filters</SheetTitle>
               <SheetDescription>
                 Apply filters to refine your watch search.
               </SheetDescription>
@@ -262,7 +262,7 @@ export function WatchFiltersComponent({
               <FiltersContent />
             </div>
             <div className="mt-4 flex justify-between">
-              <Button onClick={applyFilters} className="mr-2 bg-main text-two">
+              <Button onClick={applyFilters} className="mr-2 bg-two text-main">
                 Apply Filters
               </Button>
               <Button variant="outline" onClick={resetFilters}>

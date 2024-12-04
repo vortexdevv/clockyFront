@@ -6,13 +6,13 @@ html {
 }
 /* Style the entire scrollbar track */
 ::-webkit-scrollbar {
-  width: 12px; /* Width of the scrollbar */
+  width: 7px; /* Width of the scrollbar */
 }
 
 /* Style the scrollbar track (background area) */
 ::-webkit-scrollbar-track {
   background: #414b43; /* Light gray background for the track */
-  /* border-radius: 10px; Rounded corners */
+  border-radius: 7px;
 }
 
 /* Style the scrollbar thumb (the draggable part) */
@@ -26,7 +26,31 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #e3c578; /* Darker green when hovered */
 }
+/* custom scrollbar */
+/* Hide horizontal scrollbar only */
+.custom-scroll-hide {
+  overflow-x: auto;
+  overflow-y: auto;
+}
 
+.custom-scroll-hide::-webkit-scrollbar:horizontal {
+  display: none;
+}
+
+.custom-scroll-hide::-webkit-scrollbar {
+  width: 8px; /* Keep the vertical scrollbar visible */
+}
+
+.custom-scroll-hide::-webkit-scrollbar-thumb {
+  background: #ccc; /* Style the vertical scrollbar thumb */
+  border-radius: 4px;
+}
+
+.custom-scroll-hide::-webkit-scrollbar-track {
+  background: transparent; /* Style the vertical scrollbar track */
+}
+
+/*  */
 @font-face {
   font-family: "Kenjo";
   src: local("Kenjo II"), local("Kenjo-II"),
@@ -270,4 +294,8 @@ html {
 }
 li {
   margin: 0 !important;
+}
+
+.paddingX {
+  @apply px-4 md:px-32 xl:px-40;
 }

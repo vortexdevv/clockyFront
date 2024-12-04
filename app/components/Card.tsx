@@ -1,6 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { Button } from "@/components/ui/button";
-import { Carousel } from "@/components/ui/carousel"; // Import shadcn/ui Carousel
 import { toast, useToast } from "@/hooks/use-toast";
 import axiosInstance from "@/lib/axiosConfig";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -30,36 +28,70 @@ const Card = ({ product }: { product: Product }) => {
   const { toast } = useToast();
   const [activeProductId, setActiveProductId] = useState<string | null>(null);
   const router = useRouter();
-  const addToCart = (product: Product) => {
-    setActiveProductId(product._id);
-    setTimeout(() => {
-      setActiveProductId(null); // Clear the animation after 1 second
-    }, 1000); // Match the transition duration (1000ms)
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const existingProduct = cart.find((item: any) => item._id === product._id);
-    if (existingProduct) {
-      existingProduct.quantity += 1;
-    } else {
-      cart.push({ ...product, quantity: 1 });
-    }
-    localStorage.setItem("cart", JSON.stringify(cart));
-    toast({
-      title: product.name,
-      description: "added to cart",
-      action: <Link href="/cart">Go to cart</Link>,
-    });
-  };
-  // add to favorite
-  // Get the userId from localStorage
   useEffect(() => {
-    const userID = localStorage.getItem("userId");
-    setUserId(userID);
-
-    if (userID && product._id) {
-      checkIfFavorite(userID); // Pass userId to checkIfFavorite function
+    const storedUserId = localStorage.getItem("userId");
+    setUserId(storedUserId);
+    if (storedUserId && product._id) {
+      checkIfFavorite(storedUserId);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product._id]);
+  const addToCart = async (product: Product) => {
+    if (!userId) {
+      toast({
+        title: "Not logged in",
+        description: "Please log in to add items to your cart.",
+        variant: "destructive",
+        action: <Link href="/login">Go to login</Link>,
+      });
+      return;
+    }
+
+    setActiveProductId(product._id);
+    setTimeout(() => {
+      setActiveProductId(null);
+    }, 1000);
+
+    try {
+      const response = await axiosInstance.post("/products/cart/add/one", {
+        userId,
+        productId: product._id,
+        quantity: 1,
+      });
+
+      if (response.status === 200) {
+        toast({
+          title: "Success!",
+          description: (
+            <p className="text-two">Successfully added to cart! 🎉</p>
+          ),
+          action: (
+            <Link
+              href="/cart"
+              className="bg-two hover:bg-green-600 text-main text-sm px-5 py-2 rounded shadow transition duration-200"
+            >
+              Go to Cart
+            </Link>
+          ),
+          style: {
+            backgroundColor: "#414B43", // Soft yellow background
+            color: "#e3c578", // Deep green text color
+            borderRadius: "7px",
+            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+            border: "none",
+          },
+        });
+      }
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      toast({
+        title: "Error",
+        description: "Could not add product to cart. Please try again later.",
+        variant: "destructive",
+      });
+    }
+  };
+
   // Check if the product is in the user's favorite list
   const checkIfFavorite = async (userId: string) => {
     try {
@@ -116,6 +148,15 @@ const Card = ({ product }: { product: Product }) => {
       className={`
                   rounded-md z-0 relative overflow-hidden mt-4 md:mt-6 border-solid border-2 border-[#F0F0F0] flex flex-col shadow transition-transform duration-300 transform w-full flex-grow`}
     >
+      {product.before && (
+        <p className="text-red-500 absolute z-20 right-0 pt-1 pr-2 text-[12px] md:text-[14px] font-bold ml-2">
+          -
+          {Math.round(
+            ((product.before - product.price) / product.before) * 100
+          )}
+          %
+        </p>
+      )}
       <button
         className={`text-white p-2 rounded-md absolute z-20   center ${
           isFavorite ? " text-main " : ""
@@ -147,10 +188,12 @@ const Card = ({ product }: { product: Product }) => {
         </div>
         <div className="flex flex-col justify-between flex-grow-[2] px-2 pt-2">
           <div className="pb-2">
-            <h2 className="text-main text-[20px] font-bold truncate w-full text-lines-1">
+            <h2 className="text-main text-[14px] md:text-[20px] font-bold truncate w-full text-lines-1">
               {product.name}
             </h2>
-            <p className="text-main text-lines-2">{product.description}</p>
+            <p className="text-main text-[14px] md:text-[16px] font-thin text-lines-1 md:text-lines-2">
+              {product.description}
+            </p>
           </div>
           <div className="flex pb-3">
             <p className="text-two text-[16px] md:text-[20px] font-bold">
@@ -171,13 +214,13 @@ const Card = ({ product }: { product: Product }) => {
           </div>
         </div>
       </div>
-      <div className="pb-2 px-2">
-        <Button
+      <div className="pb-2 px-2 ">
+        <button
           onClick={() => addToCart(product)}
-          className="rounded-sm relative z-50 w-full bg-transparent text-main py-4 md:py-5 md:text-[14px] border border-main hover:font-bold hover:text-two hover:bg-main"
+          className="rounded-sm relative z-50 w-full bg-transparent text-main py-1 md:py-2 md:text-[14px] border-[0.5px] border-main hover:font-bold hover:text-two hover:bg-main"
         >
           ADD TO CARD
-        </Button>
+        </button>
       </div>
     </div>
   );

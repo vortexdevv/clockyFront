@@ -2,12 +2,15 @@
 import { Button } from "@/components/ui/button";
 import { LoaderCircle } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
+import { usePathname } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 const Footer: React.FC = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState<string>("");
+  // const [url, setUrl] = useState("");
+  const pathname = usePathname();
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading("Loading"); // Set loading state immediately
@@ -35,10 +38,21 @@ const Footer: React.FC = () => {
       setIsLoading("Error");
     }
   };
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     setUrl(window?.location?.pathname);
+  //   }
+  //   console.log("f");
+  // }, []);
+  // console.log(pathname);
 
   return (
     <footer id="contactus" className="bg-main text-white py-10">
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div
+        className={`paddingX mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 ${
+          pathname === "/checkout" ? "hidden" : ""
+        }`}
+      >
         {/* Contact Information */}
         <div>
           <div className="border-l border-two pl-5">
@@ -46,18 +60,11 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-bold mb-4 text-two">CALL US NOW</h3>
             <Link href={"tel:+201113283189"}>
               <p className="font-bold">
-                Contact Us: <span className="font-bold">+201113283189</span>
+                <span className="font-bold">+201113283189</span>
               </p>
             </Link>
           </div>
-          <div className="border-l border-two pl-5">
-            <h3 className="text-lg font-bold mt-6 mb-4 text-two">
-              COME VISIT US
-            </h3>
-            <p className="font-bold">
-              Office Address: Portsaid Meetghamer, Al Dakahlia, Egypt
-            </p>
-          </div>
+
           <div className="border-l border-two pl-5">
             <h3 className="text-lg font-bold mt-6 mb-4 text-two">
               SEND A MESSAGE

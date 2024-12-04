@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
-// Cart.tsx
 "use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import axiosInstance from "@/lib/axiosConfig";
 
 type Product = {
   _id: string;
@@ -16,96 +17,150 @@ type Product = {
   quantity: number;
 };
 
-const getCartFromLocalStorage = (): Product[] =>
-  JSON.parse(localStorage.getItem("cart") || "[]");
-
-const saveCartToLocalStorage = (cart: Product[]) =>
-  localStorage.setItem("cart", JSON.stringify(cart));
-
-const updateProductQuantity = (
-  cart: Product[],
-  productId: string,
-  change: number
-): Product[] => {
-  return cart
-    .map((item) => {
-      if (item._id === productId) {
-        const newQuantity = (item.quantity || 1) + change;
-        if (newQuantity <= 0) return null;
-        return { ...item, quantity: newQuantity };
-      }
-      return item;
-    })
-    .filter((item) => item !== null) as Product[];
-};
-
 const Cart = () => {
-  const [cartItems, setCartItems] = useState<Product[]>([]);
+  const [cartItems, setCartItems] = useState<any[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const router = useRouter();
+  const [loading, setLoading] = useState<{ [key: string]: boolean }>({});
+
+  const fetchCartFromBackend = async () => {
+    try {
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+      if (!userId || !token) {
+        alert("Please log in to access your cart.");
+        // router.push("/login");
+        return;
+      }
+
+      const response = await axiosInstance.get(`/products/cart/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      // console.log(response);
+
+      const cart = response?.data || [];
+      setCartItems(cart);
+      updateTotalPrice(cart);
+    } catch (error) {
+      console.error("Failed to fetch cart:", error);
+    }
+  };
+
+  const updateCartInBackend = async (productId: string, change: number) => {
+    setLoading((prev) => ({ ...prev, [productId]: true }));
+
+    try {
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+      if (!userId || !token) return;
+
+      await axiosInstance.put(
+        `/products/cart/${userId}`,
+        { productId, change },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setLoading((prev) => ({ ...prev, [productId]: false }));
+    } catch (error) {
+      console.error("Failed to update cart:", error);
+    }
+  };
 
   useEffect(() => {
-    const cartFromLocalStorage = getCartFromLocalStorage();
-    setCartItems(cartFromLocalStorage);
-    updateTotalPrice(cartFromLocalStorage);
+    fetchCartFromBackend();
   }, []);
 
-  const updateTotalPrice = (cart: Product[]) => {
+  const updateTotalPrice = (cart: any[]) => {
     const total = cart.reduce(
-      (sum, item) => sum + item.price * (item.quantity || 1),
+      (sum, item) => sum + item.product.price * (item.product.quantity || 1),
       0
     );
     setTotalPrice(total);
   };
 
-  const handleQuantityChange = (productId: string, change: number) => {
-    const updatedCart = updateProductQuantity(cartItems, productId, change);
-    setCartItems(updatedCart);
-    saveCartToLocalStorage(updatedCart);
+  const handleQuantityChange = async (productId: string, change: number) => {
+    const updatedCart = cartItems
+      .map((item) => {
+        if (item._id === productId) {
+          const newQuantity = (item.quantity || 1) + change;
+          if (newQuantity <= 0) return null; // Remove item if quantity <= 0
+          return { ...item, quantity: newQuantity };
+        }
+        return item;
+      })
+      .filter((item) => item !== null) as Product[];
+
+    setCartItems([...updatedCart]);
     updateTotalPrice(updatedCart);
+
+    // Update the backend and refetch the cart for consistency
+    await updateCartInBackend(productId, change);
+    fetchCartFromBackend();
   };
 
   const navigateToCheckout = () => {
     router.push("/checkout");
   };
+  // console.log(cartItems);
 
   return (
-    <div className="flex flex-col-reverse md:flex-row justify-center w-full h-full gap-8 mt-20 md:mt-0">
+    <div className="flex flex-col md:flex-row px-4 justify-center w-full min-h-dvh items-center gap-2 bg-white md:bg-transparent mt-20 md:mt-0">
       {/* Product List Section */}
-      <div className="w-full md:w-2/3 p-4">
-        <div className="grid gap-4 grid-cols-[repeat(auto-fit,minmax(120px,1fr))]">
+      <div className="w-full md:w-2/3 py-4">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3 grid-cols-1 bg-white md:bg-transparent">
           {cartItems.length > 0 ? (
             cartItems.map((item) => (
               <div
-                key={item._id}
-                className="bg-white shadow-md rounded-lg p-2 flex flex-col items-center"
+                key={item?.product?._id}
+                className="bg-white shadow-md rounded-lg p-2 flex justify-between items-start"
               >
                 <img
-                  src={item.img}
-                  alt={item.name}
-                  className="w-20 h-20 object-cover rounded-md mb-2"
+                  src={item?.product?.img}
+                  alt={item?.product?.name}
+                  className="w-32 h-32  object-cover rounded-md mb-2"
                 />
-                <h2 className="text-sm font-medium text-main mb-1">
-                  {item.name}
-                </h2>
-                <p className="text-xs text-main">
-                  Price: ${item.price.toFixed(2)}
-                </p>
-                <p className="text-xs text-main">Quantity: {item.quantity}</p>
-                <div className="flex space-x-2 mt-2">
-                  <button
-                    onClick={() => handleQuantityChange(item._id, 1)}
-                    className="text-green-600"
-                  >
-                    +
-                  </button>
-                  <button
-                    onClick={() => handleQuantityChange(item._id, -1)}
-                    className="text-red-600"
-                  >
-                    -
-                  </button>
+                <div className="flex flex-col w-full justify-between h-full">
+                  {" "}
+                  <h2 className="text-[1.5rem] font-medium text-main mb-1">
+                    {item?.product?.name}
+                  </h2>
+                  <p className=" text-two">
+                    <span className="text-main">Price:</span> $
+                    {item?.product?.price?.toFixed(2)}
+                  </p>
+                  <div className="flex space-x-2 mt-2 items-center justify-around">
+                    <button
+                      disabled={loading[item?.product?._id]}
+                      onClick={() =>
+                        handleQuantityChange(item?.product?._id, 1)
+                      }
+                      className={`px-4 py-2 ${
+                        loading[item?.product?._id]
+                          ? "bg-gray-300 text-gray-500"
+                          : "bg-main text-two"
+                      } md:hover:bg-gray-300 text-sm font-bold`}
+                    >
+                      {loading[item?.product?._id] ? "..." : "+"}
+                    </button>
+                    <p className="text-xs text-main">
+                      Quantity:{" "}
+                      {loading[item?.product?._id] ? "..." : item?.quantity}
+                    </p>
+                    <button
+                      disabled={loading[item?.product?._id]}
+                      onClick={() =>
+                        handleQuantityChange(item?.product?._id, -1)
+                      }
+                      className={`px-4 py-2 ${
+                        loading[item?.product?._id]
+                          ? "bg-gray-300 text-gray-500"
+                          : "bg-main text-two"
+                      } md:hover:bg-gray-300 text-sm font-bold`}
+                    >
+                      {loading[item._id] ? "..." : "-"}
+                    </button>
+                  </div>
                 </div>
+                {/* <div className=" text-main">X</div> */}
               </div>
             ))
           ) : (
@@ -143,9 +198,11 @@ const Cart = () => {
             <h3 className="text-lg font-semibold text-main mb-2">Receipt</h3>
             <ul className="text-sm text-main">
               {cartItems.map((item) => (
-                <li key={item._id} className="flex justify-between">
-                  <span>{item.name}</span>
-                  <span>${(item.price * item.quantity).toFixed(2)}</span>
+                <li key={item?.product?._id} className="flex justify-between">
+                  <span>{item?.product?.name}</span>
+                  <span>
+                    ${(item?.product?.price * item?.quantity).toFixed(2)}
+                  </span>
                 </li>
               ))}
             </ul>

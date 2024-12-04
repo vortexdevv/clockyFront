@@ -8,7 +8,9 @@ import logo from "../../public/search-alt-1-svgrepo-com.svg";
 import DropdownMenu from "./DropdownMenu";
 import { AccessibleDropdown } from "@/components/accessible-dropdown";
 import { useRouter } from "next/navigation";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
+import NavbarSide from "@/components/NavbarSide";
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -66,13 +68,13 @@ const Nav = () => {
 
   return (
     <div
-      className={`mainFont top-0 shadow-lg text-two fixed w-full mx-auto z-10 flex justify-between items-center p-5 transition-colors duration-300 ${
+      className={`mainFont top-0 shadow-lg text-two fixed w-full mx-auto z-50 flex justify-between items-center p-5 transition-colors duration-300 ${
         isScrolled ? "bg-main w-full" : "bg-transparent"
       }`}
     >
       <div>
         <Link href="/">
-          <h1 className="text-2xl mainFont hover:text-white">Clocky</h1>
+          <h1 className="text-[1.5rem] mainFont hover:text-white">Clocky</h1>
         </Link>
       </div>
 
@@ -90,9 +92,9 @@ const Nav = () => {
         <Link className="hover:text-white px-2" href="#contactus">
           CONTACT US
         </Link>
-        <Link className="hover:text-white px-2" href="/policy">
+        {/* <Link className="hover:text-white px-2" href="/policy">
           POLICY
-        </Link>
+        </Link> */}
         <Link
           className={`hover:text-white px-2 ${storageValue ? "hidden" : ""}`}
           href="/login"
@@ -109,21 +111,7 @@ const Nav = () => {
 
         {/* Favorites Link with Heart Icon */}
         <Link className="hover:text-white flex items-center" href="/favorites">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="none"
-            viewBox="0casio 0 24 24"
-          >
-            <path
-              stroke="#e3c578"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M12 21c-1.105-.008-9.303-6.918-9.303-11.252 0-2.88 2.305-5.205 5.157-5.205 1.647 0 3.26.881 4.146 2.285 0.887-1.404 2.5-2.285 4.146-2.285 2.852 0 5.157 2.324 5.157 5.205C21.303 14.082 13.105 20.992 12 21z"
-            ></path>
-          </svg>
+          <FontAwesomeIcon icon={regularHeart} className=" mr-2 " />
         </Link>
 
         <Link className="hover:text-white" href="/cart">
@@ -146,12 +134,16 @@ const Nav = () => {
       </div>
 
       {/* Search Icon and Input */}
+      {/* Search Icon and Input */}
       <div className="hidden relative md:flex justify-center items-center gap-5">
-        {showSearch && (
-          <form
-            onSubmit={handleSearch}
-            className="absolute flex bg-white -left-[300px] bg-transparent p-1 rounded shadow-md"
-          >
+        <div
+          className={`absolute bg-white p-1 rounded shadow-md transition-all duration-300 ease-in-out transform ${
+            showSearch
+              ? "opacity-100 scale-100 -left-[300px] "
+              : "opacity-0 scale-75 left-0"
+          }`}
+        >
+          <form onSubmit={handleSearch} className="flex items-center">
             <input
               type="text"
               placeholder="Search..."
@@ -166,7 +158,7 @@ const Nav = () => {
               Go
             </button>
           </form>
-        )}
+        </div>
         <Image
           className="w-6 h-6 cursor-pointer"
           src={logo}
@@ -177,7 +169,7 @@ const Nav = () => {
 
       {/* Burger Menu for Mobile */}
       <div className="md:hidden">
-        <button onClick={toggleMenu} className="focus:outline-none">
+        {/* <button onClick={toggleMenu} className="focus:outline-none">
           <svg
             className={`h-6 w-6 transform transition-transform duration-300 ${
               isOpen ? "rotate-90" : ""
@@ -194,7 +186,8 @@ const Nav = () => {
               d="M4 6h16M4 12h16m-7 6h7"
             />
           </svg>
-        </button>
+        </button> */}
+        <NavbarSide />
       </div>
 
       {/* Mobile Navigation */}
@@ -233,13 +226,13 @@ const Nav = () => {
         >
           CONTACT US
         </Link>
-        <Link
+        {/* <Link
           className="block px-4 py-2 text-two hover:bg-gray-700 bg-[#0000004d]"
           href="/policy"
           onClick={() => setIsOpen(false)}
         >
           POLICY
-        </Link>
+        </Link> */}
         <Link
           className={`hover:text-white block ${storageValue ? "hidden" : ""}`}
           href="/login"
