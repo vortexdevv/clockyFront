@@ -21,19 +21,19 @@ interface SlideData {
 const mockSlides: SlideData[] = [
   {
     id: 1,
-    image: im1,
+    image: "/cover1.jpg",
     title: "Welcome to Our Platform",
     description: "Discover amazing features and services.",
   },
   {
     id: 2,
-    image: im2,
+    image: "/cover2.jpg",
     title: "Innovative Solutions",
     description: "We provide cutting-edge technology for your needs.",
   },
   {
     id: 3,
-    image: im3,
+    image: "/cover3.jpg",
     title: "Customer Satisfaction",
     description: "Our top priority is your happiness and success.",
   },
@@ -68,7 +68,7 @@ export function ResponsiveSliderComponent() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 200,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
@@ -98,15 +98,22 @@ export function ResponsiveSliderComponent() {
     <div className="w-full text-center">
       <Slider {...settings} arrows={false}>
         {slides.map((slide) => (
-          <div key={slide.id} className="relative w-full h-[50vh] md:h-[50vh]">
-            <Image
+          <div
+            key={slide.id}
+            className="  bg-cover  w-full h-[62dvh] md:h-[62dvh]"
+          >
+            <div
+              className={` w-full h-full bg-cover bg-no-repeat bg-center`}
+              style={{ backgroundImage: `url(${slide?.image})` }}
+            ></div>
+            {/* <Image
               src={slide.image}
               alt={slide.title}
               // layout="fill"
               // objectFit="cover"
               className="w-full"
               priority
-            />
+            /> */}
 
             {/* <div className="absolute inset-0 flex flex-col md:justify-center justify-end md:items-start items-center md:px-8  md:py-8 pt-8 ">
               <h2 className="text-3xl md:text-4xl font-bold text-two  ">

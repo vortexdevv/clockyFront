@@ -15,9 +15,9 @@ const Hero = () => {
 
   return (
     <div
-      className={`text-white backgroundd   bg-main bg-cover bg-no-repeat bg-center w-full flex flex-col items-center md:justify-center justify-evenly md:gap-12 mt-20 h-[488px] md:h-[600px]`}
+      className={`text-white  bg-main  bg-no-repeat bg-center w-full  md:gap-12 mt-20 h-[488px] md:h-[600px]`}
     >
-      {/* <ResponsiveSliderComponent /> */}
+      <ResponsiveSliderComponent />
       {/* <div>
         <CarouselApi />
       </div> */}
