@@ -9,7 +9,14 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const images = ["/cover1.jpg", "/cover2.jpg", "/cover3.jpg"];
 
 export default function FullWidthCarousel() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    duration: 30,
+    containScroll: "trimSnaps",
+    skipSnaps: false,
+    align: "center",
+    dragFree: false,
+  });
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
 
@@ -30,14 +37,30 @@ export default function FullWidthCarousel() {
 
   useEffect(() => {
     if (!emblaApi) return;
+
     onSelect();
     emblaApi.on("select", onSelect);
+
+    // Auto-scroll functionality
+    let intervalId = setInterval(() => {
+      if (emblaApi.canScrollNext()) {
+        emblaApi.scrollNext();
+      } else {
+        emblaApi.scrollTo(0); // Reset to the first slide
+      }
+    }, 8000); // Change slide every 3 seconds
+
+    // Cleanup function
+    return () => {
+      clearInterval(intervalId);
+      emblaApi.off("select", onSelect);
+    };
   }, [emblaApi, onSelect]);
 
   return (
-    <div className="relative mt-20">
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex">
+    <div className="relative mt-20 h-[600px]">
+      <div className="overflow-hidden h-[600px]" ref={emblaRef}>
+        <div className="flex h-[600px]">
           {images.map((src, index) => (
             <div key={index} className="relative flex-[0_0_100%]">
               <Image
@@ -45,7 +68,7 @@ export default function FullWidthCarousel() {
                 alt={`Slide ${index + 1}`}
                 width={1600}
                 height={600}
-                className="w-full  object-cover"
+                className="w-full h-full object-cover"
               />
             </div>
           ))}
