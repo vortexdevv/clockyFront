@@ -58,9 +58,9 @@ export default function FullWidthCarousel() {
   }, [emblaApi, onSelect]);
 
   return (
-    <div className="relative mt-20 h-[600px]">
-      <div className="overflow-hidden h-[600px]" ref={emblaRef}>
-        <div className="flex h-[600px]">
+    <div className="relative mt-20 h-full">
+      <div className="overflow-hidden " ref={emblaRef}>
+        <div className="flex h-full">
           {images.map((src, index) => (
             <div key={index} className="relative flex-[0_0_100%]">
               <Image
@@ -68,7 +68,7 @@ export default function FullWidthCarousel() {
                 alt={`Slide ${index + 1}`}
                 width={1600}
                 height={600}
-                className="w-full h-full object-cover"
+                className="w-full  object-cover"
               />
             </div>
           ))}
