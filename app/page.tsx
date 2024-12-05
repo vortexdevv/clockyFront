@@ -10,12 +10,16 @@ import Footer from "./components/Footer";
 import Featured from "./components/Featured";
 import Brands from "./components/Brands";
 import { AppSidebar } from "@/components/app-sidebar";
+import FullWidthCarousel from "@/components/full-width-carousel";
+import { ResponsiveSliderComponent } from "@/components/responsive-slider";
 export default function Home() {
   // const hosary: number = 0;
   return (
     <main className="h-auto bg-[#FCFCFC]">
       {/* <Nav /> */}
-      <Hero />
+      {/* <Hero /> */}
+      {/* <ResponsiveSliderComponent /> */}
+      <FullWidthCarousel />
       <Brands />
       <Featured />
       {/* <Products /> */}

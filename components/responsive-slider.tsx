@@ -95,12 +95,15 @@ export function ResponsiveSliderComponent() {
   };
 
   return (
-    <div className="w-full text-center h-full">
+    <div className="w-full text-center h-full mt-20">
       <Slider {...settings} arrows={false} className="h-full w-full">
         {slides.map((slide) => (
-          <div key={slide.id} className="  bg-cover  w-full h-full ">
+          <div
+            key={slide.id}
+            className="flex justify-start h-[488px] md:h-[600px] bg-cover  w-full  "
+          >
             <div
-              className={` w-full h-[488px] md:h-[600px] bg-cover md:bg-cover bg-no-repeat bg-center`}
+              className={` w-full h-full xl:bg-cover md:bg-contain bg-no-repeat bg-center`}
               style={{ backgroundImage: `url(${slide?.image})` }}
             ></div>
             {/* <Image
