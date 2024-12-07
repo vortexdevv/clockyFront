@@ -63,12 +63,13 @@ export default function FullWidthCarousel() {
         <div className="flex h-full">
           {images.map((src, index) => (
             <div key={index} className="relative flex-[0_0_100%]">
-              <Image
+              {/*  eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={src}
                 alt={`Slide ${index + 1}`}
-                width={1600}
-                height={600}
-                className="w-full  object-cover"
+                // width={1600}
+                // height={undefined}
+                className="w-full h-full object-cover"
               />
             </div>
           ))}
