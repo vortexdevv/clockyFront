@@ -98,7 +98,7 @@ const Featured = () => {
                        : ""
                    } */
   }
-  const toLink = (id: string) => {};
+  // const toLink = (id: string) => {};
   return (
     <div ref={sectionRef} className="paddingX mx-auto my-8 py-10 px-5">
       <div className="flex flex-col items-center w-full bg-[#FCFCFC] ">
