@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import { toast, useToast } from "@/hooks/use-toast";
 import axiosInstance from "@/lib/axiosConfig";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";

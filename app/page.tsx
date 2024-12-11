@@ -4,6 +4,8 @@ import Featured from "./components/Featured";
 import Brands from "./components/Brands";
 import FullWidthCarousel from "@/components/full-width-carousel";
 import axios from "axios";
+import { Suspense } from "react";
+import Loading from "./components/Loading";
 type Product = {
   data: {
     _id: string;
@@ -17,9 +19,6 @@ type Product = {
 };
 const api = "https://clockyexpress.vercel.app/api";
 export default async function Home() {
-  const featured = await axios.get(`${api}/products/featured`, {
-    withCredentials: true,
-  });
   const { data } = await axios.get(`${api}/products/newArrival`, {
     withCredentials: true,
   });
@@ -30,7 +29,9 @@ export default async function Home() {
       {/* <ResponsiveSliderComponent /> */}
       <FullWidthCarousel />
       <Brands />
-      <Featured featured={featured.data} />
+      <Suspense fallback={<Loading />}>
+        <Featured />
+      </Suspense>
       {/* <Products /> */}
       <Recommended />
       {/* <Products2 /> */}
