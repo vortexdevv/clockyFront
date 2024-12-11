@@ -20,31 +20,18 @@ type Product = {
   img: string;
 };
 
-const Featured = () => {
+const Featured = ({ featured }: any) => {
   // const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { toast } = useToast();
-  const [activeProductId, setActiveProductId] = useState<string | null>(null);
+  // const { toast } = useToast();
+  // const [activeProductId, setActiveProductId] = useState<string | null>(null);
   const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get(
-          "https://clockyexpress.vercel.app/api/products/featured",
-          { withCredentials: true }
-        );
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Failed to fetch products", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchProducts();
+    setProducts(featured);
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -64,33 +51,33 @@ const Featured = () => {
     };
   }, []);
 
-  const addToCart = (product: Product) => {
-    setActiveProductId(product._id);
-    setTimeout(() => {
-      setActiveProductId(null);
-    }, 1000);
+  // const addToCart = (product: Product) => {
+  //   setActiveProductId(product._id);
+  //   setTimeout(() => {
+  //     setActiveProductId(null);
+  //   }, 1000);
 
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const existingProduct = cart.find((item: any) => item._id === product._id);
+  //   const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  //   const existingProduct = cart.find((item: any) => item._id === product._id);
 
-    if (existingProduct) {
-      existingProduct.quantity += 1;
-    } else {
-      cart.push({ ...product, quantity: 1 });
-    }
+  //   if (existingProduct) {
+  //     existingProduct.quantity += 1;
+  //   } else {
+  //     cart.push({ ...product, quantity: 1 });
+  //   }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+  //   localStorage.setItem("cart", JSON.stringify(cart));
 
-    toast({
-      title: product.name,
-      description: "added to cart",
-      action: (
-        <Link href="/cart" className="p-[10px]">
-          Go to cart
-        </Link>
-      ),
-    });
-  };
+  //   toast({
+  //     title: product.name,
+  //     description: "added to cart",
+  //     action: (
+  //       <Link href="/cart" className="p-[10px]">
+  //         Go to cart
+  //       </Link>
+  //     ),
+  //   });
+  // };
   {
     /* ${
                      isInView

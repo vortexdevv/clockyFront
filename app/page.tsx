@@ -15,13 +15,14 @@ type Product = {
     img: string;
   };
 };
+const api = "https://clockyexpress.vercel.app/api";
 export default async function Home() {
-  const { data } = await axios.get(
-    "https://clockyexpress.vercel.app/api/products/newArrival",
-    {
-      withCredentials: true,
-    }
-  );
+  const featured = await axios.get(`${api}/products/featured`, {
+    withCredentials: true,
+  });
+  const { data } = await axios.get(`${api}/products/newArrival`, {
+    withCredentials: true,
+  });
   return (
     <main className="h-auto bg-[#FCFCFC]">
       {/* <Nav /> */}
@@ -29,7 +30,7 @@ export default async function Home() {
       {/* <ResponsiveSliderComponent /> */}
       <FullWidthCarousel />
       <Brands />
-      <Featured />
+      <Featured featured={featured.data} />
       {/* <Products /> */}
       <Recommended />
       {/* <Products2 /> */}
