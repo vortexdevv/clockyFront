@@ -8,6 +8,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import CookiesWarning from "./components/CookiesWarning";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -41,6 +42,7 @@ export default function RootLayout({
         {/* <SidebarTrigger /> */}
         <Nav />
         {children}
+        <CookiesWarning />
         <Toaster />
         <Analytics />
         <SpeedInsights />
