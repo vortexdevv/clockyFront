@@ -1,9 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { useToast } from "@/hooks/use-toast";
-import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton"; // Import Skeleton from ShadCN UI
 import Card from "./Card";
 
@@ -53,7 +50,7 @@ const Arrivals = ({ data }: any) => {
                 <Skeleton className="w-full h-10" />
               </div>
             ))
-          : products.map((product, index) => (
+          : products.map((product) => (
               <Card product={product} key={product._id} />
             ))}
       </div>

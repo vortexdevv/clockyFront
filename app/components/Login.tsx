@@ -39,7 +39,7 @@ const Login = () => {
       if (isLogin) {
         // Login API call
         response = await axios.post(
-          "https://clockyexpress.vercel.app/api/users/login",
+          "http://localhost:5000/api/users/login",
           {
             email,
             password,
@@ -58,6 +58,7 @@ const Login = () => {
       }
 
       const { token, ...userData } = response.data;
+      console.log(response);
 
       // Save token in local storage
       localStorage.setItem("token", token);
