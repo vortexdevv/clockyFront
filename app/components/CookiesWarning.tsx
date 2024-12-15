@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { areCookiesEnabled } from "@/lib/checkCookies";
 const CookiesWarning = () => {
-  const [cookiesEnabled, setCookiesEnabled] = useState(true);
+  const [cookiesEnabled, setCookiesEnabled] = useState<boolean>();
 
   useEffect(() => {
     setCookiesEnabled(areCookiesEnabled());
